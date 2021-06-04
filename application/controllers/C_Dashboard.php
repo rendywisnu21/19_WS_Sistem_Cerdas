@@ -22,6 +22,7 @@ class C_Dashboard extends CI_Controller {
 	{
         $this->load->view('admin/template_adm/v_header');
 		$this->load->view('admin/template_adm/v_navbar');
+		$this->load->view('admin/template_adm/v_sidebar');
 		$this->load->view('admin/index');
 		$this->load->view('admin/template_adm/v_footer');
 	}
