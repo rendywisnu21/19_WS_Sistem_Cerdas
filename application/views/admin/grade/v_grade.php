@@ -32,18 +32,19 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Nama Fuzzyset</th>
+									<!-- <th>Id</th> -->
+									<th>Nama Grade</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-								foreach ($fuzzyset as $fz):
-									$id = $fz->id_fuzzyset
+								foreach ($grade as $g):
+									$id = $g->id_grade
 								?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
 									<!--<?= $id; ?>-->
-									<td class="text-center"><?= $fz->nama_fuzzyset; ?></td>
+									<td class="text-center"><?= $g->nama_grade; ?></td>
 								</tr>
 								<?php $no++; ?>
 								<?php endforeach; ?>
@@ -51,7 +52,7 @@
 							<tfoot>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Nama Fuzzyset</th>
+									<th>Nama Grade</th>
 								</tr>
 							</tfoot>
 						</table>

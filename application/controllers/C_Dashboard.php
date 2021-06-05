@@ -20,7 +20,9 @@ class C_Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{
-        $this->load->view('admin/template_adm/v_header');
+		$data['title'] = 'Workshop Sistem Cerdas';
+
+        $this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');
 		$this->load->view('admin/index');

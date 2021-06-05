@@ -1,22 +1,22 @@
 <?php
-class C_Fuzzyset extends CI_Controller
+class C_Grade extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('admin/m_fuzzyset');
+		$this->load->model('admin/m_grade');
 	}
 
     public function index()
 	{
-		$data['title'] = 'Data Fuzzy Set';
+		$data['title'] = 'Data Grade';
 
 		/** Mengambil data kelas */
-		$data['fuzzyset'] = $this->m_fuzzyset->getfuzzyset();
+		$data['grade'] = $this->m_grade->getgrade();
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');
-		$this->load->view('admin/fuzzy/v_fuzzyset');
+		$this->load->view('admin/grade/v_grade');
 		$this->load->view('admin/template_adm/v_footer');
 	}
 }
