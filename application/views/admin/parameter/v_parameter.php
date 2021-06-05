@@ -32,7 +32,6 @@
 								<tr class="text-center">
 									<th>No</th>
 									<th>Nama Parameter</th>
-                                    <th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -42,14 +41,7 @@
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
 									<td class="text-center" hidden><?= $id = $pm->id_parameter; ?></td>
-									<td class="text-center"><?= $pm->nama_parameter; ?></td>	
-                                    <td>
-                                        <a href="<?php echo base_url('admin/C_parameter/hapus_pm/'.$pm->id_parameter); ?>" title="Hapus" onclick="return confirm('Anda yakin ingin menghapus data ini?')" data-toggle="tooltip" data-placement="top" data-original-title="Hapus">
-                                            <button type="button" class="btn btn-danger">
-                                                <i class="fas fa-trash-alt color-danger"></i>
-                                            </button>
-                                        </a>                                    
-                                    </td>
+									<td class="text-center"><?= $pm->nama_parameter; ?></td>
 								</tr>
 								<?php $no++; ?>
 								<?php endforeach; ?>
@@ -58,7 +50,6 @@
 								<tr class="text-center">
 									<th>No</th>
 									<th>Nama Parameter</th>
-                                    <th>Aksi</th>
 								</tr>
 							</tfoot>
 							</table>
