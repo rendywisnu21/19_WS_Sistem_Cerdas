@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2021 at 04:58 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Jun 06, 2021 at 03:06 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_koi`
+-- Database: `koi`
 --
 
 -- --------------------------------------------------------
@@ -73,6 +72,16 @@ CREATE TABLE `tb_grade` (
   `id_grade` varchar(10) NOT NULL,
   `nama_grade` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_grade`
+--
+
+INSERT INTO `tb_grade` (`id_grade`, `nama_grade`) VALUES
+('G1', 'A'),
+('G2', 'B'),
+('G3', 'C'),
+('G4', 'D');
 
 -- --------------------------------------------------------
 
