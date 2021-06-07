@@ -13,10 +13,10 @@ class C_parameter extends CI_Controller
         $data['title'] = 'Data Parameter';
 
         $data['parameter'] = $this->m_parameter->tampil_parameter();
-        $this->load->view('admin/template_adm/v_header');
+        $this->load->view('admin/template_adm/v_header', $data);
         $this->load->view('admin/template_adm/v_navbar');
         $this->load->view('admin/template_adm/v_sidebar');
-        $this->load->view('admin/parameter/v_parameter', $data);
+        $this->load->view('admin/parameter/v_parameter');
         $this->load->view('admin/template_adm/v_footer');
     }
 }
