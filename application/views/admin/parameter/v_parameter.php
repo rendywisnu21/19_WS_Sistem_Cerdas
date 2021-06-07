@@ -8,7 +8,7 @@
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?= base_url('admin/C_dashboard'); ?>">Home</a></li>
+						<li class="breadcrumb-item"><a href="<?= base_url(); ?>">Beranda</a></li>
 						<li class="breadcrumb-item active"><?= $title; ?></li>
 					</ol>
 				</div>
@@ -17,13 +17,14 @@
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 
 	</section>
-    <section class="content">
+	<section class="content">
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header bg-dark">
 						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-						<a href="<?= base_url('admin/C_parameter/tambah_pm'); ?>" class="btn btn-primary text-bold float-right"><i class="fas fa-plus-circle"></i> <?= $title; ?></a>
+						<a href="<?= base_url(); ?>" class="btn btn-primary text-bold float-right"><i
+								class="fas fa-plus-circle"></i> <?= $title; ?></a>
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
@@ -52,8 +53,8 @@
 									<th>Nama Parameter</th>
 								</tr>
 							</tfoot>
-							</table>
-                            </div>
+						</table>
+					</div>
 					<!-- /.card-body -->
 				</div>
 				<!-- /.card -->
