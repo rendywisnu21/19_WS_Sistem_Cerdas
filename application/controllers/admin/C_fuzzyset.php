@@ -42,7 +42,7 @@ class C_Fuzzyset extends CI_Controller
 				}else if (strlen($id_fuzzyInt) == 3){
 					$id_fuzzyset = "FZ" . ($id_fuzzyInt + 1);
 				}			
-		}
+			}
 		}else {
 			$id_fuzzyset = "FZ001";
 		}
