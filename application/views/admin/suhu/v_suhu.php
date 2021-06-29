@@ -68,3 +68,33 @@
 	</section>
 	<!-- /.content -->
 </div>
+
+<?php foreach ($fuzzyset as $fs):
+	$id = $fs->id_fuzzyset;
+	$nama = $fs->nama_fuzzyset;
+	?>
+	<form action="<?php echo base_url() . 'admin/C_fuzzyset/delete' ?>" method="post">
+		<div class="modal fade" id="modal_hapus<?= $id; ?>" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bg-primary">
+						<h4 class="modal-title">Hapus Menu</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body justify-content-center">
+						<div class="text-center">
+							<h4 class="mb-4">Apakah anda yakin untuk menghapus data <b><?= $nama?></b> ini?</h4>
+						</div>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<input type="hidden" name="delete_id" value="<?= $id; ?>" required>
+						<button type="submit" class="btn btn-danger"><i class="far fa-save"></i> Hapus</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+<?php endforeach; ?>
