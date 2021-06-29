@@ -23,8 +23,7 @@
 				<div class="card">
 					<div class="card-header bg-dark">
 						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-						<a href="<?= base_url(); ?>" class="btn btn-primary text-bold float-right"><i
-								class="fas fa-plus-circle"></i> <?= $title; ?></a>
+						<a href="<?= base_url('admin/C_suhu/tambah'); ?>" class="btn btn-primary float-right">Tambah Data</a>
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
@@ -32,18 +31,20 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Nama Fuzzyset</th>
+									<th>Suhu</th>
+									<th>Domain</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-								foreach ($fuzzyset as $fz):
-									$id = $fz->id_fuzzyset
+								foreach ($suhu as $su):
+									$id = $su->id_suhu
 								?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
 									<!--<?= $id; ?>-->
-									<td class="text-center"><?= $fz->nama_fuzzyset; ?></td>
+									<td class="text-center"><?= $su->suhu; ?></td>
+									<td class="text-center"><?= $su->domain; ?></td>
 								</tr>
 								<?php $no++; ?>
 								<?php endforeach; ?>
@@ -51,7 +52,8 @@
 							<tfoot>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Nama Fuzzyset</th>
+									<th>Suhu</th>
+									<th>Domain</th>
 								</tr>
 							</tfoot>
 						</table>

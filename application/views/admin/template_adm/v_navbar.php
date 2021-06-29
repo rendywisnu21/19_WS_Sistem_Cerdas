@@ -3,7 +3,7 @@
 
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" src="<?= base_url() ?>assets/dist/img/ikankoi.png" alt="Gambar Ikan Koi"
+			<img class="animation__shake" src="<?= base_url() ?>assets/dist/img/fish_black.png" alt="Gambar Ikan Koi"
 				height="60" width="60">
 				<!-- Ganti Icon!! -->
 		</div>
