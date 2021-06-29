@@ -46,7 +46,7 @@ class C_Suhu extends CI_Controller
                 'domain' 	=> $domain
             ];
 
-            $this->m_suhu->tambahDataSuhu('tb_coba', $data);
+            $this->m_suhu->tambahDataSuhu('tb_suhu', $data);
             $this->session->set_flashdata('flashtambah', 'ditambahkan!');
             redirect('admin/C_suhu');
         }

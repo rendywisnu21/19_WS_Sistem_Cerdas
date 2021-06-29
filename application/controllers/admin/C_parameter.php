@@ -5,6 +5,11 @@ class C_parameter extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        if(!isset($_SESSION['auth'])){
+			redirect('admin/C_auth');
+		}
+        
         $this->load->model('admin/m_parameter');
     }
 

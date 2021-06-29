@@ -23,7 +23,8 @@
 				<div class="card">
 					<div class="card-header bg-dark">
 						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-						<a href="<?= base_url('admin/C_suhu/tambah'); ?>" class="btn btn-primary float-right">Tambah Data</a>
+						<a href="<?= base_url('admin/C_fuzzyset/tambahfzs'); ?>" class="btn btn-primary text-bold float-right"><i
+								class="fas fa-plus-circle"></i> <?= $title; ?></a>
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
@@ -31,22 +32,24 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Suhu</th>
-									<th>Domain</th>
+									<th>Nama Fuzzyset</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-								foreach ($suhu as $su):
-									$id = $su->id_suhu
+								foreach ($fuzzyset as $fz):
+									$id = $fz->id_fuzzyset
 									?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
 									<!--<?= $id; ?>-->
-									<td class="text-center"><?= $su->suhu; ?></td>
-									<td class="text-center"><?= $su->domain; ?></td>
-									<td class="text-center"></td>
+									<td class="text-center"><?= $fz->nama_fuzzyset; ?></td>
+									<td class="text-center">
+									<button type="button" class="btn btn-danger" data-toggle="modal"
+											data-target="#modal_hapus<?= $id; ?>">
+											<i class="fas fa-trash"></i> Hapus</button>
+									</td>
 								</tr>
 								<?php $no++; ?>
 								<?php endforeach; ?>
@@ -54,8 +57,7 @@
 							<tfoot>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Suhu</th>
-									<th>Domain</th>
+									<th>Nama Fuzzyset</th>
 									<th>Aksi</th>
 								</tr>
 							</tfoot>
@@ -72,11 +74,11 @@
 	<!-- /.content -->
 </div>
 
-<!-- <?php foreach ($suhu as $su):
-	$id = $su->id_suhu;
-	$suhu = $su->suhu;
+<?php foreach ($fuzzyset as $fs):
+	$id = $fs->id_fuzzyset;
+	$nama = $fs->nama_fuzzyset;
 	?>
-	<form action="<?php echo base_url() . 'admin/C_suhu/delete' ?>" method="post">
+	<form action="<?php echo base_url() . 'admin/C_fuzzyset/delete' ?>" method="post">
 		<div class="modal fade" id="modal_hapus<?= $id; ?>" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -100,4 +102,4 @@
 			</div>
 		</div>
 	</form>
-<?php endforeach; ?> -->
+<?php endforeach; ?>

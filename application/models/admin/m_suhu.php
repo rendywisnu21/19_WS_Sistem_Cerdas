@@ -3,7 +3,7 @@
     {
         public function getSuhu()
         {
-            $query = $this->db->get('tb_coba');
+            $query = $this->db->get('tb_suhu');
             return $query->result();
         }
 
@@ -14,7 +14,7 @@
 				"domain" => $this->input->post('domain', true)
 			];
 			
-			$this->db->insert('tb_coba', $data);
+			$this->db->insert('tb_suhu', $data);
 		}
 
 		// public function tambahDataSuhu($table, $data)
