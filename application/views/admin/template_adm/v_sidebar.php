@@ -57,6 +57,7 @@
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
+						<?php if($_SESSION['role'] == 1){ //jika status superadmin = 1 ?>
 						<li class="nav-item">
 							<a href="<?= base_url('admin/C_admin') ?>" class="nav-link 
 								<?php if($link === 'C_admin'){echo 'active';} ?>">
@@ -64,6 +65,8 @@
 								<p>Admin</p>
 							</a>
 						</li>
+						<?php } ?>
+
 						<li class="nav-item">
 							<a href="<?= base_url('admin/C_fuzzyset') ?>" class="nav-link 
 								<?php if($link === 'C_fuzzyset'){echo 'active';} ?>">
@@ -83,6 +86,13 @@
 								<?php if($link === 'C_grade'){echo 'active';} ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Grade</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('admin/C_rule') ?>" class="nav-link 
+								<?php if($link === 'C_rule'){echo 'active';} ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Rule</p>
 							</a>
 						</li>
 					</ul>
