@@ -25,11 +25,13 @@ class C_auth extends CI_Controller
         $auth = $this->auth->get_data($data)->row();
         
         if($auth != ''){
+                $id = $auth->id_admin; 
+                $nama = $auth->nama_admin;
+
             $this->session->set_userdata(array(
                 'auth' => 'login',
-                'id_admin' => $auth->id_admin,
-                'nama_admin' => $auth->nama_admin,
-                'role' => $auth->role
+                'id_admin' => $id,
+                'nama_admin' => $nama
             ));
             redirect();
         }else{
