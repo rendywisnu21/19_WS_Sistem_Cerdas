@@ -15,6 +15,8 @@
 			</div>
 		</div><!-- /.container-fluid -->
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+		
+		<!-- alert  -->
 		<?php if(isset($_SESSION['hapus_sukses'])){ ?>
 			<div class="alert alert-success" role="alert">
 				Hapus Sukses
@@ -23,6 +25,15 @@
 			</button>
 			</div>
 		<?php } ?>
+		<?php if(isset($_SESSION['tambah_sukses'])){ ?>
+			<div class="alert alert-success" role="alert">
+				Data Berhasil Ditambahkan
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+		<?php } ?>
+		<!-- alert end  -->
 
 	</section>
 	<section class="content">
@@ -42,41 +53,32 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Nama Admin</th>
-									<th>Username</th>
-									<th>Status</th>
+									<th>Suhu</th>
+									<th>PH</th>
+									<th>TDS</th>
+									<th>Grade</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-									foreach ($admin as $ad):
+									foreach ($rule as $ru):
 								?>
 								<tr>
-									<td class="text-center"><?= $no; ?></td>
-									<td class="text-center"><?= $ad->nama_admin; ?></td>
-									<td class="text-center"><?= $ad->username_admin; ?></td>
+									<td class="text-center"><?= $no++; ?></td>
+									<td class="text-center"><?= $ru->suhu; ?></td>
+									<td class="text-center"><?= $ru->fuzzy_set_ph; ?></td>
+									<td class="text-center"><?= $ru->fuzzy_set_tds; ?></td>
+									<td class="text-center"><?= $ru->grade; ?></td>
+									
 									<td class="text-center">
-										<i class="fas fa-check text-success"></i>
-									</td>
-									<td class="text-center">
-										<a href="#!" onclick="hapus('<?=$ad->id_admin?>','<?=$ad->nama_admin?>')">
+										<a href="#!" onclick="hapus('<?=$ru->id_rule?>')">
 											<i class="fas fa-trash text-danger"></i>
 										</a>
 									</td>
 								</tr>
-								<?php $no++; ?>
 								<?php endforeach; ?>
 							</tbody>
-							<tfoot>
-								<!-- <tr class="text-center">
-									<th>No</th>
-									<th>Nama Admin</th>
-									<th>Username</th>
-									<th>Status</th>
-									<th>aksi</th>
-								</tr> -->
-							</tfoot>
 						</table>
 					</div>
 				</div>
@@ -95,22 +97,42 @@
 			<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-	<form action="<?php echo base_url() . 'admin/C_admin/tambah_aksi' ?>" method="post">
+	<form action="<?php echo base_url() . 'admin/C_rule/tambah_aksi' ?>" method="post">
 		<div class="modal-body">
 				<div class="form-group">
-					<label for="nama">Nama Admin</label>
-					<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Admin" minlength="2">
-					<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+					<label for="suhu">Suhu</label>
+					<select class="form-select form-control" aria-label="Default select example" id="suhu" name="suhu">
+						<option selected>- Pilih salah satu -</option>
+						<?php foreach($suhu as $s){ ?>
+							<option value="<?=$s->id_suhu?>"><?=$s->suhu?>  (<?=$s->domain?>)</option>
+						<?php } ?>
+					</select>
+					<?= form_error('suhu', '<small class="text-danger">', '</small>'); ?>
 				</div>
 				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" class="form-control" id="username" name="username" placeholder="Username" minlength="2">
-					<?= form_error('username', '<small class="text-danger">', '</small>'); ?>
+					<label for="ph">PH</label>
+					<select class="form-select form-control" aria-label="Default select example" id="ph" name="ph">
+						<option selected>- Pilih salah satu -</option>
+						<?php foreach($ph as $p){ ?>
+							<option value="<?=$p->id_ph?>"><?=$p->fuzzy_set?>  (<?=$p->domain?>)</option>
+						<?php } ?>
+					</select>
+					<?= form_error('ph', '<small class="text-danger">', '</small>'); ?>
 				</div>
 				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8">
-					<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+					<label for="tds">TDS</label>
+					<select class="form-select form-control" aria-label="Default select example" id="tds" name="tds">
+						<option selected>- Pilih salah satu -</option>
+						<?php foreach($tds as $t){ ?>
+							<option value="<?=$t->id_tds?>"><?=$t->fuzzy_set?>  (<?=$t->domain?>)</option>
+						<?php } ?>
+					</select>
+					<?= form_error('tds', '<small class="text-danger">', '</small>'); ?>
+				</div>
+				<div class="form-group">
+					<label for="grade">Grade</label>
+					<input type="text" class="form-control" id="grade" name="grade" placeholder="Grade">
+					<?= form_error('grade', '<small class="text-danger">', '</small>'); ?>
 				</div>
 		</div>
 		<div class="modal-footer">
@@ -128,7 +150,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 		<div class="modal-body">
-			Anda yakin ingin menghapus data <span id="nama_admin"></span> ?
+			Anda yakin ingin menghapus data ini ?
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -141,9 +163,8 @@
 
 <!-- script tampil modal hapus  -->
 <script>
-	function hapus(id, nama){
-		document.getElementById('nama_admin').innerHTML= nama;
-		$('#linkHapus').attr('href', '<?=base_url('admin/C_admin/hapusAksi/')?>'+id);
+	function hapus(id){
+		$('#linkHapus').attr('href', '<?=base_url('admin/C_rule/hapusAksi/')?>'+id);
 		$('#modalHapus').modal('show');
 	}
 </script>

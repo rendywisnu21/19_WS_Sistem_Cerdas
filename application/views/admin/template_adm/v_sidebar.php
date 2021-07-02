@@ -19,9 +19,9 @@
 					<div class="col-sm">
 						<img src="<?= base_url() ?>assets/dist/img/userwhite.png" class="img-circle elevation-2" alt="User Image">
 					</div>
-					<!-- <div class="col-sm">
+					<div class="col-sm">
 						<a href="#" class="d-block mt-1"><?=$_SESSION['nama_admin']?></a>
-					</div> -->
+					</div>
 					<div class="col-sm text-right mt-2">
 						<a href="#!" class="text-secondary ml-5" data-target="#modalKeluar" data-toggle="modal">
 							logout
@@ -57,6 +57,7 @@
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
+						<?php if($_SESSION['role'] == 1){ //jika status superadmin = 1 ?>
 						<li class="nav-item">
 							<a href="<?= base_url('admin/C_admin') ?>" class="nav-link 
 								<?php if($link === 'C_admin'){echo 'active';} ?>">
@@ -64,6 +65,8 @@
 								<p>Admin</p>
 							</a>
 						</li>
+						<?php } ?>
+
 						<li class="nav-item">
 							<a href="<?= base_url('admin/C_tds') ?>" class="nav-link 
 								<?php if($link === 'C_tds'){echo 'active';} ?>">
@@ -71,6 +74,7 @@
 								<p>TDS</p>
 							</a>
 						</li>
+
 						<li class="nav-item">
 							<a href="<?= base_url('admin/C_parameter') ?>" class="nav-link 
 								<?php if($link === 'C_parameter'){echo 'active';} ?>">
@@ -83,6 +87,13 @@
 								<?php if($link === 'C_grade'){echo 'active';} ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Grade</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('admin/C_rule') ?>" class="nav-link 
+								<?php if($link === 'C_rule'){echo 'active';} ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Rule</p>
 							</a>
 						</li>
 					</ul>
