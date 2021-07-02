@@ -81,14 +81,11 @@ class C_admin extends CI_Controller
 	}
 
 
-	function delete()
+	function hapusAksi($id)
 	{
-		$id_fz = $this->input->post('delete_id', TRUE);
-		$where = array(
-            'id_fuzzyset' => $id_fz
-        );
-		$this->m_fuzzyset->delete($where, 'tb_fuzzyset');
-		$this->session->set_flashdata('message', 'dataDelete');
-		redirect('admin/C_fuzzyset');
+		if($this->admin->delete($id)){
+			$this->session->set_flashdata('hapus_sukses', 'hapus_sukses');
+		}
+		redirect('admin/C_admin');
 	}
 }

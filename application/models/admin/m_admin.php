@@ -3,8 +3,8 @@
     {
         public function getadmin()
         {
-            $query = $this->db->get('tb_admin');
-            return $query;
+            $this->db->where('role', '0');
+            return $this->db->get('tb_admin');
         }
 
         public function getadminlast()
@@ -20,8 +20,8 @@
         }
 
         // DELETE
-        function delete($where, $table)
+        function delete($id)
         {
-            $this->db->delete($table, $where);
+            return $this->db->delete('tb_admin', array('id_admin'=>$id));
         }
     }
