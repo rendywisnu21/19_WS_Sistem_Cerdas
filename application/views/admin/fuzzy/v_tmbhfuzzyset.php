@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="<?= base_url('admin/C_tds'); ?>">Data TDS</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('admin/C_fuzzyset'); ?>">Data Fuzzyset</a></li>
                         <li class="breadcrumb-item active"><?= $title; ?></li>
                     </ol>
                 </div>
@@ -29,38 +29,28 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="<?= base_url('admin/C_tds/tambahtds'); ?>"
+                        <form method="POST" action="<?= base_url('admin/C_fuzzyset/tambahfzs'); ?>"
                             enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="row">
                                     <!-- <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="id_tds">Id TDS</label>
-                                            <input type="text" class="form-control huruf" id="id_tds" name="id_tds" value="<?= $id_tds; ?>" redonly>
-                                            <?= form_error('id_tds', '<small class="text-danger">', '</small>'); ?>
+                                            <label for="id_fuzzy">Id Fuzzyset</label>
+                                            <input type="text" class="form-control huruf" id="id_fuzzyset" name="id_fuzzyset" value="<?= $id_fuzzyset; ?>" redonly>
+                                            <?= form_error('id_fuzzy', '<small class="text-danger">', '</small>'); ?>
                                         </div>
                                     </div> -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="namatd">Nama FuzzySet</label>
-                                            <select class="form-control huruf" id="nmtd" name="namatd"
-                                                placeholder="Masukkan Fuzzyset" value="<?= set_value('namatd'); ?>"
+                                            <label for="namafz">Nama FuzzySet</label>
+                                            <input type="text" class="form-control huruf" id="nmfz" name="namafz"
+                                                placeholder="Nama FuzzySet" value="<?= set_value('namafz'); ?>"
                                                 autocomplete="off" autofocus required>
-                                            <?php foreach($kat as $st){ ?>
-                                            <option value="<?php echo $st['id_kategori']; ?>"><?php echo $st['kategori']; ?> </option>
-                                            <?php } ?>
-                                            </select>
-                                            <?= form_error('namatd', '<small class="text-danger">', '</small>'); ?>
+                                            <?= form_error('namafz', '<small class="text-danger">', '</small>'); ?>
                                         </div>
-                                        <div class="form-group">
-									        <label for="domain">Domain</label>
-									        <input type="text" class="form-control huruf" id="domain" name="domain"
-										        placeholder="Masukkan nilai domain" value="<?= set_value('domain'); ?>">
-                                            <?= form_error('domain', '<small class="text-danger">', '</small>'); ?>
-								        </div>
                                     </div>
                                     <div class="button">
-                                        <a href="<?= base_url('admin/C_tds')?>" class="btn btn-default" data-dismiss="modal"><i class= "fa fa-arrow-circle-left"></i> Kembali</a>
+                                        <a href="<?= base_url('admin/C_fuzzyset')?>" class="btn btn-default" data-dismiss="modal"><i class= "fa fa-arrow-circle-left"></i> Kembali</a>
                                         <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
                                     </div>
                                  </div>
