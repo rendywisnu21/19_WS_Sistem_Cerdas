@@ -4,21 +4,25 @@
         public function getSuhu()
         {
             $query = $this->db->get('tb_suhu');
-            return $query->result();
+            return $query;
         }
 
-		public function tambahDataSuhu() 
-		{
-			$data = [
-				"suhu" => $this->input->post('suhu', true),
-				"domain" => $this->input->post('domain', true)
-			];
-			
-			$this->db->insert('tb_suhu', $data);
+		public function getSuhuLast()
+        {
+            $this->db->order_by('id_suhu', 'DESC');
+            return $this->db->get('tb_suhu', 1);
+        }
+
+		// Tambah
+        public function tambah($data)
+        {   
+            return $this->db->insert('tb_suhu', $data);
+        }
+
+		// Hapus
+		public function hapus($data){
+			$this->db->where('id_suhu', $data['id_suhu']);   
+			$this->db->delete('tb_suhu');  
 		}
 
-		// public function tambahDataSuhu($table, $data)
-		// {	
-		// 	$this->db->insert($table, $data);
-		// }
 }		

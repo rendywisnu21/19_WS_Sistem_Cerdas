@@ -64,7 +64,7 @@ class C_admin extends CI_Controller
 		$password = htmlspecialchars($this->input->post('password'));
 		
 		if ($this->form_validation->run() == false) {
-		    $this->index();
+			$this->index();
 		}else{
 			$data = array(
 				'id_admin' => $id_admin,

@@ -31,8 +31,8 @@
 				<div class="card">
 					<div class="card-header bg-dark">
 						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-						<a href="#!" class="btn btn-primary text-bold float-right" data-target="#modalTambah" data-toggle="modal">
-							<i class="fas fa-plus-circle"></i> <?= $title; ?>
+						<a href="#" class="btn btn-primary float-right" data-target="#modalTambah" data-toggle="modal">
+							Tambah Data
 						</a>
 					</div>
 
@@ -114,7 +114,7 @@
 				</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+			<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
 			<button type="submit" class="btn btn-primary">Tambah</button>
 		</div>
 	</form>

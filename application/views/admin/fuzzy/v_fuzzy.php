@@ -33,23 +33,21 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Suhu</th>
-									<th>Domain</th>
+									<th>Nilai Fuzzyset</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-									foreach ($suhu as $su):
+									foreach ($fuzzyset as $fz):
 								?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
-									<td class="text-center"><?= $su->suhu; ?></td>
-									<td class="text-center"><?= $su->domain; ?></td>
+									<td class="text-center"><?= $fz->fuzzyset; ?></td>
 									<td class="text-center">
 										<a href="#" data-toggle="modal" data-target="#modalEdit"
 											class="badge badge-info mr-1">Edit</a>
-										<a href="<?= base_url('admin/C_suhu/hapus/'. $su->id_suhu) ?>"
+										<a href="<?= base_url('admin/C_fuzzy/hapus/'. $fz->id_fuzzyset) ?>"
 											type="button" class="badge badge-danger">Hapus</a>
 									</td>
 								</tr>
@@ -59,8 +57,7 @@
 							<tfoot>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Suhu</th>
-									<th>Domain</th>
+									<th>Nilai Fuzzyset</th>
 									<th>Aksi</th>
 								</tr>
 							</tfoot>
@@ -83,21 +80,13 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?php echo base_url() . 'admin/C_suhu/tambah' ?>" method="post">
+			<form action="<?php echo base_url() . 'admin/C_fuzzy/tambah' ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="suhu">Suhu</label>
-						<input type="text" class="form-control" id="suhu" name="suhu"
+						<label for="fuzzyset">Nilai Fuzzyset</label>
+						<input type="text" class="form-control" id="fuzzyset" name="fuzzyset"
 							placeholder="Isi dengan nilai baik, sedang, buruk, atau sangat buruk">
-						<?= form_error('suhu', '<small class="text-danger">', '</small>'); ?>
-					</div>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="domain">Domain</label>
-						<input type="text" class="form-control" id="domain" name="domain"
-							placeholder="Isi dengan nilai angka">
-						<?= form_error('domain', '<small class="text-danger">', '</small>'); ?>
+						<?= form_error('fuzzyset', '<small class="text-danger">', '</small>'); ?>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -113,7 +102,7 @@
 <!-- modal edit -->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Edit Data</h5>
@@ -122,20 +111,12 @@
 				</button>
 			</div>
 			<form action="#" method="post">
-			<div class="modal-body">
-					<div class="form-group">
-						<label for="suhu">Suhu</label>
-						<input type="text" class="form-control" id="suhu" name="suhu"
-							placeholder="Isi dengan nilai baik, sedang, buruk, atau sangat buruk">
-						<?= form_error('suhu', '<small class="text-danger">', '</small>'); ?>
-					</div>
-				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="domain">Domain</label>
-						<input type="text" class="form-control" id="domain" name="domain"
-							placeholder="Isi dengan nilai angka">
-						<?= form_error('domain', '<small class="text-danger">', '</small>'); ?>
+						<label for="fuzzyset">Nilai Fuzzyset</label>
+						<input type="text" class="form-control" id="fuzzyset" name="fuzzyset"
+							placeholder="Isi dengan nilai baik, sedang, buruk, atau sangat buruk">
+						<?= form_error('fuzzyset', '<small class="text-danger">', '</small>'); ?>
 					</div>
 				</div>
 				<div class="modal-footer">
