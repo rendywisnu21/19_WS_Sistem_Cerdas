@@ -68,6 +68,22 @@
 						<?php } ?>
 
 						<li class="nav-item">
+							<a href="<?= base_url('admin/C_suhu') ?>" class="nav-link 
+								<?php if($link === 'C_suhu'){echo 'active';} ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Suhu</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a href="<?= base_url('admin/C_ph') ?>" class="nav-link 
+								<?php if($link === 'C_ph'){echo 'active';} ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>PH</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
 							<a href="<?= base_url('admin/C_tds') ?>" class="nav-link 
 								<?php if($link === 'C_tds'){echo 'active';} ?>">
 								<i class="far fa-circle nav-icon"></i>
@@ -75,13 +91,6 @@
 							</a>
 						</li>
 
-						<li class="nav-item">
-							<a href="<?= base_url('admin/C_grade') ?>" class="nav-link 
-								<?php if($link === 'C_grade'){echo 'active';} ?>">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Grade</p>
-							</a>
-						</li>
 						<li class="nav-item">
 							<a href="<?= base_url('admin/C_rule') ?>" class="nav-link 
 								<?php if($link === 'C_rule'){echo 'active';} ?>">
