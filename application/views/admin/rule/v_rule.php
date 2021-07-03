@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -167,4 +168,7 @@
 		$('#linkHapus').attr('href', '<?=base_url('admin/C_rule/hapusAksi/')?>'+id);
 		$('#modalHapus').modal('show');
 	}
+
+	toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
 </script>
+

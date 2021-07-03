@@ -76,13 +76,6 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="<?= base_url('admin/C_parameter') ?>" class="nav-link 
-								<?php if($link === 'C_parameter'){echo 'active';} ?>">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Parameter</p>
-							</a>
-						</li>
-						<li class="nav-item">
 							<a href="<?= base_url('admin/C_grade') ?>" class="nav-link 
 								<?php if($link === 'C_grade'){echo 'active';} ?>">
 								<i class="far fa-circle nav-icon"></i>
