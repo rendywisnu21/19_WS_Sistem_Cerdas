@@ -32,7 +32,6 @@ class C_Tds extends CI_Controller
 			]);
 		$data['title'] = 'Tambah Data TDS';
 		$data['tds'] = $this->m_tds->gettds();
-		$data['kat'] = $this->m_tds->getkat()->result_array();
 
 		$check = $this->m_tds->gettds()->num_rows();
 		if ($check > 0) {
@@ -70,7 +69,7 @@ class C_Tds extends CI_Controller
 		
 			$fuzzy = array(
 				'id_tds' => $id_tds,
-				'id_kategori' => $fuzzy_set,
+				'fuzzy_set' => $fuzzy_set,
 				'domain' => $domain
 			);
 		

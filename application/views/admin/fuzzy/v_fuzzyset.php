@@ -23,7 +23,7 @@
 				<div class="card">
 					<div class="card-header bg-dark">
 						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-						<a href="<?= base_url('admin/C_tds/tambahtds'); ?>" class="btn btn-primary text-bold float-right"><i
+						<a href="<?= base_url('admin/C_fuzzyset/tambahfzs'); ?>" class="btn btn-primary text-bold float-right"><i
 								class="fas fa-plus-circle"></i> <?= $title; ?></a>
 					</div>
 					<!-- /.card-header -->
@@ -32,21 +32,19 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Fuzzyset</th>
-									<th>Domain</th>
+									<th>Nama Fuzzyset</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-								foreach ($tds as $td):
-									$id = $td->id_tds
+								foreach ($fuzzyset as $fz):
+									$id = $fz->id_fuzzyset
 									?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
 									<!--<?= $id; ?>-->
-									<td class="text-center"><?= $td->fuzzy_set; ?></td>
-									<td class="text-center"><?= $td->domain; ?></td>
+									<td class="text-center"><?= $fz->nama_fuzzyset; ?></td>
 									<td class="text-center">
 									<button type="button" class="btn btn-danger" data-toggle="modal"
 											data-target="#modal_hapus<?= $id; ?>">
@@ -59,8 +57,7 @@
 							<tfoot>
 								<tr class="text-center">
 									<th>No</th>
-									<th>Fuzzyset</th>
-									<th>Domain</th>
+									<th>Nama Fuzzyset</th>
 									<th>Aksi</th>
 								</tr>
 							</tfoot>
@@ -77,11 +74,11 @@
 	<!-- /.content -->
 </div>
 
-<?php foreach ($tds as $ts):
-	$id = $ts->id_tds;
-	$nama = $ts->fuzzy_set;
+<?php foreach ($fuzzyset as $fs):
+	$id = $fs->id_fuzzyset;
+	$nama = $fs->nama_fuzzyset;
 	?>
-	<form action="<?php echo base_url() . 'admin/C_tds/delete' ?>" method="post">
+	<form action="<?php echo base_url() . 'admin/C_fuzzyset/delete' ?>" method="post">
 		<div class="modal fade" id="modal_hapus<?= $id; ?>" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -93,7 +90,7 @@
 					</div>
 					<div class="modal-body justify-content-center">
 						<div class="text-center">
-							<h4 class="mb-4">Apakah anda yakin untuk menghapus data dengan kategori <b><?= $nama?></b> ini?</h4>
+							<h4 class="mb-4">Apakah anda yakin untuk menghapus data <b><?= $nama?></b> ini?</h4>
 						</div>
 					</div>
 					<div class="modal-footer justify-content-between">

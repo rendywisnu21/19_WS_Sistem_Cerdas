@@ -3,13 +3,7 @@
     {
         public function gettds()
         {
-            $query = $this->db->query('SELECT * FROM tb_tds, tb_kategori WHERE tb_tds.id_kategori = tb_kategori.id_kategori');
-            return $query;
-        }
-
-        public function getkat()
-        {
-            $query = $this->db->get('tb_kategori');
+            $query = $this->db->get('tb_tds');
             return $query;
         }
 

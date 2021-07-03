@@ -28,4 +28,8 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/plugins/daterangepicker/daterangepicker.css">
 	<!-- summernote -->
 	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/plugins/summernote/summernote-bs4.min.css">
+	<!-- toastr  -->
+	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/plugins/toastr/toastr.min.css">
+	<!-- sweet alert  -->
+	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.cs">
 </head>
