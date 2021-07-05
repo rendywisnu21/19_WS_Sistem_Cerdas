@@ -30,26 +30,28 @@ class C_Tds extends CI_Controller
 		$this->form_validation->set_rules('namatd', 'Namatd', 'trim|required', [
 			'required' => 'Kolom ini harus di isi',
 			]);
-		$data['title'] = 'Tambah Data TDS';
+		
+		$this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
+			'required' 	=> 'Kolom ini perlu diisi'
+			]);
+			
 		$data['tds'] = $this->m_tds->gettds();
 
 		$check = $this->m_tds->gettds()->num_rows();
 		if ($check > 0) {
 			$lastId = $this->m_tds->gettdslast()->result();
 			foreach ($lastId as $row){
-				$rawid_tds = substr($row->id_tds, 3);
+				$rawid_tds = substr($row->id_tds, 2, 2);
 				$id_tdsInt = intval($rawid_tds);
 				
 				if (strlen($id_tdsInt) == 1) {
-					$id_tds = "FZ00" . ($id_tdsInt + 1);
+					$id_tds = "TD" . ($id_tdsInt + 1);
 				}else if (strlen($id_tdsInt) == 2) {
-					$id_tds = "FZ0" . ($id_tdsInt + 1);
-				}else if (strlen($id_tdsInt) == 3){
-					$id_tds = "FZ" . ($id_tdsInt + 1);
-				}			
+					$id_tds = "TD" . ($id_tdsInt + 1);
+				}		
 			}
 		}else {
-			$id_tds = "FZ001";
+			$id_tds = "TD01";
 		}
 
 		// $id_fuzzyset = htmlspecialchars($this->input->post('id_fuzzyset'));
@@ -78,6 +80,7 @@ class C_Tds extends CI_Controller
 			redirect('admin/C_tds');
 		}
 	}
+	
 	function delete()
 	{
 		$id_td = $this->input->post('delete_id', TRUE);

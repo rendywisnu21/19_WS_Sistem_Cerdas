@@ -20,9 +20,9 @@
         }
 
 		// Hapus
-		public function hapus($data){
-			$this->db->where('id_suhu', $data['id_suhu']);   
-			$this->db->delete('tb_suhu');  
-		}
+		public function hapus($where, $table)
+        {
+            $this->db->delete($table, $where);
+        }
 
 }		

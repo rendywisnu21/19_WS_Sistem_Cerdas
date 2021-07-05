@@ -1,5 +1,5 @@
 <?php
-class C_Suhu extends CI_Controller
+class C_ph extends CI_Controller
 {
 	public function __construct()
 	{
@@ -8,19 +8,19 @@ class C_Suhu extends CI_Controller
 			redirect('admin/C_auth');
 		}
 
-		$this->load->model('admin/m_suhu');
+		$this->load->model('admin/m_ph');
 	}
 
     public function index()
 	{
-		$data['title'] = 'Data Suhu';
+		$data['title'] = 'Data Ph';
 
 		/** Mengambil data kelas */
-		$data['fuzzy_set'] = $this->m_suhu->getSuhu()->result();
+		$data['fuzzy_set'] = $this->m_ph->getPh()->result();
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');
-		$this->load->view('admin/suhu/v_suhu');
+		$this->load->view('admin/ph/v_ph');
 		$this->load->view('admin/template_adm/v_footer');
 	}
 
@@ -30,26 +30,27 @@ class C_Suhu extends CI_Controller
             'required' 	=> 'Kolom ini perlu dipilih'
             ]);
 
-        $this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
-            'required' 	=> 'Kolom ini perlu diisi'
+        $this->form_validation->set_rules('domain', 'Domain', 'required|trim|min_length[2]', [
+            'required' 	=> 'Kolom ini perlu diisi',
+			'min_length'=> 'Isikan minimal 2 huruf'
             ]);
 		
-		// Cek id_suhu SU01
-		$check = $this->m_suhu->getSuhu()->num_rows();
+		// Cek id_ph
+		$check = $this->m_ph->getPh()->num_rows();
 		if ($check > 0) {
-			$lastId = $this->m_suhu->getSuhuLast()->result();
+			$lastId = $this->m_ph->getPhLast()->result();
 			foreach ($lastId as $row){
-				$rawid = substr($row->id_suhu, 2, 2);
+				$rawid = substr($row->id_ph, 2, 2);
 				$id = intval($rawid);
 				
 				if (strlen($id) == 1) {
-					$id_suhu = "SU" . ($id + 1);
+					$id_ph = "PH" . ($id + 1);
 				}else if (strlen($id) == 2) {
-					$id_suhu = "SU" . ($id + 1);
-				}
+					$id_ph = "PH" . ($id + 1);
+				}			
 			}
 		}else {
-			$id_suhu = "SU01";
+			$id_ph = "PH01";
 		}
 
 		$fuzzy_set 	= htmlspecialchars($this->input->post('fuzzy_set'));
@@ -59,25 +60,25 @@ class C_Suhu extends CI_Controller
 			$this->index();
 		}else{
 			$data = array(
-				'id_suhu'	=> $id_suhu,
+				'id_ph'		=> $id_ph,
 				'fuzzy_set' => $fuzzy_set,
 				'domain' 	=> $domain,
 			);
 		
-			$this->m_suhu->tambah($data);
+			$this->m_ph->tambah($data);
 			$this->session->set_flashdata('message', 'save');
-			redirect('admin/C_suhu');
+			redirect('admin/C_ph');
 		}
 	}
 
 	public function hapus()
     {
-        $id_suhu = $this->input->post('delete_id', TRUE);
+        $id_ph = $this->input->post('delete_id', TRUE);
 		$where = array(
-            'id_suhu' => $id_suhu
+            'id_ph' => $id_ph
         );
-		$this->m_suhu->hapus($where, 'tb_suhu');
+		$this->m_ph->hapus($where, 'tb_ph');
 		$this->session->set_flashdata('message', 'dataDelete');
-		redirect('admin/C_suhu');
+		redirect('admin/C_ph');
     }
 }

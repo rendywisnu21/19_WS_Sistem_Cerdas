@@ -41,7 +41,7 @@
 							<tbody>
 								<?php $no = 1;
 									foreach ($fuzzy_set as $fz):
-										$id = $fz->id_suhu
+										$id = $fz->id_ph
 								?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
@@ -85,11 +85,11 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?php echo base_url() . 'admin/C_suhu/tambah' ?>" method="post">
+			<form action="<?php echo base_url() . 'admin/C_ph/tambah' ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="fuzzy_set">Nilai FuzzySet</label>
-						<select class="form-control huruf" id="fuzzy_set" name="fuzzy_set"
+						<label for="fuzzy_set">Nama FuzzySet</label>
+						<select class="form-control huruf" id="fuzzy_set" name="fuzzy_set" placeholder="Pilih Fuzzyset"
 							value="<?= set_value('fuzzy_set'); ?>" autocomplete="off" autofocus required>
 							<option disabled selected hidden>Pilih</option>
 							<option value="Excellent">Excellent</option>
@@ -130,7 +130,7 @@
 			<form action="#" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="fuzzy_set">Nilai FuzzySet</label>
+						<label for="fuzzy_set">Nilai Fuzzy Set</label>
 						<input type="text" class="form-control" id="fuzzy_set" name="fuzzy_set"
 							placeholder="Isi dengan nilai baik, sedang, buruk, atau sangat buruk">
 						<?= form_error('fuzzy_set', '<small class="text-danger">', '</small>'); ?>
@@ -155,10 +155,10 @@
 <!-- modal edit end -->
 <!-- modal hapus -->
 <?php foreach ($fuzzy_set as $fz):
-	$id 		= $fz->id_suhu;
+	$id 		= $fz->id_ph;
 	$kategori 	= $fz->fuzzy_set;
 	?>
-<form action="<?php echo base_url() . 'admin/C_suhu/hapus' ?>" method="post">
+<form action="<?php echo base_url() . 'admin/C_ph/hapus' ?>" method="post">
 	<div class="modal fade" id="modalHapus<?= $id; ?>" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
