@@ -7,6 +7,7 @@
             $this->db->join('tb_ph', 'tb_rule.id_ph = tb_ph.id_ph');
             $this->db->join('tb_tds', 'tb_rule.id_tds = tb_tds.id_tds');
             $this->db->select('*, tb_ph.fuzzy_set as fuzzy_set_ph, tb_tds.fuzzy_set as fuzzy_set_tds');
+            $this->db->order_by('id_rule','asc');
             $this->db->from('tb_rule');
             return $this->db->get();
         }

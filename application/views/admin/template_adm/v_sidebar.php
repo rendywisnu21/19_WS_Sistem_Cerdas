@@ -40,6 +40,7 @@
 						data-accordion="false">
 						<!-- Add icons to the links using the .nav-icon class 
 						with font-awesome or any other icon font library -->
+<<<<<<< Updated upstream
 						<li class="nav-item menu-open">
 							<a href="<?=base_url()?>" class="nav-link <?php if($link === null){echo 'active';} ?> ">
 								<i class="nav-icon fas fa-tachometer-alt"></i>
@@ -58,6 +59,28 @@
 							</a>
 							<!-- <ul class="nav nav-treeview"> -->
 							<?php if($_SESSION['role'] == 1){ //jika status superadmin = 1 ?>
+=======
+				<li class="nav-item menu-open">
+					<a href="<?=base_url()?>" class="nav-link <?php if($link === null){echo 'active';} ?> ">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							Dasbor
+						</p>
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-copy"></i>
+						<p>
+							Master Data
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					
+					<ul class="nav nav-treeview">
+						<?php if($_SESSION['role'] == 1){ //jika status superadmin = 1 ?>
+>>>>>>> Stashed changes
 						<li class="nav-item">
 							<a href="<?= base_url('admin/C_admin') ?>" class="nav-link 
 								<?php if($link === 'C_admin'){echo 'active';} ?>">

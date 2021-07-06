@@ -54,6 +54,7 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
+									<th>Rule</th>
 									<th>Suhu</th>
 									<th>PH</th>
 									<th>TDS</th>
@@ -67,6 +68,7 @@
 								?>
 								<tr>
 									<td class="text-center"><?= $no++; ?></td>
+									<td class="text-center"><?= $ru->rule; ?></td>
 									<td class="text-center"><?= $ru->suhu; ?></td>
 									<td class="text-center"><?= $ru->fuzzy_set_ph; ?></td>
 									<td class="text-center"><?= $ru->fuzzy_set_tds; ?></td>
@@ -101,6 +103,12 @@
 	<form action="<?php echo base_url() . 'admin/C_rule/tambah_aksi' ?>" method="post">
 		<div class="modal-body">
 				<div class="form-group">
+					<label for="rule">Rule</label>
+					<input type="text" class="form-control" id="rule" name="rule" placeholder="Rule (R1,R2,R3, dst)" 
+							value="R" minlength="1" maxlength="5">
+					<?= form_error('rule', '<small class="text-danger">', '</small>'); ?>
+				</div>
+				<div class="form-group">
 					<label for="suhu">Suhu</label>
 					<select class="form-select form-control" aria-label="Default select example" id="suhu" name="suhu">
 						<option selected>- Pilih salah satu -</option>
@@ -132,7 +140,14 @@
 				</div>
 				<div class="form-group">
 					<label for="grade">Grade</label>
-					<input type="text" class="form-control" id="grade" name="grade" placeholder="Grade">
+					<select class="form-select form-control" aria-label="Default select example" id="grade" name="grade">
+						<option selected>- Pilih salah satu -</option>
+						<option value="A">Grade : A</option>
+						<option value="B">Grade : B</option>
+						<option value="C">Grade : C</option>
+						<option value="D">Grade : D</option>
+						
+					</select>
 					<?= form_error('grade', '<small class="text-danger">', '</small>'); ?>
 				</div>
 		</div>
@@ -168,7 +183,5 @@
 		$('#linkHapus').attr('href', '<?=base_url('admin/C_rule/hapusAksi/')?>'+id);
 		$('#modalHapus').modal('show');
 	}
-
-	toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
 </script>
 
