@@ -107,7 +107,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tidak</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
 					<button type="submit" class="btn btn-primary">Tambah</button>
 				</div>
 			</form>
@@ -145,7 +145,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tidak</button>
+					<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			</form>
@@ -174,7 +174,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tidak</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
 					<input type="hidden" name="delete_id" value="<?= $id; ?>" required>
 					<button type="submit" class="btn btn-danger">Hapus</button>
 				</div>

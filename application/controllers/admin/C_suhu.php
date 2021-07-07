@@ -34,22 +34,28 @@ class C_Suhu extends CI_Controller
             'required' 	=> 'Kolom ini perlu diisi'
             ]);
 		
-		// Cek id_suhu SU01
+		// Cek id_suhu SU010
 		$check = $this->m_suhu->getSuhu()->num_rows();
 		if ($check > 0) {
 			$lastId = $this->m_suhu->getSuhuLast()->result();
 			foreach ($lastId as $row){
-				$rawid = substr($row->id_suhu, 2, 2);
-				$id = intval($rawid);
-				
-				if (strlen($id) == 1) {
-					$id_suhu = "SU" . ($id + 1);
-				}else if (strlen($id) == 2) {
-					$id_suhu = "SU" . ($id + 1);
-				}
+				$rawid = substr($row->id_suhu, 2,3); //009
+				$id = intval($rawid); //9
+
+				if($id == 9){
+					$id_suhu = "SU0" . ($id + 1);
+				}else {
+					if (strlen($id) == 1) { //1
+						$id_suhu = "SU00" . ($id + 1); //AD0010
+					}else if (strlen($id) == 2) {
+						$id_suhu = "SU0" . ($id + 1);
+					}else if (strlen($id) == 3){
+						$id_suhu = "SU" . ($id + 1);
+					}		
+				}	
 			}
 		}else {
-			$id_suhu = "SU01";
+			$id_suhu = "SU001";
 		}
 
 		$fuzzy_set 	= htmlspecialchars($this->input->post('fuzzy_set'));

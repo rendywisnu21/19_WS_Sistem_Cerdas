@@ -6,7 +6,7 @@
             $this->db->join('tb_suhu', 'tb_rule.id_suhu = tb_suhu.id_suhu');
             $this->db->join('tb_ph', 'tb_rule.id_ph = tb_ph.id_ph');
             $this->db->join('tb_tds', 'tb_rule.id_tds = tb_tds.id_tds');
-            $this->db->select('*, tb_ph.fuzzy_set as fuzzy_set_ph, tb_tds.fuzzy_set as fuzzy_set_tds');
+            $this->db->select('*, tb_suhu.fuzzy_set as fuzzy_set_suhu, tb_ph.fuzzy_set as fuzzy_set_ph, tb_tds.fuzzy_set as fuzzy_set_tds');
             $this->db->from('tb_rule');
             return $this->db->get();
         }
@@ -32,9 +32,9 @@
             return $this->db->insert('tb_rule', $data);
         }
 
-        // DELETE
-        function delete($id)
+        // Hapus
+		public function hapus($where, $table)
         {
-            return $this->db->delete('tb_rule', array('id_rule'=>$id));
+            $this->db->delete($table, $where);
         }
     }

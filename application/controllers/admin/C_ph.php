@@ -40,17 +40,23 @@ class C_ph extends CI_Controller
 		if ($check > 0) {
 			$lastId = $this->m_ph->getPhLast()->result();
 			foreach ($lastId as $row){
-				$rawid = substr($row->id_ph, 2, 2);
-				$id = intval($rawid);
-				
-				if (strlen($id) == 1) {
-					$id_ph = "PH" . ($id + 1);
-				}else if (strlen($id) == 2) {
-					$id_ph = "PH" . ($id + 1);
-				}			
+				$rawid = substr($row->id_ph, 2,3); //009
+				$id = intval($rawid); //9
+
+				if($id == 9){
+					$id_ph = "PH0" . ($id + 1);
+				}else {
+					if (strlen($id) == 1) { //1
+						$id_ph = "PH00" . ($id + 1); //PH010
+					}else if (strlen($id) == 2) {
+						$id_ph = "PH0" . ($id + 1);
+					}else if (strlen($id) == 3){
+						$id_ph = "PH" . ($id + 1);
+					}		
+				}	
 			}
 		}else {
-			$id_ph = "PH01";
+			$id_ph = "PH001";
 		}
 
 		$fuzzy_set 	= htmlspecialchars($this->input->post('fuzzy_set'));

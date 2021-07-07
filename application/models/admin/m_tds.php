@@ -1,13 +1,13 @@
 <?php
     class M_Tds extends CI_Model
     {
-        public function gettds()
+        public function getTds()
         {
             $query = $this->db->get('tb_tds');
             return $query;
         }
 
-        public function gettdslast()
+        public function getTdsLast()
         {
             $this->db->order_by('id_tds', 'DESC');
             return $this->db->get('tb_tds', 1);

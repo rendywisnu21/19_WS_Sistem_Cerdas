@@ -49,8 +49,8 @@ class C_rule extends CI_Controller
 		$tds = $this->input->post('tds');
 		$grade = htmlspecialchars($this->input->post('grade'));
 		
-		if ($this->form_validation->run() == false) {
-		    $this->index();
+		if ($this->form_validation->run() == false) { 
+			$this->index();
 		}else{
 			$data = array(
 				'id_suhu' => $suhu,
@@ -60,17 +60,20 @@ class C_rule extends CI_Controller
 			);
 		
 			$this->rule->tambah($data);
-			$this->session->set_flashdata('tambah_sukses', 'tambah_sukses');
+			$this->session->set_flashdata('message', 'tambah_sukses');
 			redirect('admin/C_rule');
 		}
 	}
 
 
-	function hapusAksi($id)
-	{
-		if($this->rule->delete($id)){
-			$this->session->set_flashdata('hapus_sukses', 'hapus_sukses');
-		}
+	public function hapus()
+    {
+        $id_rule = $this->input->post('delete_id', TRUE);
+		$where = array(
+            'id_rule' => $id_rule
+        );
+		$this->rule->hapus($where, 'tb_rule');
+		$this->session->set_flashdata('message', 'hapus_sukses');
 		redirect('admin/C_rule');
-	}
+    }
 }

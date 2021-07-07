@@ -37,21 +37,28 @@ class C_Tds extends CI_Controller
 			
 		$data['tds'] = $this->m_tds->gettds();
 
-		$check = $this->m_tds->gettds()->num_rows();
+		// Cek ID TDS
+		$check = $this->m_tds->getTds()->num_rows();
 		if ($check > 0) {
-			$lastId = $this->m_tds->gettdslast()->result();
+			$lastId = $this->m_tds->getTdsLast()->result();
 			foreach ($lastId as $row){
-				$rawid_tds = substr($row->id_tds, 2, 2);
-				$id_tdsInt = intval($rawid_tds);
-				
-				if (strlen($id_tdsInt) == 1) {
-					$id_tds = "TD" . ($id_tdsInt + 1);
-				}else if (strlen($id_tdsInt) == 2) {
-					$id_tds = "TD" . ($id_tdsInt + 1);
-				}		
+				$rawid = substr($row->id_tds, 2,3); //009
+				$id = intval($rawid); //9
+
+				if($id == 9){
+					$id_tds = "TD0" . ($id + 1);
+				}else {
+					if (strlen($id) == 1) { //1
+						$id_tds = "TD00" . ($id + 1); //TD0010
+					}else if (strlen($id) == 2) {
+						$id_tds = "TD0" . ($id + 1);
+					}else if (strlen($id) == 3){
+						$id_tds = "TD" . ($id + 1);
+					}		
+				}	
 			}
 		}else {
-			$id_tds = "TD01";
+			$id_tds = "TD001";
 		}
 
 		// $id_fuzzyset = htmlspecialchars($this->input->post('id_fuzzyset'));

@@ -44,16 +44,20 @@ class C_admin extends CI_Controller
 		if ($check > 0) {
 			$lastId = $this->admin->getadminlast()->result();
 			foreach ($lastId as $row){
-				$rawid = substr($row->id_admin, 2);
-				$id = intval($rawid);
-				
-				if (strlen($id) == 1) {
-					$id_admin = "AD00" . ($id + 1);
-				}else if (strlen($id) == 2) {
+				$rawid = substr($row->id_admin, 2,3); //009
+				$id = intval($rawid); //9
+
+				if($id == 9){
 					$id_admin = "AD0" . ($id + 1);
-				}else if (strlen($id) == 3){
-					$id_admin = "AD" . ($id + 1);
-				}			
+				}else {
+					if (strlen($id) == 1) { //1
+						$id_admin = "AD00" . ($id + 1); //AD0010
+					}else if (strlen($id) == 2) {
+						$id_admin = "AD0" . ($id + 1);
+					}else if (strlen($id) == 3){
+						$id_admin = "AD" . ($id + 1);
+					}		
+				}	
 			}
 		}else {
 			$id_admin = "AD001";

@@ -24,7 +24,7 @@
 			</div>
 		<?php } ?>
 
-	</section>
+	</section>	
 	<section class="content">
 		<div class="row">
 			<div class="col-12">
@@ -69,13 +69,13 @@
 								<?php endforeach; ?>
 							</tbody>
 							<tfoot>
-								<!-- <tr class="text-center">
+								<tr class="text-center">
 									<th>No</th>
 									<th>Nama Admin</th>
 									<th>Username</th>
 									<th>Status</th>
 									<th>aksi</th>
-								</tr> -->
+								</tr>
 							</tfoot>
 						</table>
 					</div>
@@ -89,7 +89,7 @@
 	<div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-		<div class="modal-header">
+		<div class="modal-header bg-primary">
 			<h5 class="modal-title">Tambah Data</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
@@ -114,7 +114,7 @@
 				</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
+			<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
 			<button type="submit" class="btn btn-primary">Tambah</button>
 		</div>
 	</form>
