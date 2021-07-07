@@ -31,6 +31,9 @@ class C_rule extends CI_Controller
 	
 	public function tambah_aksi()
 	{
+		$this->form_validation->set_rules('rule', 'rule', 'required', [
+			'required' => 'Kolom ini harus di isi',
+			]);
 		$this->form_validation->set_rules('suhu', 'suhu', 'required', [
 			'required' => 'Kolom ini harus di isi',
 			]);
@@ -44,6 +47,7 @@ class C_rule extends CI_Controller
 			'required' => 'Kolom ini harus di isi'
 			]);
 
+		$rule = $this->input->post('rule');
 		$suhu = $this->input->post('suhu');
 		$ph = $this->input->post('ph');
 		$tds = $this->input->post('tds');
@@ -53,6 +57,7 @@ class C_rule extends CI_Controller
 			$this->index();
 		}else{
 			$data = array(
+				'rule' => $rule,
 				'id_suhu' => $suhu,
 				'id_ph' => $ph,
 				'id_tds' => $tds,

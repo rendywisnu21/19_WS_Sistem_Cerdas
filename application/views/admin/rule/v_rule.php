@@ -53,6 +53,7 @@
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
+									<th>Rule</th>
 									<th>Suhu</th>
 									<th>PH</th>
 									<th>TDS</th>
