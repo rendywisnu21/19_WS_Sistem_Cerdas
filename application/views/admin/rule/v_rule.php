@@ -67,6 +67,7 @@
 								?>
 								<tr>
 									<td class="text-center"><?= $no++; ?></td>
+									<td class="text-center"><?= $ru->rule; ?></td>
 									<td class="text-center"><?= $ru->fuzzy_set_suhu; ?></td>
 									<td class="text-center"><?= $ru->fuzzy_set_ph; ?></td>
 									<td class="text-center"><?= $ru->fuzzy_set_tds; ?></td>
@@ -101,6 +102,17 @@
 			<form action="<?php echo base_url() . 'admin/C_rule/tambah_aksi' ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
+						<label for="rule">Rule</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">R</span>
+							</div>
+							<input type="number" class="form-control" id="rule" name="rule" placeholder="Rule (R1,R2,R3, dst)" 
+									min ="1" minlength="1" maxlength="%">
+							<?= form_error('rule', '<small class="text-danger">', '</small>'); ?>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="suhu">Suhu</label>
 						<select class="form-select form-control" aria-label="Default select example" id="suhu"
 							name="suhu">
@@ -134,8 +146,13 @@
 					</div>
 					<div class="form-group">
 						<label for="grade">Grade</label>
-						<input type="text" class="form-control" id="grade" name="grade" placeholder="Grade">
-						<?= form_error('grade', '<small class="text-danger">', '</small>'); ?>
+						<select class="form-select form-control" aria-label="Default select example" id="grade" name="grade">
+							<option selected>- Pilih salah satu -</option>
+							<option value="A">Grade : A</option>
+							<option value="B">Grade : B</option>
+							<option value="C">Grade : C</option>
+							<option value="D">Grade : D</option>
+						</select>
 					</div>
 				</div>
 				<div class="modal-footer">
