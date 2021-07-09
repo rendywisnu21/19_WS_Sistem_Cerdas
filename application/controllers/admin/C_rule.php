@@ -47,7 +47,7 @@ class C_rule extends CI_Controller
 			'required' => 'Kolom ini harus di isi'
 			]);
 
-		$rule = $this->input->post('rule');
+		$rule = 'R'.$this->input->post('rule');
 		$suhu = $this->input->post('suhu');
 		$ph = $this->input->post('ph');
 		$tds = $this->input->post('tds');
