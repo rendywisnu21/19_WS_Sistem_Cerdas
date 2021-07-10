@@ -32,238 +32,243 @@ class C_home extends CI_Controller
     }
     
 
-//   menghitung fungsi keanggotaan suhu 
-    if(22.5 <= $suhu && $suhu <= 27 )
-    {//jika angka diantara 22.5 - 27 maka menggunakan rumus A
-        // rumus suhu A 
-        if($suhu <= 22.5 OR 27 <= $suhu){
-            $suhuA = 0;
+//FUNGSI KEANGGOTAAN
+    //menghitung fungsi keanggotaan suhu 
+        if(22.5 <= $suhu && $suhu <= 27 )
+        {//jika angka diantara 22.5 - 27 maka menggunakan rumus A
+            // rumus suhu A 
+            if($suhu <= 22.5 OR 27 <= $suhu){
+                $suhuA = 0;
+            }
+            else if(22.5 < $suhu && $suhu <= 25){
+                $suhuA = ($suhu-22.5)/(25-22.5);
+            }
+            else if(25 < $suhu && $suhu <= 26){
+                $suhuA = 1;
+            }
+            else if(26 < $suhu && $suhu < 27){
+                $suhuA = (27-$suhu)/(27-26);
+            }
         }
-        else if(22.5 <= $suhu && $suhu <= 25){
-            $suhuA = ($suhu-25)/(25-22.5);
-        }
-        else if(26 <= $suhu && $suhu <= 27){
-            $suhuA = (27-$suhu)/(27-26);
-        }
-        else if(25 <= $suhu && $suhu <= 26){
-            $suhuA = 1;
-        }
-    }
 
-    if((17.5 <= $suhu && $suhu <= 25) OR (26 <= $suhu && $suhu <= 29) )
-    {//jika angka diantara 17.5 - 25 atau diantara 26-29 maka menggunakan rumus B
-        // rumus suhu B
-        if(($suhu <= 17.5 OR 29 <= $suhu) OR (25 <= $suhu && $suhu <= 26)){
-            $suhuB = 0;
+        if((17.5 <= $suhu && $suhu <= 25) OR (26 <= $suhu && $suhu <= 29) )
+        {//jika angka diantara 17.5 - 25 atau diantara 26-29 maka menggunakan rumus B
+            // rumus suhu B
+            if(($suhu <= 17.5 OR 29 <= $suhu) OR (25 <= $suhu && $suhu <= 26)){
+                $suhuB = 0;
+            }
+            else if(17.5 < $suhu && $suhu <= 20){
+                $suhuB = ($suhu-17.5)/(20-17.5);
+            }
+            else if((20 <= $suhu && $suhu <= 22.5) OR (27 <= $suhu && $suhu <= 28)){
+                $suhuB = 1;
+            }
+            else if(22.5 < $suhu && $suhu < 25){
+                $suhuB = (25-$suhu)/(25-22.5);
+            }
+            else if(26 < $suhu && $suhu <= 27){
+                $suhuB = ($suhu-26)/(27-26);
+            }
+            else if(28 < $suhu && $suhu < 29){
+                $suhuB = (29-$suhu)/(29-28);
+            }
         }
-        else if(17.5 <= $suhu && $suhu <= 20){
-            $suhuB = ($suhu-17.5)/(20-17.5);
+        
+        if((12.5 <= $suhu && $suhu <= 20) OR (28 <= $suhu && $suhu <= 31) )
+        {//jika angka diantara 12.5 - 20 atau diantara 28-31 maka menggunakan rumus C
+            // rumus suhu C
+            if(($suhu <= 12.5 OR 31 <= $suhu) OR (20 <= $suhu && $suhu <= 28)){
+                $suhuC = 0;
+            }
+            else if(12.5 < $suhu && $suhu < 15){
+                $suhuC = ($suhu-12.5)/(15-12.5);
+            }
+            else if((15 <= $suhu OR $suhu <= 17.5) OR (29 < $suhu OR $suhu <= 30)){
+                $suhuC = 1;
+            }
+            else if(17.5 < $suhu && $suhu < 20){
+                $suhuC = (20-$suhu)/(20-17.5);
+            }
+            else if(28 < $suhu && $suhu < 29){
+                $suhuC = ($suhu-28)/(29-28);
+            }
+            else if(30 < $suhu && $suhu < 31){
+                $suhuC = (31-$suhu)/(31-30);
+            }
         }
-        else if(22.5 <= $suhu && $suhu <= 25){
-            $suhuB = (25-$suhu)/(25-22.5);
+        
+        if($suhu <= 15 OR 30 <= $suhu )
+        {//jika angka diantara 17.5 - 25 atau diantara 26-29 maka menggunakan rumus D
+            // rumus suhu D
+            if(15 <= $suhu && $suhu <= 30){
+                $suhuD = 0;
+            }
+            else if(12.5 < $suhu && $suhu < 15){
+                $suhuD = ($suhu-12.5)/(15-12.5);
+            }
+            else if(30 < $suhu && $suhu <= 31){
+                $suhuD = (31-$suhu)/(31-30);
+            }
+            else if($suhu <= 12.5 OR 31 <= $suhu){
+                $suhuD = 1;
+            }
         }
-        else if(26 <= $suhu && $suhu <= 27){
-            $suhuB = ($suhu-26)/(27-26);
-        }
-        else if(28 <= $suhu && $suhu <= 29){
-            $suhuB = (29-$suhu)/(29-28);
-        }
-        else if((20 <= $suhu && $suhu <= 22.5) && (27 <= $suhu && $suhu <= 28)){
-            $suhuB = 1;
-        }
-    }
-    
-    if((12.5 <= $suhu && $suhu <= 20) OR (28 <= $suhu && $suhu <= 31) )
-    {//jika angka diantara 12.5 - 20 atau diantara 28-31 maka menggunakan rumus C
-        // rumus suhu C
-        if(($suhu <= 12.5 OR 31 <= $suhu) && (20 <= $suhu && $suhu <= 28)){
-            $suhuC = 0;
-        }
-        else if(12.5 <= $suhu && $suhu <= 15){
-            $suhuC = ($suhu-12.5)/(15-12.5);
-        }
-        else if(17.5 <= $suhu && $suhu <= 20){
-            $suhuC = (20-$suhu)/(20-17.5);
-        }
-        else if(28 <= $suhu && $suhu <= 29){
-            $suhuC = ($suhu-28)/(29-28);
-        }
-        else if(30 <= $suhu && $suhu <= 31){
-            $suhuC = (31-$suhu)/(31-30);
-        }
-        else if((15 <= $suhu OR $suhu <= 17.5) && (29 <= $suhu OR $suhu <= 30)){
-            $suhuC = 1;
-        }
-    }
-    
-    if((0 <= $suhu && $suhu <= 15) OR (30 <= $suhu && $suhu <= 32) )
-    {//jika angka diantara 17.5 - 25 atau diantara 26-29 maka menggunakan rumus D
-        // rumus suhu D
-        if(15 <= $suhu && $suhu <= 30){
-            $suhuD = 0;
-        }
-        else if(12.5 <= $suhu && $suhu <= 15){
-            $suhuD = ($suhu-12.5)/(15-12.5);
-        }
-        else if(30 <= $suhu && $suhu <= 31){
-            $suhuD = (31-$suhu)/(31-30);
-        }
-        else if($suhu <= 12.5 OR 31 <= $suhu){
-            $suhuD = 1;
-        }
-    }
-//   menghitung fungsi keanggotaan suhu END
+    //menghitung fungsi keanggotaan suhu END
 
-//   menghitung fungsi keanggotaan PH
-    if(6.65 <= $ph && $ph <= 7.7)
-    {//jika angka diantara 6.65 - 7.7 maka menggunakan rumus A
-        // rumus PH A
-        if(6.65<=$ph && $ph <= 7.7){
-            $phA = 0;
+    //menghitung fungsi keanggotaan PH
+        if(6.65 <= $ph && $ph <= 7.7)
+        {//jika angka diantara 6.65 - 7.7 maka menggunakan rumus A
+            // rumus PH A
+            if($ph <= 6.65 && 7.7 <= $ph){
+                $phA = 0;
+            }
+            else if(6.65 < $ph && $ph < 6.8){
+                $phA = ($ph-6.65)/(6.8-6.65);
+            }
+            else if(7.4 < $ph && $ph < 7.7){
+                $phA = (7.7-$ph)/(7.7-7.4);
+            }
+            else if(6.8 <= $ph OR $ph <= 7.4){
+                $phA = 1;
+            }
         }
-        else if(6.65 < $ph && $ph < 6.8){
-            $phA = ($ph-6.65)/(6.8-6.65);
+        
+        if((6 <= $ph && $ph <= 6.8) OR (7.4 <= $ph && $ph <= 8.25) )
+        {//jika angka diantara 6 - 6.8 atau diantara 7.4 - 8.2 maka menggunakan rumus B
+            // rumus PH B
+            if(($ph <= 6 OR 8.25 <= $ph) && (6.8 <= $ph && $ph <= 7.4)){
+                $phB = 0;
+            }
+            else if(6 < $ph && $ph < 6.5){
+                $phB = ($ph-6)/(6.5-6);
+            }
+            else if(6.65 < $ph && $ph < 6.8){
+                $phB = (6.8-$ph)/(6.8-6.65);
+            }
+            else if(7.4 < $ph && $ph < 7.7){
+                $phB = ($ph-7.4)/(7.7-7.4);
+            }
+            else if(8 < $ph && $ph < 8.25){
+                $phB = (8.25-$ph)/(8.25-8);
+            }
+            else if((6.5 <= $ph OR $ph <= 6.65) OR (7.7 <= $ph OR $ph <= 8)){
+                $phB = 1;
+            }
         }
-        else if(7.4 <= $ph && $ph <= 7.7){
-            $phA = (7.7-$ph)/(7.7-7.4);
+        
+        if((6.25 <= $ph && $ph <= 6.5) OR (8 <= $ph && $ph <= 8.6) )
+        {//jika angka diantara 6.25 - 6.5 atau diantara 8 - 8.6 maka menggunakan rumus C
+            // rumus PH C
+            if(($ph <= 5.25 OR 8.6 <= $ph) OR (6.5 <= $ph OR $ph <= 8)){
+                $phC = 0;
+            }
+            else if(5.25 < $ph && $ph < 5.5){
+                $phC = ($ph-5.25)/(5.5-5.25);
+            }
+            else if((5.5 <= $ph OR $ph <= 6) OR (8.25 <= $ph OR $ph <= 8.5)){
+                $phC = 1;
+            }
+            else if(6 < $ph && $ph < 6.5){
+                $phC = (6.5-$ph)/(6.5-6);
+            }
+            else if(8 < $ph && $ph < 8.25){
+                $phC = ($ph-8)/(8.25-8);
+            }
+            else if(8.5 < $ph && $ph < 8.6){
+                $phC = (8.6-$ph)/(8.6-8.5);
+            }
         }
-        else if(6.8 <= $ph OR $ph <= 7.4){
-            $phA = 1;
+        
+        if($ph <= 5.5 OR 8.5 <= $ph)
+        {//jika angka diantara 5.5 maka menggunakan rumus D
+            // rumus PH D
+            if(5.5 < $ph && $ph < 8.5){
+                $phD = 0;
+            }
+            else if(5.25 < $ph && $ph < 5.5){
+                $phD = ($ph-5.25)/(5.5-5.25);
+            }
+            else if(8.5 < $ph && $ph < 8.6){
+                $phD = (8.6-$ph)/(8.6-8.5);
+            }
+            else if($ph <= 5.25 OR 8.6 <= $ph){
+                $phD = 1;
+            }
         }
-    }
-    
-    if((6 <= $ph && $ph <= 6.8) OR (7.4 <= $ph && $ph <= 8.2) )
-    {//jika angka diantara 6 - 6.8 atau diantara 7.4 - 8.2 maka menggunakan rumus B
-        // rumus PH B
-        if(($ph <= 6 OR 8.25 <= $ph) && (6.8 <= $ph && $ph <= 7.4)){
-            $phB = 0;
-        }
-        else if(6 <= $ph && $ph <= 6.5){
-            $phB = ($ph-6)/(6.5-6);
-        }
-        else if(6.65 <= $ph && $ph <= 6.8){
-            $phB = (6.8-$ph)/(6.8-6.65);
-        }
-        else if(7.4 <= $ph && $ph <= 7.7){
-            $phB = ($ph-7.4)/(7.7-7.4);
-        }
-        else if(8 <= $ph && $ph <= 8.25){
-            $phB = (8.25-$ph)/(8.25-8);
-        }
-        else if((6.5 <= $ph OR $ph <= 6.65) && (7.7 <= $ph OR $ph <= 8)){
-            $phB = 1;
-        }
-    }
-    
-    if((6.25 <= $ph && $ph <= 6.5) OR (8 <= $ph && $ph <= 8.6) )
-    {//jika angka diantara 6.25 - 6.5 atau diantara 8 - 8.6 maka menggunakan rumus C
-        // rumus PH C
-        if(($ph <= 5.25 OR 6.5 <= $ph) && (68 <= $ph OR $ph <= 8.6)){
-            $phC = 0;
-        }
-        else if(5.25 <= $ph && $ph <= 5.5){
-            $phC = ($ph-5.25)/(5.5-5.25);
-        }
-        else if(6 <= $ph && $ph <= 6.5){
-            $phC = (6.5-$ph)/(6.5-6);
-        }
-        else if(8 <= $ph && $ph <= 8.25){
-            $phC = ($ph-8)/(8.25-8);
-        }
-        else if(8.5 <= $ph && $ph <= 8.6){
-            $phC = (8.6-$ph)/(8.6-8.5);
-        }
-        else if((5.5 <= $ph OR $ph <= 6) && (8 <= $ph OR $ph <= 8.5)){
-            $phC = 1;
-        }
-    }
-    
-    if(0 <= $ph && $ph <= 5.5 )
-    {//jika angka diantara 5.5 maka menggunakan rumus D
-        // rumus PH D
-        if(5.5 < $ph && $ph < 8.5){
-            $phD = 0;
-        }
-        else if(5.25 <= $ph && $ph <= 5.5){
-            $phD = ($ph-5.25)/(5.5-5.25);
-        }
-        else if(8.5 <= $ph && $ph <= 8.6){
-            $phD = (8.6-$ph)/(8.6-8.5);
-        }
-        else if($ph <= 5.25 OR 8.6 <= $ph){
-            $phD = 1;
-        }
-    }
-//   menghitung fungsi keanggotaan PH END
+    //menghitung fungsi keanggotaan PH END
 
-//   menghitung fungsi keanggotaan TDS
-    if(125 <= $tds && $tds <= 325)
-    {//jika angka diantara 125 - 325 maka menggunakan rumus A
-        // rumus TDS A
-        if($tds <= 125 && 325 <= $tds){
-            $tdsA = 0;
+    //menghitung fungsi keanggotaan TDS
+        if(125 <= $tds && $tds <= 325)
+        {//jika angka diantara 125 - 325 maka menggunakan rumus A
+            // rumus TDS A
+            if($tds <= 125 OR 325 <= $tds){
+                $tdsA = 0;
+            }
+            else if(125 < $tds && $tds < 250){
+                $tdsA = ($tds-125)/(250-125);
+            }
+            else if(300 < $tds && $tds < 325){
+                $tdsA = (325-$tds)/(325-300);
+            }
+            else if(250 <= $tds OR $tds <= 300){
+                $tdsA = 1;
+            }
         }
-        else if(125 <= $tds && $tds <= 250){
-            $tdsA = ($tds-125)/(250-125);
+        
+        if((0 <= $tds && $tds <= 250) OR (300 <= $tds && $tds <= 400) )
+        {//jika angka diantara 0 - 250 atau diantara 300 - 400 maka menggunakan rumus B
+            // rumus TDS B
+            if((250 <= $tds && $tds <= 300) OR (400 <= $tds)){
+                $tdsB = 0;
+            }
+            else if(125 < $tds && $tds < 250){
+                $tdsB = (250-$tds)/(250-125);
+            }
+            else if(300 < $tds && $tds < 325){
+                $tdsB = ($tds-300)/(325-300);
+            }
+            else if(350 < $tds && $tds < 400){
+                $tdsB = (400-$tds)/(400-350);
+            }
+            else if(($tds <= 125) OR (325 <= $tds && $tds <= 350)){
+                $tdsB = 1;
+            }
         }
-        else if(300 <= $tds && $tds <= 325){
-            $tdsA = (325-$tds)/(325-300);
+        
+        if(350 <= $tds && $tds <= 475)
+        {//jika angka diantara 350 - 475 maka menggunakan rumus C
+            // rumus TDS C
+            if($tds <= 350 && 475 <= $tds){
+                $tdsC = 0;
+            }
+            else if(350 < $tds && $tds < 400){
+                $tdsC = ($tds-350)/(400-350);
+            }
+            else if(400 <= $tds OR $tds <= 450){
+                $tdsC = 1;
+            }
+            else if(450 < $tds && $tds < 475){
+                $tdsC = (475-$tds)/(475-450);
+            }
         }
-        else if(250 <= $tds OR $tds <= 300){
-            $tdsA = 1;
+        
+        if(450 <= $tds && $tds <= 500)
+        {//jika angka diantara 450 - 500 maka menggunakan rumus C
+            // rumus TDS D
+            if($tds <= 450){
+                $tdsD = 0;
+            }else if(450 < $tds && $tds < 475){
+                $tdsD = ($tds-450)/(475-450);
+            }else if(475 <= $tds){
+                $tdsD = 1;
+            }
         }
-    }
-    
-    if((0 <= $tds && $tds <= 250) OR (300 <= $tds && $tds <= 400) )
-    {//jika angka diantara 0 - 250 atau diantara 300 - 400 maka menggunakan rumus B
-        // rumus TDS B
-        if((250 <= $tds && $tds <= 300) OR (400 <= $tds)){
-            $tdsB = 0;
-        }
-        else if(125 <= $tds && $tds <= 250){
-            $tdsB = ($tds-125)/(250-125);
-        }
-        else if(300 <= $tds && $tds <= 325){
-            $tdsB = ($tds-300)/(325-300);
-        }
-        else if(350 <= $tds && $tds <= 400){
-            $tdsB = (400-$tds)/(400-350);
-        }
-        else if((125 <= $tds) && (325 <= $tds && $tds <= 350)){
-            $tdsB = 1;
-        }
-    }
-    
-    if(350 <= $tds && $tds <= 475)
-    {//jika angka diantara 350 - 475 maka menggunakan rumus C
-        // rumus TDS C
-        if($tds <= 350 && $tds >= 475){
-            $tdsC = 0;
-        }
-        else if(350 <= $tds && $tds <= 400){
-            $tdsC = ($tds-350)/(400-350);
-        }
-        else if(450 <= $tds && $tds <= 475){
-            $tdsC = (475-$tds)/(475-450);
-        }
-        else if(400 <= $tds OR $tds <= 450){
-            $tdsC = 1;
-        }
-    }
-    
-    if(450 <= $tds && $tds <= 500)
-    {//jika angka diantara 450 - 500 maka menggunakan rumus C
-        // rumus TDS D
-        if($tds <= 450){
-            $tdsD = 0;
-        }else if(450 <= $tds && $tds <= 475){
-            $tdsD = (475-$tds)/(475-450);
-        }else if($tds <= 475){
+
+        if($tds <= 0 OR 500 <= $tds){
             $tdsD = 1;
         }
-    }
-//   menghitung fungsi keanggotaan TDS END
-
+    //menghitung fungsi keanggotaan TDS END
+//FUNGSI KEANGGOTAAN END
 
 // RULE START 
     //SUHU A BAIK
@@ -633,7 +638,8 @@ class C_home extends CI_Controller
     $R61+$R62+$R63+$R64;
 
     echo '<br>';
-    echo $hasil = $x/$z;
+    echo '<br>';
+    echo 'Hasil = '.$hasil = $x/$z;
 	echo '<br>';
 
 	if(0 <= $hasil && $hasil <= 150 )
@@ -650,7 +656,7 @@ class C_home extends CI_Controller
 		echo 'Grade D';
 	}else
 	{
-		echo 'Grade tidak terdefinisi';
+		echo 'Grade D, tidak terdefinisi';
 	}
 
 	echo '<br>';
