@@ -27,7 +27,7 @@
         </div>
     <?php } ?>
     <?php if(isset($_SESSION['logout'])){ ?>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-success" role="alert">
             Logout berhasil
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
