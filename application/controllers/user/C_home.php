@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class C_home extends CI_Controller
 {
 	public function __construct()
@@ -18,7 +17,11 @@ class C_home extends CI_Controller
 		/** Mengambil data kelas */
 		// $data['tds'] = $this->rule->gettds()->result();
 
-		$this->load->view('user/v_home', $data);
+		$this->load->view('user/v_header', $data);
+		$this->load->view('user/v_navbar');
+		$this->load->view('user/v_sidebar');
+		$this->load->view('user/v_input');
+		$this->load->view('user/v_footer');
 	}
 
 	public function hitung(){

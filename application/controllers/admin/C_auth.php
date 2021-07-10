@@ -31,17 +31,17 @@ class C_auth extends CI_Controller
                 'nama_admin' => $auth->nama_admin,
                 'role' => $auth->role
             ));
-            redirect();
+            redirect('admin/C_dashboard');
         }else{
             $this->session->set_userdata('gagal','gagal');
             $this->index();
         }
     }
-
+	
     public function logout()
 	{
-        $this->session->sess_destroy();
-        $this->session->set_userdata('logout','logout');
-        redirect('admin/C_auth');
+		$this->session->sess_destroy();
+        $this->session->set_userdata('logout', 'logout');
+		redirect('user/C_beranda');
     }
 }
