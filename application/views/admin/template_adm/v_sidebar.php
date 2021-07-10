@@ -39,7 +39,7 @@
 							<a href="<?=base_url('admin/C_dashboard')?>"
 								class="nav-link <?php if($link === 'C_dashboard'){echo 'active';} ?> ">
 								<i class="nav-icon fas fa-tachometer-alt"></i>
-								<p>Dasbor</p>
+								<p>Beranda</p>
 							</a>
 						</li>
 						<?php if($_SESSION['role'] == 1){ //jika status superadmin = 1 ?>
