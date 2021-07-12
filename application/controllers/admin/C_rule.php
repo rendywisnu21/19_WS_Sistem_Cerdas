@@ -46,6 +46,10 @@ class C_rule extends CI_Controller
 		$this->form_validation->set_rules('grade', 'grade', 'required', [
 			'required' => 'Kolom ini harus di isi'
 			]);
+		
+		if($this->form_validation->run() == false){
+			$this->index();
+		}
 
 		$rule = 'R'.$this->input->post('rule');
 		$suhu = $this->input->post('suhu');

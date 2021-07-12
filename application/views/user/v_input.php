@@ -21,7 +21,7 @@
 							<h3 class="card-title text-bold">Form <?= $title; ?></h3>
 						</div>
 						<!-- form start -->
-						<form method="POST" action="<?= base_url('user/C_home/hitung') ?>" enctype="multipart/form-data">
+						<form method="POST" action="<?= base_url('user/C_input/hitung') ?>" enctype="multipart/form-data">
 							<div class="card-body">
 								<div class="row">
 									<!-- <div class="col-md-6">

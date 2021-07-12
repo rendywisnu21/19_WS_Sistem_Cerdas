@@ -40,6 +40,10 @@ class C_admin extends CI_Controller
             'minlength' => 'isian minimal 8 karakter',
             ]);
 
+		if($this->form_validation->run() == false){
+			$this->index();
+		}
+
 		$check = $this->admin->getadminlast()->num_rows();
 		if ($check > 0) {
 			$lastId = $this->admin->getadminlast()->result();
