@@ -21,7 +21,7 @@
 							<h3 class="card-title text-bold">Form <?= $title; ?></h3>
 						</div>
 						<!-- form start -->
-						<form method="POST" action="<?= base_url() ?>" enctype="multipart/form-data">
+						<form method="POST" action="<?= base_url('user/C_home/hitung') ?>" enctype="multipart/form-data">
 							<div class="card-body">
 								<div class="row">
 									<!-- <div class="col-md-6">
@@ -34,19 +34,19 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="suhu">Suhu</label>
-											<input type="text" class="form-control huruf" id="suhu" name="suhu"
+											<input type="text" class="form-control huruf" id="suhu" name="suhu" required
 												placeholder="Masukkan nilai suhu" value="<?= set_value('suhu'); ?>">
 											<?= form_error('suhu', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="ph">pH</label>
-											<input type="text" class="form-control huruf" id="ph" name="ph"
+											<input type="text" class="form-control huruf" id="ph" name="ph" required
 												placeholder="Masukkan nilai ph" value="<?= set_value('ph'); ?>">
 											<?= form_error('ph', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="tds">TDS</label>
-											<input type="text" class="form-control huruf" id="tds" name="tds"
+											<input type="text" class="form-control huruf" id="tds" name="tds" required
 												placeholder="Masukkan nilai tds" value="<?= set_value('tds'); ?>">
 											<?= form_error('tds', '<small class="text-danger">', '</small>'); ?>
 										</div>

@@ -26,8 +26,8 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= base_url('user/C_home') ?>" class="nav-link 
-								<?php if($link === 'C_home'){echo 'active';} ?>">
+							<a href="<?= base_url('user/C_input') ?>" class="nav-link 
+								<?php if($link === 'C_input'){echo 'active';} ?>">
 								<i class="fas fa-file-alt nav-icon"></i>
 								<p>Input</p>
 							</a>
