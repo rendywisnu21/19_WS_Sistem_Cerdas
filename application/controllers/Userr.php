@@ -25,6 +25,6 @@ class Userr extends CI_Controller {
 	}
 	
 	public function index(){
-		redirect('user/C_home');
+		redirect('user/C_beranda');
 	}
 }
