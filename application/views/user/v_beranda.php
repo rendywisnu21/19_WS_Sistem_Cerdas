@@ -68,16 +68,9 @@
 								</a>
 							</div>
 						</div>
-						<!-- ./col -->
 					</div>
-					<!-- /.row -->
-					<!-- Main row -->
-
-					<!-- /.card -->
 			</section>
 		</div>
-		</div>
-		</section>
 		</div>
 
 		<!-- Modal Suhu -->
@@ -210,4 +203,3 @@
 				</div>
 			</div>
 		</div>
-b
