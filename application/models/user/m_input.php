@@ -1,19 +1,6 @@
 <?php
     class M_input extends CI_Model
     {
-        public function rumus_zA($R){
-            return 200-($R*(200-100)); 
-        }
-        public function rumus_zB($R){
-            return 300-($R*(300-200)); 
-        }
-        public function rumus_zC($R){
-            return 400-($R*(400-300)); 
-        }
-        public function rumus_zD($R){
-            return 500-($R*(500-400)); 
-        }
-
         public function rumus_z($grade,$R){
             if($grade == 'A'){
                 return 200-($R*(200-100)); 
@@ -32,7 +19,12 @@
         // D = 500-(x*(500-400))
 
         public function getdata_where($suhu, $ph, $tds){
-            return $this->db->query( "SELECT * FROM tb_rule 
+            return $this->db->query( "SELECT *, 
+            tb_suhu.fuzzy_set AS suhu_fuzzyset,
+            tb_ph.fuzzy_set AS ph_fuzzyset,
+            tb_tds.fuzzy_set AS tds_fuzzyset
+
+            FROM tb_rule 
             JOIN tb_suhu ON tb_suhu.id_suhu=tb_rule.id_suhu 
             JOIN tb_ph ON tb_ph.id_ph=tb_rule.id_ph 
             JOIN tb_tds ON tb_tds.id_tds=tb_rule.id_tds 
@@ -42,5 +34,10 @@
             tb_ph.fuzzy_set= '$ph' AND
             tb_tds.fuzzy_set= '$tds'
             ");
+        }
+
+        public function input_db($data){
+            $this->db->insert('tb_hasil', $data);
+            return $this->db->affected_rows();
         }
     }

@@ -34,17 +34,18 @@ class C_input extends CI_Controller
     $this->form_validation->set_rules('tds', 'tds', 'required', 
     ['required' => 'Isian tidak boleh kosong']);
 
+    //jika form validasi salah maka kembali ke index
     if($this->form_validation->run() == false){
         $this->index();
     }
 
-    echo $suhu  = $this->input->post('suhu').'<br>';
-    echo $ph  = $this->input->post('ph').'<br>';
-    echo $tds  = $this->input->post('tds').'<br>'.'<br>';
-
-    if ($suhu <= 0 || $ph<= 0 || $tds<=0)  {
-        $z="";
-    }
+    echo 'Suhu ='.$suhu  = $this->input->post('suhu');
+    echo '<br>';
+    echo 'Ph ='.$ph  = $this->input->post('ph');
+    echo '<br>';
+    echo 'Tds ='.$tds  = $this->input->post('tds');
+    echo '<br>';
+    echo '<br>';
 
 
 //FUNGSI KEANGGOTAAN
@@ -286,143 +287,193 @@ class C_input extends CI_Controller
 //FUNGSI KEANGGOTAAN END
     
 
-// variabel untuk memanggil rule di database
-$suhu_setA = $ph_setA = $tds_setA = 'Excellent';
-$suhu_setB = $ph_setB = $tds_setB = 'Good';
-$suhu_setC = $ph_setC = $tds_setC = 'Bad';
-$suhu_setD = $ph_setD = $tds_setD = 'Verybad';
-// variabel untuk memanggil rule di database
+// deklarasi variabel untuk memanggil rule di database
+    $suhu_setA = $ph_setA = $tds_setA = 'Excellent';
+    $suhu_setB = $ph_setB = $tds_setB = 'Good';
+    $suhu_setC = $ph_setC = $tds_setC = 'Bad';
+    $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
+//  deklarasi variabel untuk memanggil rule di database
 
 
 // RULE START 
     //SUHU A BAIK
         if(isset($suhuA) && isset($phA) && isset($tdsA)) //R1 A
             {
+                //mencari alfa predikat dari nilai terkecil
                 $R1=min($suhuA,$phA,$tdsA);
 
-                //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setA)->row()->grade; 
-                $Z1 = $this->home->rumus_z($grade,$R1);
+                //memanggil data dari database suhu, ph dan tds, untuk mencari grade
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setA)->row();
+                //menghitung nilai z
+                $Z1 = $this->home->rumus_z($grade->grade,$R1);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R1', $grade);
             }
         if(isset($suhuA) && isset($phA) && isset($tdsB)) //R2 A
         {
                 $R2=min($suhuA,$phA,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setB)->row()->grade; 
-                $Z2 = $this->home->rumus_z($grade,$R2);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setB)->row(); 
+                $Z2 = $this->home->rumus_z($grade->grade,$R2);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R2', $grade);
             }
         if(isset($suhuA) && isset($phA) && isset($tdsC)) //R3 C
             {
                 $R3=min($suhuA,$phA,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setC)->row()->grade;
-                $Z3 = $this->home->rumus_z($grade,$R3);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setC)->row();
+                $Z3 = $this->home->rumus_z($grade->grade,$R3);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R3', $grade);
             }
         if(isset($suhuA) && isset($phA) && isset($tdsD)) //R4 D
             {
                 $R4=min($suhuA,$phA,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setD)->row()->grade;
-                $Z4 = $this->home->rumus_z($grade,$R4);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setA, $tds_setD)->row();
+                $Z4 = $this->home->rumus_z($grade->grade,$R4);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R4', $grade);
             }
         if(isset($suhuA) && isset($phB) && isset($tdsA)) //R5 A
             {
                 $R5=min($suhuA,$phB,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setA)->row()->grade;
-                $Z5 = $this->home->rumus_z($grade,$R5);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setA)->row();
+                $Z5 = $this->home->rumus_z($grade->grade,$R5);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R5', $grade);
             }
         if(isset($suhuA) && isset($phB) && isset($tdsB)) //R6 B
             {
                 $R6=min($suhuA,$phB,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setB)->row()->grade;
-                $Z6 = $this->home->rumus_z($grade,$R6);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setB)->row();
+                $Z6 = $this->home->rumus_z($grade->grade,$R6);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R6', $grade);
             }
         if(isset($suhuA) && isset($phB) && isset($tdsC)) //R7 C
             {
                 $R7=min($suhuA,$phB,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setC)->row()->grade;
-                $Z7 = $this->home->rumus_z($grade,$R7);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setC)->row();
+                $Z7 = $this->home->rumus_z($grade->grade,$R7);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R7', $grade);
             }
         if(isset($suhuA) && isset($phB) && isset($tdsD)) //R8 D
             {
                 $R8=min($suhuA,$phB,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setD)->row()->grade;
-                $Z8 = $this->home->rumus_z($grade,$R8);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setB, $tds_setD)->row();
+                $Z8 = $this->home->rumus_z($grade->grade,$R8);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R8', $grade);
             }
         if(isset($suhuA) && isset($phC) && isset($tdsA)) //R9 C
             {
                 $R9=min($suhuA,$phC,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setA)->row()->grade;
-                $Z9 = $this->home->rumus_z($grade,$R9);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setA)->row();
+                $Z9 = $this->home->rumus_z($grade->grade,$R9);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R9', $grade);
             }
         if(isset($suhuA) && isset($phC) && isset($tdsB)) //R10 C
             {
                 $R10=min($suhuA,$phC,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setB)->row()->grade;
-                $Z10 = $this->home->rumus_z($grade,$R10);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setB)->row();
+                $Z10 = $this->home->rumus_z($grade->grade,$R10);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R10', $grade);
             }
         if(isset($suhuA) && isset($phC) && isset($tdsC)) //R11 D
             {
                 $R11=min($suhuA,$phC,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setC)->row()->grade;
-                $Z11 = $this->home->rumus_z($grade,$R11);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setC)->row();
+                $Z11 = $this->home->rumus_z($grade->grade,$R11);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R11', $grade);
             }
         if(isset($suhuA) && isset($phC) && isset($tdsD)) //R12 D
             {
                 $R12=min($suhuA,$phC,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setD)->row()->grade;
-                $Z12 = $this->home->rumus_z($grade,$R12);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setC, $tds_setD)->row();
+                $Z12 = $this->home->rumus_z($grade->grade,$R12);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R12', $grade);
             }
         if(isset($suhuA) && isset($phD) && isset($tdsA)) //R13 C
             {
                 $R13=min($suhuA,$phD,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setA)->row()->grade;
-                $Z13 = $this->home->rumus_z($grade,$R13);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setA)->row();
+                $Z13 = $this->home->rumus_z($grade->grade,$R13);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R13', $grade);
             }
         if(isset($suhuA) && isset($phD) && isset($tdsB)) //R14 C
             {
                 $R14=min($suhuA,$phD,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setB)->row()->grade;
-                $Z14 = $this->home->rumus_z($grade,$R14);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setB)->row();
+                $Z14 = $this->home->rumus_z($grade->grade,$R14);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R14', $grade);
             }
         if(isset($suhuA) && isset($phD) && isset($tdsC)) //R15 D
             {
                 $R15=min($suhuA,$phD,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setC)->row()->grade;
-                $Z15 = $this->home->rumus_z($grade,$R15);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setC)->row();
+                $Z15 = $this->home->rumus_z($grade->grade,$R15);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R15', $grade);
             }
         if(isset($suhuA) && isset($phD) && isset($tdsD)) //R16 D
             {
                 $R16=min($suhuA,$phD,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setD)->row()->grade;
-                $Z16 = $this->home->rumus_z($grade,$R16);
+                $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setD)->row();
+                $Z16 = $this->home->rumus_z($grade->grade,$R16);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R16', $grade);
             }
     //SUHU A BAIK END
 
@@ -432,128 +483,176 @@ $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
                 $R17=min($suhuB,$phA,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setA)->row()->grade;
-                $Z17 = $this->home->rumus_z($grade,$R17);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setA)->row();
+                $Z17 = $this->home->rumus_z($grade->grade,$R17);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R17', $grade);
             }
         if(isset($suhuB) && isset($phA) && isset($tdsB)) //R18 B
             {
                 $R18=min($suhuB,$phA,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setB)->row()->grade;
-                $Z18 = $this->home->rumus_z($grade,$R18);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setB)->row();
+                $Z18 = $this->home->rumus_z($grade->grade,$R18);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R18', $grade);
             }
         if(isset($suhuB) && isset($phA) && isset($tdsC)) //R19 C
             {
                 $R19=min($suhuB,$phA,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setC)->row()->grade;
-                $Z19 = $this->home->rumus_z($grade,$R19);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setC)->row();
+                $Z19 = $this->home->rumus_z($grade->grade,$R19);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R19', $grade);
             }
         if(isset($suhuB) && isset($phA) && isset($tdsD)) //R20 D
             {
                 $R20=min($suhuB,$phA,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setD)->row()->grade;
-                $Z20 = $this->home->rumus_z($grade,$R20);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setA, $tds_setD)->row();
+                $Z20 = $this->home->rumus_z($grade->grade,$R20);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R20', $grade);
             }
         if(isset($suhuB) && isset($phB) && isset($tdsA)) //R21 B
             {
                 $R21=min($suhuB,$phB,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setA)->row()->grade;
-                $Z21 = $this->home->rumus_z($grade,$R21);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setA)->row();
+                $Z21 = $this->home->rumus_z($grade->grade,$R21);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R21', $grade);
             }
         if(isset($suhuB) && isset($phB) && isset($tdsB)) //R22 B
             {
                 $R22=min($suhuB,$phB,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setB)->row()->grade;
-                $Z22 = $this->home->rumus_z($grade,$R22);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setB)->row();
+                $Z22 = $this->home->rumus_z($grade->grade,$R22);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R22', $grade);
             }
         if(isset($suhuB) && isset($phB) && isset($tdsC)) //R23 C
             {
                 $R23=min($suhuB,$phB,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setC)->row()->grade;
-                $Z23 = $this->home->rumus_z($grade,$R23);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setC)->row();
+                $Z23 = $this->home->rumus_z($grade->grade,$R23);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R23', $grade);
             }
         if(isset($suhuB) && isset($phB) && isset($tdsD)) //R24 D
             {
                 $R24=min($suhuB,$phB,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setD)->row()->grade;
-                $Z24 = $this->home->rumus_z($grade,$R24);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setB, $tds_setD)->row();
+                $Z24 = $this->home->rumus_z($grade->grade,$R24);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R24', $grade);
             }
         if(isset($suhuB) && isset($phC) && isset($tdsA)) //R25 C
             {
                 $R25=min($suhuB,$phC,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setA)->row()->grade;
-                $Z25 = $this->home->rumus_z($grade,$R25);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setA)->row();
+                $Z25 = $this->home->rumus_z($grade->grade,$R25);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R25', $grade);
             }
         if(isset($suhuB) && isset($phC) && isset($tdsB)) //R26 C
             {
                 $R26=min($suhuB,$phC,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setB)->row()->grade;
-                $Z26 = $this->home->rumus_z($grade,$R26);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setB)->row();
+                $Z26 = $this->home->rumus_z($grade->grade,$R26);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R26', $grade);
             }
         if(isset($suhuB) && isset($phC) && isset($tdsC)) //R27 D
             {
                 $R27=min($suhuB,$phC,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setC)->row()->grade;
-                $Z27 = $this->home->rumus_z($grade,$R27);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setC)->row();
+                $Z27 = $this->home->rumus_z($grade->grade,$R27);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R27', $grade);
             }
         if(isset($suhuB) && isset($phC) && isset($tdsD)) //R28 D
             {
                 $R28=min($suhuB,$phC,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setD)->row()->grade;
-                $Z28 = $this->home->rumus_z($grade,$R28);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setC, $tds_setD)->row();
+                $Z28 = $this->home->rumus_z($grade->grade,$R28);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R28', $grade);
             }
         if(isset($suhuB) && isset($phD) && isset($tdsA)) //R29 C
             {
                 $R29=min($suhuB,$phD,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setA)->row()->grade;
-                $Z29 = $this->home->rumus_z($grade,$R29);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setA)->row();
+                $Z29 = $this->home->rumus_z($grade->grade,$R29);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R29', $grade);
             }
         if(isset($suhuB) && isset($phD) && isset($tdsB)) //R30 C
             {
                 $R30=min($suhuB,$phD,$tdsB);
                 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setB)->row()->grade;
-                $Z30 = $this->home->rumus_z($grade,$R30);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setB)->row();
+                $Z30 = $this->home->rumus_z($grade->grade,$R30);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R30', $grade);
             }
         if(isset($suhuB) && isset($phD) && isset($tdsC)) //31 D
             {
                 $R31=min($suhuB,$phD,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setC)->row()->grade;
-                $Z31 = $this->home->rumus_z($grade,$R31);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setC)->row();
+                $Z31 = $this->home->rumus_z($grade->grade,$R31);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R31', $grade);
             }
         if(isset($suhuB) && isset($phD) && isset($tdsD)) //R32 D
             {
                 $R32=min($suhuB,$phD,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setD)->row()->grade;
-                $Z32 = $this->home->rumus_z($grade,$R32);
+                $grade = $this->home->getdata_where($suhu_setB, $ph_setD, $tds_setD)->row();
+                $Z32 = $this->home->rumus_z($grade->grade,$R32);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R32', $grade);
             }
     //SUHU B SEDANG END
 
@@ -563,128 +662,176 @@ $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
 				$R33=min($suhuC,$phA,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setA)->row()->grade;
-				$Z33 = $this->home->rumus_z($grade,$R33);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setA)->row();
+				$Z33 = $this->home->rumus_z($grade->grade,$R33);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R33', $grade);
 			}
 		if(isset($suhuC) && isset($phA) && isset($tdsB)) //R34 C
 			{
 				$R34=min($suhuC,$phA,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setB)->row()->grade;
-				$Z34 = $this->home->rumus_z($grade,$R34);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setB)->row();
+				$Z34 = $this->home->rumus_z($grade->grade,$R34);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R34', $grade);
 			}
 		if(isset($suhuC) && isset($phA) && isset($tdsC)) //R35 C
 			{
 				$R35=min($suhuC,$phA,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setC)->row()->grade;
-				$Z35 = $this->home->rumus_z($grade,$R35);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setC)->row();
+				$Z35 = $this->home->rumus_z($grade->grade,$R35);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R35', $grade);
 			}
 		if(isset($suhuC) && isset($phA) && isset($tdsD)) //R36 D
 			{
 				$R36=min($suhuC,$phA,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setD)->row()->grade;
-				$Z36 = $this->home->rumus_z($grade,$R36);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setA, $tds_setD)->row();
+				$Z36 = $this->home->rumus_z($grade->grade,$R36);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R36', $grade);
 			}
 		if(isset($suhuC) && isset($phB) && isset($tdsA)) //R37 C
 			{
 				$R37=min($suhuC,$phB,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setA)->row()->grade;
-				$Z37 = $this->home->rumus_z($grade,$R37);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setA)->row();
+				$Z37 = $this->home->rumus_z($grade->grade,$R37);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R37', $grade);
 			}
 		if(isset($suhuC) && isset($phB) && isset($tdsB)) //R38 C
 			{
 				$R38=min($suhuC,$phB,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setB)->row()->grade;
-				$Z38 = $this->home->rumus_z($grade,$R38);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setB)->row();
+				$Z38 = $this->home->rumus_z($grade->grade,$R38);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R38', $grade);
 			}
 		if(isset($suhuC) && isset($phB) && isset($tdsC)) //R39 D
 			{
 				$R39=min($suhuC,$phB,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setC)->row()->grade;
-				$Z39 = $this->home->rumus_z($grade,$R39);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setC)->row();
+				$Z39 = $this->home->rumus_z($grade->grade,$R39);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R39', $grade);
 			}
 		if(isset($suhuC) && isset($phB) && isset($tdsD)) //R40 D
 			{
 				$R40=min($suhuC,$phB,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setD)->row()->grade;
-				$Z40 = $this->home->rumus_z($grade,$R40);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setB, $tds_setD)->row();
+				$Z40 = $this->home->rumus_z($grade->grade,$R40);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R40', $grade);
 			}
 		if(isset($suhuC) && isset($phC) && isset($tdsA)) //R41 C
 			{
 				$R41=min($suhuC,$phC,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setA)->row()->grade;
-				$Z41 = $this->home->rumus_z($grade,$R41);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setA)->row();
+				$Z41 = $this->home->rumus_z($grade->grade,$R41);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R41', $grade);
 			}
 		if(isset($suhuC) && isset($phC) && isset($tdsB)) //R42 D
 			{
 				$R42=min($suhuC,$phC,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setB)->row()->grade;
-				$Z42 = $this->home->rumus_z($grade,$R42);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setB)->row();
+				$Z42 = $this->home->rumus_z($grade->grade,$R42);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R42', $grade);
 			}
 		if(isset($suhuC) && isset($phC) && isset($tdsC)) //R43 D
 			{
 				$R43=min($suhuC,$phC,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setC)->row()->grade;
-				$Z43 = $this->home->rumus_z($grade,$R43);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setC)->row();
+				$Z43 = $this->home->rumus_z($grade->grade,$R43);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R43', $grade);
 			}
 		if(isset($suhuC) && isset($phC) && isset($tdsD)) //R44 D
 			{
 				$R44=min($suhuC,$phC,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setD)->row()->grade;
-				$Z44 = $this->home->rumus_z($grade,$R44);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setC, $tds_setD)->row();
+				$Z44 = $this->home->rumus_z($grade->grade,$R44);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R44', $grade);
 			}
 		if(isset($suhuC) && isset($phD) && isset($tdsA)) //R45 C
 			{
 				$R45=min($suhuC,$phD,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setD, $tds_setA)->row()->grade;
-				$Z45 = $this->home->rumus_z($grade,$R45);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setD, $tds_setA)->row();
+				$Z45 = $this->home->rumus_z($grade->grade,$R45);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R45', $grade);
 			}
 		if(isset($suhuC) && isset($phD) && isset($tdsB)) //R46 D
 			{
 				$R46=min($suhuC,$phD,$tdsB);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setD, $tds_setB)->row()->grade;
-				$Z46 = $this->home->rumus_z($grade,$R46);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setD, $tds_setB)->row();
+				$Z46 = $this->home->rumus_z($grade->grade,$R46);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R46', $grade);
 			}
 		if(isset($suhuC) && isset($phD) && isset($tdsC)) //47 D
 			{
 				$R47=min($suhuC,$phD,$tdsC);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setC, $ph_setD, $tds_setC)->row()->grade;
-				$Z47 = $this->home->rumus_z($grade,$R47);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setD, $tds_setC)->row();
+				$Z47 = $this->home->rumus_z($grade->grade,$R47);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R47', $grade);
 			}
 		if(isset($suhuC) && isset($phD) && isset($tdsD)) //R48 D
 			{
 				$R48=min($suhuC,$phD,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_seCt, $ph_setD, $tds_setD)->row()->grade;
-				$Z48 = $this->home->rumus_z($grade,$R48);
+                $grade = $this->home->getdata_where($suhu_seCt, $ph_setD, $tds_setD)->row();
+				$Z48 = $this->home->rumus_z($grade->grade,$R48);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R48', $grade);
 			}
 	//SUHU C BURUK END
 
@@ -694,134 +841,182 @@ $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
                 $R49=min($suhuD,$phA,$tdsA);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setA)->row()->grade;
-                $Z49 = $this->home->rumus_z($grade,$R49);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setA)->row();
+                $Z49 = $this->home->rumus_z($grade->grade,$R49);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R49', $grade);
 		}
 		if(isset($suhuD) && isset($phA) && isset($tdsB)) //R50 C
 			{
 				$R50=min($suhuD,$phA,$tdsB);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setB)->row()->grade;
-				$Z50 = $this->home->rumus_z($grade,$R50);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setB)->row();
+				$Z50 = $this->home->rumus_z($grade->grade,$R50);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R50', $grade);
 			}
 		if(isset($suhuD) && isset($phA) && isset($tdsC)) //R51 C
 			{
 				$R51=min($suhuD,$phA,$tdsC);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setC)->row()->grade;
-				$Z51 = $this->home->rumus_z($grade,$R51);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setC)->row();
+				$Z51 = $this->home->rumus_z($grade->grade,$R51);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R51', $grade);
 			}
 		if(isset($suhuD) && isset($phA) && isset($tdsD)) //R52 C
 			{
 				$R52=min($suhuD,$phA,$tdsD);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setD)->row()->grade;
-				$Z52 = $this->home->rumus_z($grade,$R52);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setA, $tds_setD)->row();
+				$Z52 = $this->home->rumus_z($grade->grade,$R52);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R52', $grade);
 			}
 		if(isset($suhuD) && isset($phB) && isset($tdsA)) //R53 C
 			{
 				$R53=min($suhuD,$phB,$tdsA);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setA)->row()->grade;
-				$Z53 = $this->home->rumus_z($grade,$R53);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setA)->row();
+				$Z53 = $this->home->rumus_z($grade->grade,$R53);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R53', $grade);
 			}
 		if(isset($suhuD) && isset($phB) && isset($tdsB)) //R54 C
 			{
 				$R54=min($suhuD,$phB,$tdsB);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setB)->row()->grade;
-				$Z54 = $this->home->rumus_z($grade,$R54);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setB)->row();
+				$Z54 = $this->home->rumus_z($grade->grade,$R54);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R54', $grade);
 			}
 		if(isset($suhuD) && isset($phB) && isset($tdsC)) //R55 D
 			{
 				$R55=min($suhuD,$phB,$tdsC);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setC)->row()->grade;
-				$Z55 = $this->home->rumus_z($grade,$R55);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setC)->row();
+				$Z55 = $this->home->rumus_z($grade->grade,$R55);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R55', $grade);
 			}
 		if(isset($suhuD) && isset($phB) && isset($tdsD)) //R56 D
 			{
 				$R56=min($suhuD,$phB,$tdsD);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setD)->row()->grade;
-				$Z56 = $this->home->rumus_z($grade,$R56);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setB, $tds_setD)->row();
+				$Z56 = $this->home->rumus_z($grade->grade,$R56);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R56', $grade);
 			}
 		if(isset($suhuD) && isset($phC) && isset($tdsA)) //R57 C
 			{
 				$R57=min($suhuD,$phC,$tdsA);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setA)->row()->grade;
-				$Z57 = $this->home->rumus_z($grade,$R57);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setA)->row();
+				$Z57 = $this->home->rumus_z($grade->grade,$R57);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R57', $grade);
 			}
 		if(isset($suhuD) && isset($phC) && isset($tdsB)) //R58 C
 			{
 				$R58=min($suhuD,$phC,$tdsB);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setB)->row()->grade;
-				$Z58 = $this->home->rumus_z($grade,$R58);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setB)->row();
+				$Z58 = $this->home->rumus_z($grade->grade,$R58);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R58', $grade);
 			}
 		if(isset($suhuD) && isset($phC) && isset($tdsC)) //R59 D
 			{
 				$R59=min($suhuD,$phC,$tdsC);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setC)->row()->grade;
-				$Z59 = $this->home->rumus_z($grade,$R59);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setC)->row();
+				$Z59 = $this->home->rumus_z($grade->grade,$R59);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R59', $grade);
 			}
 		if(isset($suhuD) && isset($phC) && isset($tdsD)) //R60 D
 			{
 				$R60=min($suhuD,$phC,$tdsD);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setD)->row()->grade;
-				$Z60 = $this->home->rumus_z($grade,$R60);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setC, $tds_setD)->row();
+				$Z60 = $this->home->rumus_z($grade->grade,$R60);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R60', $grade);
 			}
 		if(isset($suhuD) && isset($phD) && isset($tdsA)) //R61 C
 			{
 				$R61=min($suhuD,$phD,$tdsA);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setA)->row()->grade;
-				$Z61 = $this->home->rumus_z($grade,$R61);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setA)->row();
+				$Z61 = $this->home->rumus_z($grade->grade,$R61);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R61', $grade);
 			}
 		if(isset($suhuD) && isset($phD) && isset($tdsB)) //R62 D
 			{
 				$R62=min($suhuD,$phD,$tdsB);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setB)->row()->grade;
-				$Z62 = $this->home->rumus_z($grade,$R62);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setB)->row();
+				$Z62 = $this->home->rumus_z($grade->grade,$R62);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R62', $grade);
 			}
 		if(isset($suhuD) && isset($phD) && isset($tdsC)) //R63 D
 			{
 				$R63=min($suhuD,$phD,$tdsC);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setC)->row()->grade;
-				$Z63 = $this->home->rumus_z($grade,$R63);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setC)->row();
+				$Z63 = $this->home->rumus_z($grade->grade,$R63);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R63', $grade);
 			}
 		if(isset($suhuD) && isset($phD) && isset($tdsD)) //R64 D
 			{
 				$R64=min($suhuD,$phD,$tdsD);
 
                  //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setD)->row()->grade;
-				$Z64 = $this->home->rumus_z($grade,$R64);
+                $grade = $this->home->getdata_where($suhu_setD, $ph_setD, $tds_setD)->row();
+				$Z64 = $this->home->rumus_z($grade->grade,$R64);
+
+                //memasukkan data rule ke session untuk ditampilkan ke view
+                $this->session->set_userdata('Data_R64', $grade);
 			}
 	//SUHU D SANGAT BURUK END
 // RULE START END   
 
 //HASIL Z
-	echo $Ex //menam[ilkan hasil alfa predikat]
+	echo 'Ex = '.$Ex //menam[ilkan hasil alfa predikat]
 	=($R1 * $Z1)+($R2 * $Z2)+($R3 * $Z3)+($R4 * $Z4)
 	+($R5 * $Z5)+($R6 * $Z6)+($R7 * $Z7)+($R8 * $Z8)
 	+($R9 * $Z9)+($R10 * $Z10)+($R11 * $Z11)+($R12 * $Z12)
@@ -844,7 +1039,7 @@ $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
 
     echo '<br>';
 
-    echo $Er //menampilkan hasil jumlah alfa predikat
+    echo 'z = '.$Er //menampilkan hasil jumlah alfa predikat
 	=$R1+$R2+$R3+$R4+$R5+$R6+$R7+$R8+$R9+$R10+
     $R11+$R12+$R13+$R14+$R15+$R16+$R17+$R18+$R19+$R20+
     $R21+$R22+$R23+$R24+$R25+$R26+$R27+$R28+$R29+$R30+
@@ -855,24 +1050,29 @@ $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
 
     echo '<br>';
     echo '<br>';
-    echo 'Hasil = '.$hasil = $Ex/$Er; //menampilkan hasil hitungan
+    echo 'Hasil = '.$hasil = substr($Ex/$Er, 0, 6); //menampilkan hasil hitungan
 	echo '<br>';
 
 	if(0 <= $hasil && $hasil <= 150 )
 	{
 		echo 'Grade A';
+        $grade_hasil = 'A';
 	}else if(151 <= $hasil && $hasil <= 250 )
 	{
 		echo 'Grade B';
+        $grade_hasil = 'B';
 	}else if(251 <= $hasil && $hasil <= 350 )
 	{
 		echo 'Grade C';
+        $grade_hasil = 'C';
 	}else if(351 <= $hasil && $hasil <= 500 )
 	{
 		echo 'Grade D';
+        $grade_hasil = 'D';
 	}else
 	{
 		echo 'Grade D, tidak terdefinisi';
+        $grade_hasil = 'D';
 	}
 
 	echo '<br>';
@@ -880,103 +1080,135 @@ $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
 
 //tampilkan hasil hitungan awal
     echo '<br>';
-    echo 'suhuA ='.$suhuA.'<br>';
-    echo 'suhuB ='.$suhuB.'<br>';
-    echo 'suhuC ='.$suhuC.'<br>';
-    echo 'suhuD ='.$suhuD.'<br><br>';
+    
+    if(isset($suhuA)){echo 'suhuA ='.$suhuA.'<br>';}
+    if(isset($suhuB)){echo 'suhuB ='.$suhuB.'<br>';}
+    if(isset($suhuC)){echo 'suhuC ='.$suhuC.'<br>';}
+    if(isset($suhuD)){echo 'suhuD ='.$suhuD;}
+    echo '<br>';
 
-    echo 'phA ='.$phA.'<br>';
-    echo 'phB ='.$phB.'<br>';
-    echo 'phC ='.$phC.'<br>';
-    echo 'phD ='.$phD.'<br><br>';
+    if(isset($phA)){echo 'phA ='.$phA.'<br>';}
+    if(isset($phB)){echo 'phB ='.$phB.'<br>';}
+    if(isset($phC)){echo 'phC ='.$phC.'<br>';}
+    if(isset($phD)){echo 'phD ='.$phD;}
+    echo '<br>';
 
-    echo 'tdsA ='.$tdsA.'<br>';
-    echo 'tdsB ='.$tdsB.'<br>';
-    echo 'tdsC ='.$tdsC.'<br>';
-    echo 'tdsD ='.$tdsD.'<br><br>';
+    if(isset($tdsA)){echo 'tdsA ='.$tdsA.'<br>';}
+    if(isset($tdsB)){echo 'tdsB ='.$tdsB.'<br>';}
+    if(isset($tdsC)){echo 'tdsC ='.$tdsC.'<br>';}
+    if(isset($tdsD)){echo 'tdsD ='.$tdsD;}
+    echo '<br>';
 //tampilkan hasil hitungan awal END
 
 //tampil hasil hitung rule 
-	echo 'R1 ='.$R1.'  Z ='.$Z1.'<br>';
-	echo 'R2 ='.$R2.'  Z ='.$Z2.'<br>';
-	echo 'R3 ='.$R3.'  Z ='.$Z3.'<br>';
-	echo 'R4 ='.$R4.'  Z ='.$Z4.'<br>';
-	echo 'R5 ='.$R5.'  Z ='.$Z5.'<br>';
-	echo 'R6 ='.$R6.'  Z ='.$Z6.'<br>';
-	echo 'R7 ='.$R7.'  Z ='.$Z7.'<br>';
-	echo 'R8 ='.$R8.'  Z ='.$Z8.'<br>';
-	echo 'R9 ='.$R9.'  Z ='.$Z9.'<br>';
+    
+	if(isset($R1)){echo 'R1 ='.$R1.'  Z ='.$Z1.'<br>';}
+	if(isset($R2)){echo 'R2 ='.$R2.'  Z ='.$Z2.'<br>';}
+    if(isset($R3)){echo 'R3 ='.$R3.'  Z ='.$Z3.'<br>';}
+    if(isset($R4)){echo 'R4 ='.$R4.'  Z ='.$Z4.'<br>';}
+    if(isset($R5)){echo 'R5 ='.$R5.'  Z ='.$Z5.'<br>';}
+    if(isset($R6)){echo 'R6 ='.$R6.'  Z ='.$Z6.'<br>';}
+    if(isset($R7)){echo 'R7 ='.$R7.'  Z ='.$Z7.'<br>';}
+    if(isset($R8)){echo 'R8 ='.$R8.'  Z ='.$Z8.'<br>';}
+    if(isset($R9)){echo 'R9 ='.$R9.'  Z ='.$Z9.'<br>';}
 
-	echo 'R10 ='.$R10.'  Z ='.$Z10.'<br>';
-	echo 'R11 ='.$R11.'  Z ='.$Z11.'<br>';
-	echo 'R12 ='.$R12.'  Z ='.$Z12.'<br>';
-	echo 'R13 ='.$R13.'  Z ='.$Z13.'<br>';
-	echo 'R14 ='.$R14.'  Z ='.$Z14.'<br>';
-	echo 'R15 ='.$R15.'  Z ='.$Z15.'<br>';
-	echo 'R16 ='.$R16.'  Z ='.$Z16.'<br>';
-	echo 'R17 ='.$R17.'  Z ='.$Z17.'<br>';
-	echo 'R18 ='.$R18.'  Z ='.$Z18.'<br>';
-	echo 'R19 ='.$R19.'  Z ='.$Z19.'<br>';
+	if(isset($R10)){echo 'R10 ='.$R10.'  Z ='.$Z10.'<br>';}
+    if(isset($R11)){echo 'R11 ='.$R11.'  Z ='.$Z11.'<br>';}
+    if(isset($R12)){echo 'R12 ='.$R12.'  Z ='.$Z12.'<br>';}
+    if(isset($R13)){echo 'R13 ='.$R13.'  Z ='.$Z13.'<br>';}
+    if(isset($R14)){echo 'R14 ='.$R14.'  Z ='.$Z14.'<br>';}
+    if(isset($R15)){echo 'R15 ='.$R15.'  Z ='.$Z15.'<br>';}
+    if(isset($R16)){echo 'R16 ='.$R16.'  Z ='.$Z16.'<br>';}
+    if(isset($R17)){echo 'R17 ='.$R17.'  Z ='.$Z17.'<br>';}
+    if(isset($R18)){echo 'R18 ='.$R18.'  Z ='.$Z18.'<br>';}
+    if(isset($R19)){echo 'R19 ='.$R19.'  Z ='.$Z19.'<br>';}
 
-	echo 'R20 ='.$R20.'  Z ='.$Z20.'<br>';
-	echo 'R21 ='.$R21.'  Z ='.$Z21.'<br>';
-	echo 'R22 ='.$R22.'  Z ='.$Z22.'<br>';
-	echo 'R23 ='.$R23.'  Z ='.$Z23.'<br>';
-	echo 'R24 ='.$R24.'  Z ='.$Z24.'<br>';
-	echo 'R25 ='.$R25.'  Z ='.$Z25.'<br>';
-	echo 'R26 ='.$R26.'  Z ='.$Z26.'<br>';
-	echo 'R27 ='.$R27.'  Z ='.$Z27.'<br>';
-	echo 'R28 ='.$R28.'  Z ='.$Z28.'<br>';
-	echo 'R29 ='.$R29.'  Z ='.$Z29.'<br>';
+    if(isset($R20)){echo 'R20 ='.$R20.'  Z ='.$Z20.'<br>';}
+    if(isset($R21)){echo 'R21 ='.$R21.'  Z ='.$Z21.'<br>';}
+    if(isset($R22)){echo 'R22 ='.$R22.'  Z ='.$Z22.'<br>';}
+    if(isset($R23)){echo 'R23 ='.$R23.'  Z ='.$Z23.'<br>';}
+    if(isset($R24)){echo 'R24 ='.$R24.'  Z ='.$Z24.'<br>';}
+    if(isset($R25)){echo 'R25 ='.$R25.'  Z ='.$Z25.'<br>';}
+    if(isset($R26)){echo 'R26 ='.$R26.'  Z ='.$Z26.'<br>';}
+    if(isset($R27)){echo 'R27 ='.$R27.'  Z ='.$Z27.'<br>';}
+    if(isset($R28)){echo 'R28 ='.$R28.'  Z ='.$Z28.'<br>';}
+    if(isset($R29)){echo 'R29 ='.$R29.'  Z ='.$Z29.'<br>';}
 
-	echo 'R30 ='.$R30.'  Z ='.$Z30.'<br>';
-	echo 'R31 ='.$R31.'  Z ='.$Z31.'<br>';
-	echo 'R32 ='.$R32.'  Z ='.$Z32.'<br>';
-	echo 'R33 ='.$R33.'  Z ='.$Z33.'<br>';
-	echo 'R34 ='.$R34.'  Z ='.$Z34.'<br>';
-	echo 'R35 ='.$R35.'  Z ='.$Z35.'<br>';
-	echo 'R36 ='.$R36.'  Z ='.$Z36.'<br>';
-	echo 'R37 ='.$R37.'  Z ='.$Z37.'<br>';
-	echo 'R38 ='.$R38.'  Z ='.$Z38.'<br>';
-	echo 'R39 ='.$R39.'  Z ='.$Z39.'<br>';
+    if(isset($R30)){echo 'R30 ='.$R30.'  Z ='.$Z30.'<br>';}
+    if(isset($R31)){echo 'R31 ='.$R31.'  Z ='.$Z31.'<br>';}
+    if(isset($R32)){echo 'R32 ='.$R32.'  Z ='.$Z32.'<br>';}
+    if(isset($R33)){echo 'R33 ='.$R33.'  Z ='.$Z33.'<br>';}
+    if(isset($R34)){echo 'R34 ='.$R34.'  Z ='.$Z34.'<br>';}
+    if(isset($R35)){echo 'R35 ='.$R35.'  Z ='.$Z35.'<br>';}
+    if(isset($R36)){echo 'R36 ='.$R36.'  Z ='.$Z36.'<br>';}
+    if(isset($R37)){echo 'R37 ='.$R37.'  Z ='.$Z37.'<br>';}
+    if(isset($R38)){echo 'R38 ='.$R38.'  Z ='.$Z38.'<br>';}
+    if(isset($R39)){echo 'R39 ='.$R39.'  Z ='.$Z39.'<br>';}
 
-	echo 'R40 ='.$R40.'  Z ='.$Z40.'<br>';
-	echo 'R41 ='.$R41.'  Z ='.$Z41.'<br>';
-	echo 'R42 ='.$R42.'  Z ='.$Z42.'<br>';
-	echo 'R43 ='.$R43.'  Z ='.$Z43.'<br>';
-	echo 'R44 ='.$R44.'  Z ='.$Z44.'<br>';
-	echo 'R45 ='.$R45.'  Z ='.$Z45.'<br>';
-	echo 'R46 ='.$R46.'  Z ='.$Z46.'<br>';
-	echo 'R47 ='.$R47.'  Z ='.$Z47.'<br>';
-	echo 'R48 ='.$R48.'  Z ='.$Z48.'<br>';
-	echo 'R49 ='.$R49.'  Z ='.$Z49.'<br>';
+    if(isset($R40)){echo 'R40 ='.$R40.'  Z ='.$Z40.'<br>';}
+    if(isset($R41)){echo 'R41 ='.$R41.'  Z ='.$Z41.'<br>';}
+    if(isset($R42)){echo 'R42 ='.$R42.'  Z ='.$Z42.'<br>';}
+    if(isset($R43)){echo 'R43 ='.$R43.'  Z ='.$Z43.'<br>';}
+    if(isset($R44)){echo 'R44 ='.$R44.'  Z ='.$Z44.'<br>';}
+    if(isset($R45)){echo 'R45 ='.$R45.'  Z ='.$Z45.'<br>';}
+    if(isset($R46)){echo 'R46 ='.$R46.'  Z ='.$Z46.'<br>';}
+    if(isset($R47)){echo 'R47 ='.$R47.'  Z ='.$Z47.'<br>';}
+    if(isset($R48)){echo 'R48 ='.$R48.'  Z ='.$Z48.'<br>';}
+    if(isset($R49)){echo 'R49 ='.$R49.'  Z ='.$Z49.'<br>';}
 
-	echo 'R50 ='.$R50.'  Z ='.$Z50.'<br>';
-	echo 'R51 ='.$R51.'  Z ='.$Z51.'<br>';
-	echo 'R52 ='.$R52.'  Z ='.$Z52.'<br>';
-	echo 'R53 ='.$R53.'  Z ='.$Z53.'<br>';
-	echo 'R54 ='.$R54.'  Z ='.$Z54.'<br>';
-	echo 'R55 ='.$R55.'  Z ='.$Z55.'<br>';
-	echo 'R56 ='.$R56.'  Z ='.$Z56.'<br>';
-	echo 'R57 ='.$R57.'  Z ='.$Z57.'<br>';
-	echo 'R58 ='.$R58.'  Z ='.$Z58.'<br>';
-	echo 'R59 ='.$R59.'  Z ='.$Z59.'<br>';
+    if(isset($R50)){echo 'R50 ='.$R50.'  Z ='.$Z50.'<br>';}
+    if(isset($R51)){echo 'R51 ='.$R51.'  Z ='.$Z51.'<br>';}
+    if(isset($R52)){echo 'R52 ='.$R52.'  Z ='.$Z52.'<br>';}
+    if(isset($R53)){echo 'R53 ='.$R53.'  Z ='.$Z53.'<br>';}
+    if(isset($R54)){echo 'R54 ='.$R54.'  Z ='.$Z54.'<br>';}
+    if(isset($R55)){echo 'R55 ='.$R55.'  Z ='.$Z55.'<br>';}
+    if(isset($R56)){echo 'R56 ='.$R56.'  Z ='.$Z56.'<br>';}
+    if(isset($R57)){echo 'R57 ='.$R57.'  Z ='.$Z57.'<br>';}
+    if(isset($R58)){echo 'R58 ='.$R58.'  Z ='.$Z58.'<br>';}
+    if(isset($R59)){echo 'R59 ='.$R59.'  Z ='.$Z59.'<br>';}
 
-	echo 'R60 ='.$R60.'  Z ='.$Z60.'<br>';
-	echo 'R61 ='.$R61.'  Z ='.$Z61.'<br>';
-	echo 'R62 ='.$R62.'  Z ='.$Z62.'<br>';
-	echo 'R63 ='.$R63.'  Z ='.$Z63.'<br>';
-	echo 'R64 ='.$R64.'  Z ='.$Z64.'<br>';
+    if(isset($R60)){echo 'R60 ='.$R60.'  Z ='.$Z60.'<br>';}
+    if(isset($R61)){echo 'R61 ='.$R61.'  Z ='.$Z61.'<br>';}
+    if(isset($R62)){echo 'R62 ='.$R62.'  Z ='.$Z62.'<br>';}
+    if(isset($R63)){echo 'R63 ='.$R63.'  Z ='.$Z63.'<br>';}
+    if(isset($R64)){echo 'R64 ='.$R64.'  Z ='.$Z64.'<br>';}
 
 //tampil hasil hitung rule END
 
-// $data =1;
-// if(isset($data)){
-// 	echo 'baca DATA'.$data*200;
-// }
 
-	}
+// input data ke database
+    $data = array(
+        'suhu'              => $suhu,
+        'ph'                => $ph,
+        'tds'               => $tds,
+        'hasil_perhitungan' => $hasil,
+        'grade'             => $grade_hasil,
+        'tanggal'           => date('Y-m-d')
+    );
 
-	
+    if ($this->home->input_db($data) > 0){
+        // $this->session->set_flashdata('alert', 'berhasil menyimpan data');
+        echo 'berhasil menyimpan data';
+    }
+// input data ke database END
 
+// contoh tampilan di view nanti
+    echo '<br>';
+    $dr1 = $_SESSION['Data_R1'];
+    echo $dr1->id_rule;
+    echo $dr1->rule;
+    echo $dr1->suhu_fuzzyset;
+    echo $dr1->ph_fuzzyset;
+    echo $dr1->tds_fuzzyset;
+
+    echo '<br>';
+    $dr5 = $_SESSION['Data_R5'];
+    echo $dr5->id_rule;
+    echo $dr5->rule;
+    echo $dr5->suhu_fuzzyset;
+    echo $dr5->ph_fuzzyset;
+    echo $dr5->tds_fuzzyset;
+// contoh tampilan di view nanti END
+
+    }
 }
