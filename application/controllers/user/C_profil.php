@@ -12,7 +12,7 @@ class C_profil extends CI_Controller
 
     public function index()
 	{
-		$data['title'] = 'Profil Pembuat';
+		$data['title'] = 'Profil';
 
 		$this->load->view('user/v_header', $data);
 		$this->load->view('user/v_navbar');

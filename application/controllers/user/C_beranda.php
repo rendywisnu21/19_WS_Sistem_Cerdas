@@ -12,7 +12,7 @@ class C_beranda extends CI_Controller
 
     public function index()
 	{
-		$data['title'] = 'Workshop Sistem Cerdas';
+		$data['title'] = 'Sistem Cerdas';
 
 		$this->load->view('user/v_header', $data);
 		$this->load->view('user/v_navbar');

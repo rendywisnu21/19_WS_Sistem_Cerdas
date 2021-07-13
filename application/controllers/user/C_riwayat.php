@@ -12,7 +12,7 @@ class C_riwayat extends CI_Controller
 
     public function index()
 	{
-		$data['title'] = 'Riwayat Hasil Hitung Kualitas Air';
+		$data['title'] = 'Riwayat Hasil Hitung';
 		
 		/** Mengambil data kelas */
 		// $data['tds'] = $this->rule->gettds()->result();

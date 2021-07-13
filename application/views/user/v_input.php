@@ -35,20 +35,20 @@
 										<div class="form-group">
 											<label for="suhu">Suhu</label>
 											<input type="text" class="form-control huruf" id="suhu" name="suhu" required
-												placeholder="Masukkan nilai suhu" value="<?= set_value('suhu'); ?>">
+												placeholder="Masukkan nilai suhu">
 											<?= form_error('suhu', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="ph">pH</label>
 											<input type="text" class="form-control huruf" id="ph" name="ph" required
-												placeholder="Masukkan nilai ph" value="<?= set_value('ph'); ?>">
+												placeholder="Masukkan nilai ph">
 											<?= form_error('ph', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="tds">TDS</label>
 											<input type="text" class="form-control huruf" id="tds" name="tds" required
-												placeholder="Masukkan nilai tds" value="<?= set_value('tds'); ?>">
+												placeholder="Masukkan nilai tds">
 											<?= form_error('tds', '<small class="text-danger">', '</small>'); ?>
 										</div>
-										<button class="btn btn-primary" type="submit">Hitung</button>
+										<button id="show_button" class="btn btn-primary" type="submit">Hitung</button>
 									</div>

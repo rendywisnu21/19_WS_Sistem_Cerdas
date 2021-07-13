@@ -33,7 +33,7 @@ class C_auth extends CI_Controller
             ));
             redirect('admin/C_dashboard');
         }else{
-            $this->session->set_userdata('gagal','gagal');
+            $this->session->set_userdata('gagal', 'gagal');
             $this->index();
         }
     }

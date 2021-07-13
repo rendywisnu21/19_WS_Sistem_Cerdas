@@ -22,6 +22,11 @@ class C_input extends CI_Controller
 		$this->load->view('user/v_sidebar');
 		$this->load->view('user/v_input');
 		$this->load->view('user/v_footer');
+
+		// $this->session->set_userdata('suhu', 'suhu');
+		// $this->session->set_userdata('ph', 'ph');
+		// $this->session->set_userdata('tds', 'tds');
+
 	}
 
 	public function hitung(){
@@ -827,11 +832,8 @@ class C_input extends CI_Controller
 				$R48=min($suhuC,$phD,$tdsD);
 
                 //memanggil data dari database suhu, ph dan tds
-                $grade = $this->home->getdata_where($suhu_seCt, $ph_setD, $tds_setD)->row();
-				$Z48 = $this->home->rumus_z($grade->grade,$R48);
-
-                //memasukkan data rule ke session untuk ditampilkan ke view
-                $this->session->set_userdata('Data_R48', $grade);
+                $grade = $this->home->getdata_where($suhu_setC, $ph_setD, $tds_setD)->row()->grade;
+				$Z48 = $this->home->rumus_z($grade,$R48);
 			}
 	//SUHU C BURUK END
 
