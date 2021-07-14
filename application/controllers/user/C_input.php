@@ -14,18 +14,14 @@ class C_input extends CI_Controller
 	{
 		$data['title'] = 'Hitung Kualitas Air';
 		
-		/** Mengambil data kelas */
-		// $data['tds'] = $this->rule->gettds()->result();
-
+		// Ambil data dari tb_hasil 
+		$data['hasil'] = $this->home->getHasil()->result();
+		
 		$this->load->view('user/v_header', $data);
 		$this->load->view('user/v_navbar');
 		$this->load->view('user/v_sidebar');
 		$this->load->view('user/v_input');
 		$this->load->view('user/v_footer');
-
-		// $this->session->set_userdata('suhu', 'suhu');
-		// $this->session->set_userdata('ph', 'ph');
-		// $this->session->set_userdata('tds', 'tds');
 
 	}
 

@@ -67,6 +67,7 @@
         <div class="row">
           <!-- /.col -->
             <button type="submit" class="btn btn-primary btn-block mr-2 ml-2">Masuk</button>
+            <a href="<?= base_url('user/C_beranda') ?>" class="btn btn-outline-default btn-block mr-2 ml-2">Batal</a>
           <!-- /.col -->
         </div>
       </form>

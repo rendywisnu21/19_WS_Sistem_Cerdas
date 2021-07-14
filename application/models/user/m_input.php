@@ -1,6 +1,13 @@
 <?php
     class M_input extends CI_Model
     {
+
+		public function getHasil()
+        {
+			$this->db->where('id_hasil', 'DESC');
+            return $this->db->get('tb_hasil');
+        }
+
         public function rumus_z($grade,$R){
             if($grade == 'A'){
                 return 200-($R*(200-100)); 
