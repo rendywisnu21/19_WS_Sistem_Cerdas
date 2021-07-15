@@ -1,3 +1,8 @@
+
+<style type="text/css">
+		html {scroll-behavior:smooth;}
+	</style>
+
 <div class="content-wrapper">
 	<!-- Content Header -->
 	<section class="content-header">
@@ -35,19 +40,19 @@
 										<div class="form-group">
 											<label for="suhu">Suhu</label>
 											<input type="text" class="form-control huruf" id="suhu" name="suhu" required
-												placeholder="Masukkan nilai suhu">
+												placeholder="Masukkan nilai suhu" value="<?php if(isset($_SESSION['suhu'])){echo $_SESSION['suhu'];} ?>">
 											<?= form_error('suhu', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="ph">pH</label>
 											<input type="text" class="form-control huruf" id="ph" name="ph" required
-												placeholder="Masukkan nilai ph">
+												placeholder="Masukkan nilai ph" value="<?php if(isset($_SESSION['ph'])){echo $_SESSION['ph'];} ?>">
 											<?= form_error('ph', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="tds">TDS</label>
 											<input type="text" class="form-control huruf" id="tds" name="tds" required
-												placeholder="Masukkan nilai tds">
+												placeholder="Masukkan nilai tds" value="<?php if(isset($_SESSION['tds'])){echo $_SESSION['tds'];} ?>">
 											<?= form_error('tds', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<button class="btn btn-block btn-primary" type="submit">Hitung</button>
@@ -60,14 +65,13 @@
 			</div>
 		</div>
 	</section>
-	<br><br><br><br><br><br>
+	<br><br>
 	<!-- Header -->
-	<section class="content-header">
+
+<?php if(isset($_SESSION['hasil'])){ ?>
+	<section class="content-header" id="hasil">
 		<div class="container-fluid">
 			<div class="row mb-2">
-				<div class="col-sm-6">
-					<h1>Hasil Hitung</h1>
-				</div>
 			</div>
 		</div><!-- /.container-fluid -->
 	</section>
@@ -81,27 +85,31 @@
 							<h3 class="card-title text-bold">Hasil Hitung</h3>
 						</div>
 						<!-- /.card-header -->
-						<div class="card-body">
-							<table id="example2" class="table table-bordered table-hover">
+						<div class="card-body pb-5">
+							<div class="text-center border border-success">
+								<!-- <input type="text" class="knob" value="<?=$_SESSION['presentase']?>" data-width="140" data-height="140" data-fgColor="#4cd137" disabled readonly> -->
+								<h1 class="text-success text-bold">Grade <?=$_SESSION['grade']?></h1>
+								<p class="text-success" >hasil perhitungan adalah <?=$_SESSION['hasil']?></p>
+							</div>
+							<table id="example2" class="table table-bordered table-hover mt-2">
 								<thead>
 									<tr>
-										<th>Suhu</th>
-										<th>Ph</th>
-										<th>TDS</th>
-										<th>Hasil Perhitungan</th>
-										<th>Grade</th>
+										<th class="text-center">Suhu</th>
+										<th class="text-center">Ph</th>
+										<th class="text-center">TDS</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>23</td>
-										<td>7</td>
-										<td>100</td>
-										<td>0</td>
-										<td>A</td>
+										<td class="text-center"><?=$_SESSION['suhu']?></td>
+										<td class="text-center"><?=$_SESSION['ph']?></td>
+										<td class="text-center"><?=$_SESSION['tds']?></td>
 									</tr>
 								</tbody>
 							</table>
+							<div class="text-right mt-3">
+								<a href="<?=base_url('user/C_input/reset')?>" class="btn btn-secondary">reset</a>
+							</div>
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -109,4 +117,18 @@
 			</div>
 		</div>
 	</section>
+<?php } ?>
+
 </div>
+
+<br><br><br><br><br><br> 	
+<br><br><br><br>
+
+<?php if(isset($_SESSION['hasil'])){ ?>
+	<script>
+			setTimeout(function() {
+			window.location = "<?=base_url('user/C_input#hasil')?>";
+			}, 400);
+		
+	</script>
+<?php } ?>
