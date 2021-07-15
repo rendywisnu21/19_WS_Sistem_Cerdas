@@ -26,9 +26,13 @@
 				</li>
 				<li class="nav-item">
 					<?php if(!isset($_SESSION['auth'])){ ?>
-						<a href="<?= base_url('admin/C_auth') ?>" class="btn btn-primary" type="button">
-							Log In sebagai Admin
-						</a>
+					<a href="<?= base_url('admin/C_auth') ?>" class="btn btn-primary" type="button">
+						Log In sebagai Admin
+					</a>
+					<?php } else { ?>
+					<a href="<?= base_url('admin/C_auth/logout') ?>" class="btn btn-danger" type="button">
+						Log Out
+					</a>
 					<?php } ?>
 				</li>
 			</ul>
