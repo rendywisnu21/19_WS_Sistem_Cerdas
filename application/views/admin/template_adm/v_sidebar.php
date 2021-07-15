@@ -83,6 +83,13 @@
 								<p>Rule</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('admin/C_hasil') ?>" class="nav-link 
+								<?php if($link === 'C_hasil'){echo 'active';} ?>">
+								<i class="fas fa-history nav-icon"></i>
+								<p>Riwayat</p>
+							</a>
+						</li>
 						</li>
 				</nav>
 			</div>

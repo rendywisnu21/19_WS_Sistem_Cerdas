@@ -13,15 +13,15 @@
             return $this->db->get('tb_admin', 1);
         }
 
-        // CREATE
+        // Tambah
         public function tambah($data)
         {   
             return $this->db->insert('tb_admin', $data);
         }
 
-        // DELETE
-        function delete($id)
+        // Hapus
+		public function hapus($where, $table)
         {
-            return $this->db->delete('tb_admin', array('id_admin'=>$id));
+            $this->db->delete($table, $where);
         }
     }

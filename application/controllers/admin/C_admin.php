@@ -88,12 +88,14 @@ class C_admin extends CI_Controller
 		}
 	}
 
-
-	function hapusAksi($id)
-	{
-		if($this->admin->delete($id)){
-			$this->session->set_flashdata('hapus_sukses', 'hapus_sukses');
-		}
+	public function hapus()
+    {
+        $id_admin = $this->input->post('delete_id', TRUE);
+		$where = array(
+            'id_admin' => $id_admin
+        );
+		$this->admin->hapus($where, 'tb_admin');
+		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_admin');
-	}
+    }
 }

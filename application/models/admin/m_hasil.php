@@ -1,7 +1,7 @@
 <?php
-    class M_riwayat extends CI_Model
+    class M_hasil extends CI_Model
     {
-		public function getRiwayat()
+        public function getHasil()
         {
             $query = $this->db->get('tb_hasil');
             return $query;
@@ -12,4 +12,5 @@
         {
             $this->db->delete($table, $where);
         }
-    }
+
+}		

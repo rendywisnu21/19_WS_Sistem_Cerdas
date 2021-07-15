@@ -46,10 +46,9 @@
 							Tambah Data
 						</a>
 					</div>
-
 					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
+					<div class="card-body table-responsive p-0">
+						<table class="table table-hover">
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
@@ -72,7 +71,6 @@
 									<td class="text-center"><?= $ru->fuzzy_set_ph; ?></td>
 									<td class="text-center"><?= $ru->fuzzy_set_tds; ?></td>
 									<td class="text-center"><?= $ru->grade; ?></td>
-
 									<td class="text-center">
 										<button type="button" class="btn btn-danger" data-toggle="modal"
 											data-target="#modalHapus<?= $ru->id_rule ?>">Hapus</button>
@@ -80,6 +78,17 @@
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
+							<tfoot>
+								<tr class="text-center">
+									<th>No</th>
+									<th>Rule</th>
+									<th>Suhu</th>
+									<th>PH</th>
+									<th>TDS</th>
+									<th>Grade</th>
+									<th>Aksi</th>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
 				</div>
@@ -93,7 +102,7 @@
 	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header bg-primary">
+			<div class="modal-header">
 				<h5 class="modal-title">Tambah Data</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -107,8 +116,8 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">R</span>
 							</div>
-							<input type="number" class="form-control" id="rule" name="rule" placeholder="Rule (R1,R2,R3, dst)" 
-									min ="1" minlength="1" maxlength="%">
+							<input type="number" class="form-control" id="rule" name="rule"
+								placeholder="Rule (R1,R2,R3, dst)" min="1" minlength="1" maxlength="%">
 							<?= form_error('rule', '<small class="text-danger">', '</small>'); ?>
 						</div>
 					</div>
@@ -146,7 +155,8 @@
 					</div>
 					<div class="form-group">
 						<label for="grade">Grade</label>
-						<select class="form-select form-control" aria-label="Default select example" id="grade" name="grade">
+						<select class="form-select form-control" aria-label="Default select example" id="grade"
+							name="grade">
 							<option selected>- Pilih salah satu -</option>
 							<option value="A">Grade : A</option>
 							<option value="B">Grade : B</option>

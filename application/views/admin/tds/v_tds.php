@@ -28,8 +28,8 @@
 						</a>
 					</div>
 					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
+					<div class="card-body table-responsive p-0">
+						<table class="table table-hover">
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
@@ -81,7 +81,7 @@
 	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header bg-primary">
+			<div class="modal-header">
 				<h5 class="modal-title">Tambah Data</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -91,8 +91,8 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="namatd">Nilai FuzzySet</label>
-						<select class="form-control huruf" id="namatd" name="namatd"
-							value="<?= set_value('namatd'); ?>" autocomplete="off" autofocus required>
+						<select class="form-control huruf" id="namatd" name="namatd" value="<?= set_value('namatd'); ?>"
+							autocomplete="off" autofocus required>
 							<option disabled selected hidden>Pilih</option>
 							<option value="Excellent">Excellent</option>
 							<option value="Good">Good</option>

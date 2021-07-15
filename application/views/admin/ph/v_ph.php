@@ -28,8 +28,8 @@
 						</a>
 					</div>
 					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
+					<div class="card-body table-responsive p-0">
+						<table class="table table-hover">
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
@@ -79,7 +79,7 @@
 	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header bg-primary">
+			<div class="modal-header">
 				<h5 class="modal-title">Tambah Data</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>

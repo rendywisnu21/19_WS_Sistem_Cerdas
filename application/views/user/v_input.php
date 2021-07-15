@@ -11,6 +11,12 @@
 				<div class="col-sm-6">
 					<h1><?= $title; ?></h1>
 				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="<?= base_url('user/C_beranda') ?>">Beranda</a></li>
+						<li class="breadcrumb-item active"><?= $title; ?></li>
+					</ol>
+				</div>
 			</div>
 		</div><!-- /.container-fluid -->
 	</section>
@@ -55,6 +61,7 @@
 												placeholder="Masukkan nilai tds" value="<?php if(isset($_SESSION['tds'])){echo $_SESSION['tds'];} ?>">
 											<?= form_error('tds', '<small class="text-danger">', '</small>'); ?>
 										</div>
+										<br><hr>
 										<button class="btn btn-block btn-primary" type="submit">Hitung</button>
 									</div>
 								</div>

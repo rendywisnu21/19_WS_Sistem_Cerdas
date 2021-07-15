@@ -16,15 +16,15 @@
 		</div><!-- /.container-fluid -->
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 		<?php if(isset($_SESSION['hapus_sukses'])){ ?>
-			<div class="alert alert-success" role="alert">
-				Hapus Sukses
+		<div class="alert alert-success" role="alert">
+			Hapus Sukses
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
-			</div>
+		</div>
 		<?php } ?>
 
-	</section>	
+	</section>
 	<section class="content">
 		<div class="row">
 			<div class="col-12">
@@ -37,32 +37,28 @@
 					</div>
 
 					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
+					<div class="card-body table-responsive p-0">
+						<table class="table table-hover">
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
 									<th>Nama Admin</th>
 									<th>Username</th>
-									<th>Status</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
 									foreach ($admin as $ad):
+										$id = $ad->id_admin
 								?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
 									<td class="text-center"><?= $ad->nama_admin; ?></td>
 									<td class="text-center"><?= $ad->username_admin; ?></td>
 									<td class="text-center">
-										<i class="fas fa-check text-success"></i>
-									</td>
-									<td class="text-center">
-										<a href="#!" onclick="hapus('<?=$ad->id_admin?>','<?=$ad->nama_admin?>')">
-											<i class="fas fa-trash text-danger"></i>
-										</a>
+										<button type="button" class="btn btn-danger" data-toggle="modal"
+											data-target="#modalHapus<?= $id ?>">Hapus</button>
 									</td>
 								</tr>
 								<?php $no++; ?>
@@ -73,7 +69,6 @@
 									<th>No</th>
 									<th>Nama Admin</th>
 									<th>Username</th>
-									<th>Status</th>
 									<th>aksi</th>
 								</tr>
 							</tfoot>
@@ -86,64 +81,74 @@
 </div>
 
 <!-- modal tambah -->
-	<div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-		<div class="modal-header bg-primary">
-			<h5 class="modal-title">Tambah Data</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	<form action="<?php echo base_url() . 'admin/C_admin/tambah_aksi' ?>" method="post">
-		<div class="modal-body">
-				<div class="form-group">
-					<label for="nama">Nama Admin</label>
-					<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Admin" minlength="2">
-					<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+			<div class="modal-header">
+				<h5 class="modal-title">Tambah Data</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="<?php echo base_url() . 'admin/C_admin/tambah_aksi' ?>" method="post">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="nama">Nama Admin</label>
+						<input type="text" class="form-control" id="nama" name="nama" placeholder="Isi dengan nama"
+							minlength="2">
+						<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+					</div>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" name="username" placeholder="Isi dengan nama pengguna"
+							minlength="2">
+						<?= form_error('username', '<small class="text-danger">', '</small>'); ?>
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Isi password minimal 8 huruf"
+							minlength="8">
+						<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" class="form-control" id="username" name="username" placeholder="Username" minlength="2">
-					<?= form_error('username', '<small class="text-danger">', '</small>'); ?>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-primary">Tambah</button>
 				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="8">
-					<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
-				</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
-			<button type="submit" class="btn btn-primary">Tambah</button>
-		</div>
-	</form>
+			</form>
 		</div>
 	</div>
-	</div>
+</div>
 <!-- modal tambah end -->
-
-<!-- modal tambah -->
-<div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-		<div class="modal-body">
-			Anda yakin ingin menghapus data <span id="nama_admin"></span> ?
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-			<a href="#" id="linkHapus" class="btn btn-danger">Hapus</a>
-		</div>
+<!-- modal hapus -->
+<?php foreach ($admin as $ad):
+	$id 	= $ad->id_admin;
+	$nama 	= $ad->nama_admin;
+?>
+<form action="<?php echo base_url() . 'admin/C_admin/hapus' ?>" method="post">
+	<div class="modal fade" id="modalHapus<?= $id; ?>" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-danger">
+					<h4 class="modal-title">Hapus</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body justify-content-center">
+					<div>
+						<h5>Apakah Anda yakin untuk menghapus data dengan nama <b><?= $nama?></b> ini?</h5>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<input type="hidden" name="delete_id" value="<?= $id; ?>" required>
+					<button type="submit" class="btn btn-danger">Hapus</button>
+				</div>
+			</div>
 		</div>
 	</div>
-	</div>
-<!-- modal tambah end -->
-
-<!-- script tampil modal hapus  -->
-<script>
-	function hapus(id, nama){
-		document.getElementById('nama_admin').innerHTML= nama;
-		$('#linkHapus').attr('href', '<?=base_url('admin/C_admin/hapusAksi/')?>'+id);
-		$('#modalHapus').modal('show');
-	}
-</script>
+</form>
+<?php endforeach; ?>
+<!-- modal hapus end -->

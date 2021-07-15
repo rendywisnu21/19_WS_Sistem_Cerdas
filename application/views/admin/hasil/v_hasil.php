@@ -8,7 +8,7 @@
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?= base_url('user/C_beranda') ?>">Beranda</a></li>
+						<li class="breadcrumb-item"><a href="<?= base_url('admin/C_dashboard') ?>">Beranda</a></li>
 						<li class="breadcrumb-item active"><?= $title; ?></li>
 					</ol>
 				</div>
@@ -32,6 +32,7 @@
 									<th>Hasil</th>
 									<th>Grade</th>
 									<th>Tanggal</th>
+									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -47,6 +48,11 @@
 									<td class="text-center"><?= $ha->hasil_perhitungan; ?></td>
 									<td class="text-center"><?= $ha->grade; ?></td>
 									<td class="text-center"><?= $ha->tanggal; ?></td>
+									<td class="text-center">
+										<button type="button" class="btn btn-danger" data-toggle="modal"
+											data-target="#modalHapus<?= $id ?>">Hapus</button>
+									</td>
+									</td>
 								</tr>
 								<?php $no++; ?>
 								<?php endforeach; ?>
@@ -60,6 +66,7 @@
 									<th>Hasil</th>
 									<th>Grade</th>
 									<th>Tanggal</th>
+									<th>Aksi</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -74,7 +81,7 @@
 	$id 	= $ha->id_hasil;
 	$grade 	= $ha->grade;
 	?>
-<form action="<?php echo base_url() . 'user/C_riwayat/hapus' ?>" method="post">
+<form action="<?php echo base_url() . 'admin/C_hasil/hapus' ?>" method="post">
 	<div class="modal fade" id="modalHapus<?= $id; ?>" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

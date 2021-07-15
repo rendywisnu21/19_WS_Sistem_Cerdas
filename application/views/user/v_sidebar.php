@@ -26,6 +26,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
+							<a href="<?= base_url('user/C_profil') ?>" class="nav-link 
+								<?php if($link === 'C_profil'){echo 'active';} ?>">
+								<i class="fas fa-address-card nav-icon"></i>
+								<p>Profil</p>
+							</a>
+						</li>
+						<li class="nav-item">
 							<a href="<?= base_url('user/C_input') ?>" class="nav-link 
 								<?php if($link === 'C_input'){echo 'active';} ?>">
 								<i class="fas fa-file-alt nav-icon"></i>
@@ -37,13 +44,6 @@
 								<?php if($link === 'C_riwayat'){echo 'active';} ?>">
 								<i class="fas fa-history nav-icon"></i>
 								<p>Riwayat</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('user/C_profil') ?>" class="nav-link 
-								<?php if($link === 'C_profil'){echo 'active';} ?>">
-								<i class="fas fa-address-card nav-icon"></i>
-								<p>Profil</p>
 							</a>
 						</li>
 					</ul>
