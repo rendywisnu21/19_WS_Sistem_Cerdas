@@ -66,11 +66,11 @@
 								?>
 								<tr>
 									<td class="text-center"><?= $no++; ?></td>
-									<td class="text-center"><?= $ru->rule; ?></td>
-									<td class="text-center"><?= $ru->fuzzy_set_suhu; ?></td>
-									<td class="text-center"><?= $ru->fuzzy_set_ph; ?></td>
-									<td class="text-center"><?= $ru->fuzzy_set_tds; ?></td>
-									<td class="text-center"><?= $ru->grade; ?></td>
+									<td class="text-center">[<?= $ru->rule; ?>]</td>
+									<td class="text-center">IF SUHU &nbsp; [<?= $ru->fuzzy_set_suhu;?>]</td>
+									<td class="text-center">AND PH &nbsp; [<?= $ru->fuzzy_set_ph; ?>]</td>
+									<td class="text-center">AND TDS &nbsp; [<?= $ru->fuzzy_set_tds; ?>]</td>
+									<td class="text-center">THEN GRADE IS &nbsp; <?= $ru->grade; ?></td>
 									<td class="text-center">
 										<button type="button" class="btn btn-danger" data-toggle="modal"
 											data-target="#modalHapus<?= $ru->id_rule ?>">Hapus</button>

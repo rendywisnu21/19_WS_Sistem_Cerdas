@@ -106,8 +106,7 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
@@ -139,8 +138,7 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
@@ -172,8 +170,7 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
@@ -204,8 +201,8 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
