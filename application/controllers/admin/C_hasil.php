@@ -35,4 +35,19 @@ class C_hasil extends CI_Controller
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_hasil');
     }
+
+	public function clear()
+    {
+		$hasil = $this->m_hasil->getHasil()->result();
+		foreach ($hasil as $h){
+			$id_hasil = $h->id_hasil;
+			$where = array(
+				'id_hasil' => $id_hasil
+			);
+			$this->m_hasil->hapus($where, 'tb_hasil');
+		}
+		
+		$this->session->set_flashdata('message', 'dataDelete');
+		redirect('admin/C_hasil');
+    }
 }

@@ -93,19 +93,27 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body pb-5">
-							<div class="text-center border border-success">
+							<div class="text-center border
+								<?php if($_SESSION['grade'] == 'A' OR $_SESSION['grade'] == 'B'){
+									echo "border-success";
+								}else if($_SESSION['grade'] == 'C'){
+									echo "border-warning";
+								}else if($_SESSION['grade'] == 'D'){
+									echo "border-danger";
+								}
+							?>">
 								<div class="mt-3">
 									<?php if($_SESSION['grade'] == 'A' OR $_SESSION['grade'] == 'B'){ ?>
 										<input type="text" class="knob" value="<?=$_SESSION['presentase']?>" 
 											data-width="140" data-height="140" data-fgColor="#4cd137" disabled readonly>
 										<h1 class="text-success text-bold">Grade <?=$_SESSION['grade']?></h1>
 										<p class="text-success" >hasil perhitungan adalah <?=$_SESSION['hasil']?></p>
-									<?php }if($_SESSION['grade'] == 'C'){ ?>
+									<?php }else if($_SESSION['grade'] == 'C'){ ?>
 										<input type="text" class="knob" value="<?=$_SESSION['presentase']?>" 
 											data-width="140" data-height="140" data-fgColor="#fbc531" disabled readonly>
 										<h1 class="text-warning text-bold">Grade <?=$_SESSION['grade']?></h1>
 										<p class="text-warning" >hasil perhitungan adalah <?=$_SESSION['hasil']?></p>
-									<?php }if($_SESSION['grade'] == 'D'){ ?>
+									<?php }else if($_SESSION['grade'] == 'D'){ ?>
 										<input type="text" class="knob" value="<?=$_SESSION['presentase']?>" 
 											data-width="140" data-height="140" data-fgColor="#e84118" disabled readonly>
 										<h1 class="text-danger text-bold">Grade <?=$_SESSION['grade']?></h1>

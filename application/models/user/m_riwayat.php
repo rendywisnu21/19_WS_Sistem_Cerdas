@@ -3,6 +3,7 @@
     {
 		public function getRiwayat()
         {
+            $this->db->order_by("id_hasil", "desc");
             $query = $this->db->get('tb_hasil');
             return $query;
         }

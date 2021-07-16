@@ -292,7 +292,7 @@ class C_input extends CI_Controller
     $suhu_setA = $ph_setA = $tds_setA = 'Excellent';
     $suhu_setB = $ph_setB = $tds_setB = 'Good';
     $suhu_setC = $ph_setC = $tds_setC = 'Bad';
-    $suhu_setD = $ph_setD = $tds_setD = 'Verybad';
+    $suhu_setD = $ph_setD = $tds_setD = 'Very bad';
 //  deklarasi variabel untuk memanggil rule di database
 
 // RULE START 
@@ -437,6 +437,7 @@ class C_input extends CI_Controller
 
                 //memanggil data dari database suhu, ph dan tds
                 $grade = $this->home->getdata_where($suhu_setA, $ph_setD, $tds_setA)->row();
+                echo $grade->grade;
                 $Z13 = $this->home->rumus_z($grade->grade,$R13);
 
                 //memasukkan data rule ke session untuk ditampilkan ke view
@@ -1074,7 +1075,6 @@ class C_input extends CI_Controller
 
 //tampilkan hasil hitungan awal
     // echo '<br>';
-    
     // if(isset($suhuA)){echo 'suhuA ='.$suhuA.'<br>';}
     // if(isset($suhuB)){echo 'suhuB ='.$suhuB.'<br>';}
     // if(isset($suhuC)){echo 'suhuC ='.$suhuC.'<br>';}
@@ -1198,10 +1198,7 @@ class C_input extends CI_Controller
         'tanggal'           => date('Y-m-d')
     );
 
-    if ($this->home->input_db($data) > 0){
-        // $this->session->set_flashdata('alert', 'berhasil menyimpan data');
-        // echo 'berhasil menyimpan data';
-    }
+    $this->home->input_db($data);
 // input data ke database END
 
 //hitungan presentase
