@@ -7,6 +7,11 @@
 						<div class="col-sm-6">
 							<h1 class="m-0">Beranda</h1>
 						</div><!-- /.col -->
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="<?= base_url('admin/C_dashboard') ?>">Beranda</a></li>
+							</ol>
+						</div><!-- /.col -->
 					</div><!-- /.row -->
 				</div><!-- /.container-fluid -->
 			</div>
@@ -60,7 +65,7 @@
 							<!-- small box -->
 							<div class="small-box bg-primary">
 								<div class="inner">
-									<h4>Kualitas Air Sangat Buruk (D)<sup style="font-size: 12px"></sup></h4>
+									<h4>Kualitas Air Sangat Buruk (D)<sup style="font-size: 12px"></sup></h5>
 								</div>
 								<a href="#!" class="btn btn-outline-info col-12 col-12" data-target="#modalSBuruk"
 									data-toggle="modal">
@@ -68,9 +73,16 @@
 								</a>
 							</div>
 						</div>
+						<!-- ./col -->
 					</div>
+					<!-- /.row -->
+					<!-- Main row -->
+
+					<!-- /.card -->
 			</section>
 		</div>
+		</div>
+		</section>
 		</div>
 
 		<!-- Modal Suhu -->
@@ -94,8 +106,7 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
@@ -127,8 +138,7 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
@@ -160,8 +170,7 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
@@ -192,8 +201,8 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
 								<br>
-								<?php $direk_file = "assets/dist/img/grafik.png" ?>
-								<img src="<?= $direk_file; ?>" width="470px" height="200px" alt="">
+								
+								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
 					</div>
