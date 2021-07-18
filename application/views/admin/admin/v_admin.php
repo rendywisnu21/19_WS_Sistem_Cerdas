@@ -69,7 +69,7 @@
 									<th>No</th>
 									<th>Nama Admin</th>
 									<th>Username</th>
-									<th>aksi</th>
+									<th>Aksi</th>
 								</tr>
 							</tfoot>
 						</table>
