@@ -21,12 +21,12 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-				<div class="card-header bg-dark">
-					<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-					<a href="#" class="btn btn-primary float-right mr-4" data-target="#modalRefresh" data-toggle="modal">
-						Bersihkan <i class="fas fa-sync ml-2"></i>
-					</a>
-				</div>
+					<div class="card-header bg-dark">
+						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
+						<a href="#" class="btn btn-danger text-bold float-right mr-4" data-target="#modalRefresh"
+							data-toggle="modal">Hapus Semua
+						</a>
+					</div>
 					<div class="card-body table-responsive p-0">
 						<table class="table table-hover">
 							<thead>
@@ -55,7 +55,7 @@
 									<td class="text-center"><?= $ha->grade; ?></td>
 									<td class="text-center"><?= $ha->tanggal; ?></td>
 									<td class="text-center">
-										<button type="button" class="btn btn-danger" data-toggle="modal"
+										<button type="button" class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#modalHapus<?= $id ?>">Hapus</button>
 									</td>
 									</td>
@@ -115,25 +115,25 @@
 <!-- modal hapus end -->
 
 <!-- modal hapus -->
-	<div class="modal fade" id="modalRefresh" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header bg-danger">
-					<h4 class="modal-title">Bersihkan</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+<div class="modal fade" id="modalRefresh" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-danger">
+				<h4 class="modal-title">Bersihkan</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body justify-content-center">
+				<div>
+					<h5>Apakah Anda yakin untuk menghapus semua data hasil ini?</h5>
 				</div>
-				<div class="modal-body justify-content-center">
-					<div>
-						<h5>Apakah Anda yakin untuk menghapus semua data hasil ini?</h5>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
-					<a href="<?=base_url('admin/C_hasil/clear')?>" class="btn btn-danger">Hapus</a>
-				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+				<a href="<?=base_url('admin/C_hasil/clear')?>" class="btn btn-danger">Hapus</a>
 			</div>
 		</div>
 	</div>
+</div>
 <!-- modal hapus end -->
