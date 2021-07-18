@@ -23,7 +23,7 @@
 				<div class="card">
 					<div class="card-header bg-dark">
 						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-						<a href="#" class="btn btn-primary float-right" data-target="#modalTambah" data-toggle="modal">
+						<a href="#" class="btn btn-primary text-bold float-right" data-target="#modalTambah" data-toggle="modal">
 							Tambah Data
 						</a>
 					</div>
@@ -50,7 +50,7 @@
 									<td class="text-center">
 										<!-- <button type="button" class="btn btn-info mx-2" data-toggle="modal"
 											data-target="#modalEdit<?= $id ?>">Edit</button> -->
-										<button type="button" class="btn btn-danger" data-toggle="modal"
+										<button type="button" class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#modalHapus<?= $id ?>">Hapus</button>
 									</td>
 									</td>
