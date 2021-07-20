@@ -210,21 +210,6 @@
 							</form>
 						</div>
 					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label for="recipient-name" class="col-form-label"></label>
-								<input type="text" class="form-control" id="recipient-name"
-									value="Kualitas Air Optimal adalah berada pada range 0 - 200" readonly>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Detail Grafik :</label>
-								<br>
-								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
-							</div>
-						</form>
-						<br>
-					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
 					</div>
@@ -294,26 +279,10 @@
 							</form>
 						</div>
 					</div>
-					<div class="modal-body">
-						<<<<<<< HEAD <form>
-							<div class="form-group">
-								<label for="recipient-name" class="col-form-label"></label>
-								<input type="text" class="form-control" id="recipient-name"
-									value="Kualitas Air Sedang adalah berada pada range 100 - 300" readonly>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Detail Grafik :</label>
-								<br>
-								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
-							</div>
-							</form>
-							<br>
-							=======
-
-					</div>
+					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-						>>>>>>> 9e96ae00e4fde8d5fb6dd50de1fd4e82c25587a5
+						
 					</div>
 				</div>
 			</div>
@@ -381,26 +350,9 @@
 							</form>
 						</div>
 					</div>
-					<div class="modal-body">
-						<<<<<<< HEAD <form>
-							<div class="form-group">
-								<label for="recipient-name" class="col-form-label"></label>
-								<input type="text" class="form-control" id="recipient-name"
-									value="Kualitas Air Buruk adalah berada pada range 200 - 400" readonly>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Detail Grafik :</label>
-								<br>
-								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
-							</div>
-							</form>
-							<br>
-							=======
-
-					</div>
+					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-						>>>>>>> 9e96ae00e4fde8d5fb6dd50de1fd4e82c25587a5
 					</div>
 				</div>
 			</div>
@@ -473,22 +425,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label for="recipient-name" class="col-form-label"></label>
-								<input type="text" class="form-control" id="recipient-name"
-									value="Kualitas Air Sangat Buruk adalah berada pada range 300 - 500" readonly>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Detail Grafik :</label>
-								<br>
-
-								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
-							</div>
-						</form>
-						<br>
-					</div>
+					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
 					</div>
