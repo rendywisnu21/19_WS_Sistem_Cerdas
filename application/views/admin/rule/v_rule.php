@@ -62,7 +62,7 @@
 							</thead>
 							<tbody>
 								<?php $no = 1;
-									foreach ($rule as $ru):
+									foreach ($rule as $ru) :
 								?>
 								<tr>
 									<td class="text-center"><?= $no++; ?></td>
