@@ -77,7 +77,7 @@
 					<br><br>
 
 					<hr><hr>
-					<h5><p><b><center>RULE YANG DIGUNAKAN ADALAH 64 : </center></b></p></h5>
+					<h5><p><b><center>ADA 64 (ENAM PULUH EMPAT) RULE YANG DIGUNAKAN : </center></b></p></h5>
 					<hr>
 					<div class="row">
 					<!-- Rule -->
