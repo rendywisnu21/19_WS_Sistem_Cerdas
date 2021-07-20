@@ -91,7 +91,7 @@
 	<div class="modal fade" id="modalHapus<?= $id; ?>" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header bg-danger">
+				<div class="modal-header">
 					<h4 class="modal-title">Hapus</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 					<input type="hidden" name="delete_id" value="<?= $id; ?>" required>
 					<button type="submit" class="btn btn-danger">Hapus</button>
 				</div>
@@ -118,8 +118,8 @@
 <div class="modal fade" id="modalRefresh" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header bg-danger">
-				<h4 class="modal-title">Bersihkan</h4>
+			<div class="modal-header">
+				<h4 class="modal-title">Hapus Semua</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -130,7 +130,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 				<a href="<?=base_url('admin/C_hasil/clear')?>" class="btn btn-danger">Hapus</a>
 			</div>
 		</div>

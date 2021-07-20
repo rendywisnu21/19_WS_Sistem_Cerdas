@@ -24,5 +24,12 @@
         {
             $this->db->delete($table, $where);
         }
+		
+		// Edit
+		public function edit($where, $table, $nilai)
+		{		
+			$hasil = $this->db->update($table, $nilai, $where);
+			return $hasil;
+		}
 
 }		

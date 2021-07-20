@@ -17,6 +17,9 @@ class C_ph extends CI_Controller
 
 		/** Mengambil data kelas */
 		$data['fuzzy_set'] = $this->m_ph->getPh()->result();
+		$data['nilai_fz']	= [
+			'Excellent', 'Good', 'Bad', 'Very Bad'
+		];
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');
@@ -30,9 +33,8 @@ class C_ph extends CI_Controller
             'required' 	=> 'Kolom ini perlu dipilih'
             ]);
 
-        $this->form_validation->set_rules('domain', 'Domain', 'required|trim|min_length[2]', [
-            'required' 	=> 'Kolom ini perlu diisi',
-			'min_length'=> 'Isikan minimal 2 huruf'
+        $this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu diisi'
             ]);
 		
 		// Cek id_ph
@@ -64,7 +66,7 @@ class C_ph extends CI_Controller
 		
 		if ($this->form_validation->run() == false) {
 			$this->index();
-		}else{
+		}else {
 			$data = array(
 				'id_ph'		=> $id_ph,
 				'fuzzy_set' => $fuzzy_set,
@@ -87,4 +89,34 @@ class C_ph extends CI_Controller
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_ph');
     }
+
+	public function edit($id)
+	{	
+		// Peraturan isi form
+		$this->form_validation->set_rules('fuzzy_set', 'Fuzzy Set', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu dipilih'
+            ]);
+
+        $this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu diisi'
+            ]);
+			
+		$fuzzy_set 	= htmlspecialchars($this->input->post('fuzzy_set'));
+		$domain 	= htmlspecialchars($this->input->post('domain'));
+		
+		// Ambil Data dari tb_ph
+		$where	=	array('id_ph' => $id);
+		
+		if ($this->form_validation->run() == false) {
+			$this->index();
+		}else{
+			$nilai = array(
+				'fuzzy_set' => $fuzzy_set,
+				'domain' 	=> $domain
+			);
+		
+			$this->m_ph->edit($where, 'tb_ph' ,$nilai);
+			redirect('admin/C_ph');
+		}
+	}
 }

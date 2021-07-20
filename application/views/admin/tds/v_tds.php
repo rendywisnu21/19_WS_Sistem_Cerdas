@@ -40,15 +40,16 @@
 							</thead>
 							<tbody>
 								<?php $no = 1;
-								foreach ($tds as $td):
-									$id = $td->id_tds
-									?>
+									foreach ($fuzzy_set as $fz):
+										$id = $fz->id_tds
+								?>
 								<tr>
 									<td class="text-center"><?= $no; ?></td>
-									<!--<?= $id; ?>-->
-									<td class="text-center"><?= $td->fuzzy_set; ?></td>
-									<td class="text-center"><?= $td->domain; ?></td>
+									<td class="text-center"><?= $fz->fuzzy_set; ?></td>
+									<td class="text-center"><?= $fz->domain; ?></td>
 									<td class="text-center">
+										<button type="button" class="btn btn-outline-info mx-2" data-toggle="modal"
+											data-target="#modalEdit<?= $id ?>">Edit</button>
 										<button type="button" class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#modalHapus<?= $id ?>">Hapus</button>
 									</td>
@@ -87,29 +88,29 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?php echo base_url() . 'admin/C_tds/tambahtds' ?>" method="post">
+			<form action="<?php echo base_url() . 'admin/C_tds/tambah' ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="namatd">Nilai FuzzySet</label>
-						<select class="form-control huruf" id="namatd" name="namatd" value="<?= set_value('namatd'); ?>"
-							autocomplete="off" autofocus required>
+						<label for="fuzzy_set">Nilai FuzzySet</label>
+						<select class="form-control huruf" id="fuzzy_set" name="fuzzy_set" value="<?= set_value('fuzzy_set'); ?>"
+							autocomplete="off" placeholder="Pilih Fuzzyset" autofocus required>
 							<option disabled selected hidden>Pilih</option>
 							<option value="Excellent">Excellent</option>
 							<option value="Good">Good</option>
 							<option value="Bad">Bad</option>
 							<option value="Very Bad">Very Bad</option>
 						</select>
-						<?= form_error('namatd', '<small class="text-danger">', '</small>'); ?>
+						<?= form_error('fuzzy_set', '<small class="text-danger">', '</small>'); ?>
 					</div>
 					<div class="form-group">
 						<label for="domain">Domain</label>
 						<input type="text" class="form-control" id="domain" name="domain"
-							placeholder="Isi dengan nilai angka">
+							placeholder="Isi dengan nilai angka" autocomplete="off">
 						<?= form_error('domain', '<small class="text-danger">', '</small>'); ?>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 					<button type="submit" class="btn btn-primary">Tambah</button>
 				</div>
 			</form>
@@ -118,16 +119,62 @@
 	</div>
 </div>
 <!-- Modal Tambah End -->
+<!-- modal edit -->
+<?php foreach ($fuzzy_set as $fz):
+	$id 		= $fz->id_tds;
+	$fuzzyset 	= $fz->fuzzy_set;
+	$domain 	= $fz->domain;
+	?>
+<div class="modal fade" id="modalEdit<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edit Data</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="<?= base_url() . 'admin/C_tds/edit/' . $id ?>" method="post">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="fuzzy_set">Nilai Fuzzy Set</label>
+						<select class="form-control huruf" id="fuzzy_set" name="fuzzy_set" value="<?= $fz->fuzzy_set ?>"
+							autocomplete="off" autofocus required>
+							<option disabled selected hidden>Pilih</option>
+							<?php foreach ($nilai_fz as $key=>$value): ?>
+							<option value="<?= $value ?>" <?= $fuzzyset==$value ? 'selected':''?>><?= $value ?></option>
+							<?php endforeach; ?>
+						</select>
+						<?= form_error('fuzzy_set', '<small class="text-danger">', '</small>'); ?>
+					</div>
+					<div class="form-group">
+						<label for="domain">Domain</label>
+						<input type="text" class="form-control" id="domain" name="domain"
+							placeholder="Isi dengan nilai angka" value="<?= $fz->domain ?>" autocomplete="off">
+						<?= form_error('domain', '<small class="text-danger">', '</small>'); ?>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-info">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<?php endforeach; ?>
+<!-- modal edit end -->
 <!-- Modal Hapus -->
-<?php foreach ($tds as $ts):
-	$id = $ts->id_tds;
-	$nama = $ts->fuzzy_set;
+<?php foreach ($fuzzy_set as $fz):
+	$id 		= $fz->id_tds;
+	$kategori 	= $fz->fuzzy_set;
 	?>
 <form action="<?php echo base_url() . 'admin/C_tds/delete' ?>" method="post">
 	<div class="modal fade" id="modalHapus<?= $id; ?>" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header bg-danger">
+				<div class="modal-header">
 					<h4 class="modal-title">Hapus</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -135,11 +182,11 @@
 				</div>
 				<div class="modal-body justify-content-center">
 					<div>
-						<h5>Apakah anda yakin untuk menghapus data dengan kategori <b><?= $nama?></b> ini?</h5>
+						<h5>Apakah anda yakin untuk menghapus data dengan kategori <b><?= $kategori?></b> ini?</h5>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 					<input type="hidden" name="delete_id" value="<?= $id; ?>" required>
 					<button type="submit" class="btn btn-danger">Hapus</button>
 				</div>

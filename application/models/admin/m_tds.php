@@ -1,28 +1,34 @@
 <?php
-    class M_Tds extends CI_Model
+    class M_tds extends CI_Model
     {
-        public function getTds()
+        public function getTDS()
         {
             $query = $this->db->get('tb_tds');
             return $query;
         }
 
-        public function getTdsLast()
+        public function getTDSLast()
         {
             $this->db->order_by('id_tds', 'DESC');
             return $this->db->get('tb_tds', 1);
         }
 
-        // CREATE
-        public function tambahtds($data, $table)
+        // Tambah
+        public function tambah($data)
         {   
-            $query = $this->db->insert($table, $data);
-            return $query;
+            return $this->db->insert('tb_tds', $data);
         }
 
-        // DELETE
-        function delete($where, $table)
+        // Hapus
+        public function delete($where, $table)
         {
             $this->db->delete($table, $where);
         }
+
+		// Edit
+		public function edit($where, $table, $nilai)
+		{		
+			$hasil = $this->db->update($table, $nilai, $where);
+			return $hasil;
+		}
     }

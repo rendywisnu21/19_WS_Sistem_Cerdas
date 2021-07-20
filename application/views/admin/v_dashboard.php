@@ -101,7 +101,7 @@
 							<div class="form-group">
 								<label for="recipient-name" class="col-form-label"></label>
 								<input type="text" class="form-control" id="recipient-name"
-									value="Suhu Optimal adalah berada pada range 0 - 200" readonly>
+									value="Kualitas Air Optimal adalah berada pada range 0 - 200" readonly>
 							</div>
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Detail Grafik :</label>
@@ -109,9 +109,7 @@
 								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+						<br>
 					</div>
 				</div>
 			</div>
@@ -141,9 +139,7 @@
 								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+						<br>
 					</div>
 				</div>
 			</div>
@@ -173,9 +169,7 @@
 								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+						<br>
 					</div>
 				</div>
 			</div>
@@ -205,9 +199,7 @@
 								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+						<br>
 					</div>
 				</div>
 			</div>

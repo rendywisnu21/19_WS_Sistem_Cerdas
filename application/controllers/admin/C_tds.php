@@ -17,7 +17,10 @@ class C_Tds extends CI_Controller
 		$data['title'] = 'Data TDS';
 		
 		/** Mengambil data kelas */
-		$data['tds'] = $this->m_tds->gettds()->result();
+		$data['fuzzy_set'] = $this->m_tds->getTDS()->result();
+		$data['nilai_fz']	= [
+			'Excellent', 'Good', 'Bad', 'Very Bad'
+		];
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');
@@ -25,22 +28,20 @@ class C_Tds extends CI_Controller
 		$this->load->view('admin/template_adm/v_footer');
 	}
 	
-	public function tambahtds()
+	public function tambah()
 	{
-		$this->form_validation->set_rules('namatd', 'Namatd', 'trim|required', [
-			'required' => 'Kolom ini harus di isi',
-			]);
-		
-		$this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
-			'required' 	=> 'Kolom ini perlu diisi'
-			]);
-			
-		$data['tds'] = $this->m_tds->gettds();
+		$this->form_validation->set_rules('fuzzy_set', 'Fuzzy Set', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu dipilih'
+            ]);
 
-		// Cek ID TDS
-		$check = $this->m_tds->getTds()->num_rows();
+        $this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu diisi'
+            ]);
+		
+		// Cek id_tds
+		$check = $this->m_tds->getTDS()->num_rows();
 		if ($check > 0) {
-			$lastId = $this->m_tds->getTdsLast()->result();
+			$lastId = $this->m_tds->getTDSLast()->result();
 			foreach ($lastId as $row){
 				$rawid = substr($row->id_tds, 2,3); //009
 				$id = intval($rawid); //9
@@ -49,7 +50,7 @@ class C_Tds extends CI_Controller
 					$id_tds = "TD0" . ($id + 1);
 				}else {
 					if (strlen($id) == 1) { //1
-						$id_tds = "TD00" . ($id + 1); //TD0010
+						$id_tds = "TD00" . ($id + 1); //TD010
 					}else if (strlen($id) == 2) {
 						$id_tds = "TD0" . ($id + 1);
 					}else if (strlen($id) == 3){
@@ -61,28 +62,19 @@ class C_Tds extends CI_Controller
 			$id_tds = "TD001";
 		}
 
-		// $id_fuzzyset = htmlspecialchars($this->input->post('id_fuzzyset'));
-		$fuzzy_set = htmlspecialchars($this->input->post('namatd'));
-		$domain = htmlspecialchars($this->input->post('domain'));
+		$fuzzy_set 	= htmlspecialchars($this->input->post('fuzzy_set'));
+		$domain 	= htmlspecialchars($this->input->post('domain'));
 		
 		if ($this->form_validation->run() == false) {
-			/** Mengambil data kelas */
-		$this->load->view('admin/template_adm/v_header', $data);
-		$this->load->view('admin/template_adm/v_navbar');
-		$this->load->view('admin/template_adm/v_sidebar');
-		$this->load->view('admin/tds/v_tmbhtds', $data);
-		$this->load->view('admin/template_adm/v_footer');
-		}else{
-			$data = $this->m_tds->gettds();
-			// $nama_fuzzyset="Fuzzy";
-		
-			$fuzzy = array(
-				'id_tds' => $id_tds,
+			$this->index();
+		}else {
+			$data = array(
+				'id_tds'	=> $id_tds,
 				'fuzzy_set' => $fuzzy_set,
-				'domain' => $domain
+				'domain' 	=> $domain,
 			);
 		
-			$this->m_tds->tambahtds($fuzzy, 'tb_tds');
+			$this->m_tds->tambah($data);
 			$this->session->set_flashdata('message', 'save');
 			redirect('admin/C_tds');
 		}
@@ -97,5 +89,35 @@ class C_Tds extends CI_Controller
 		$this->m_tds->delete($where, 'tb_tds');
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_tds');
+	}
+
+	public function edit($id)
+	{	
+		// Peraturan isi form
+		$this->form_validation->set_rules('fuzzy_set', 'Fuzzy Set', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu dipilih'
+            ]);
+
+        $this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu diisi'
+            ]);
+			
+		$fuzzy_set 	= htmlspecialchars($this->input->post('fuzzy_set'));
+		$domain 	= htmlspecialchars($this->input->post('domain'));
+		
+		// Ambil Data dari tb_tds
+		$where	=	array('id_tds' => $id);
+		
+		if ($this->form_validation->run() == false) {
+			$this->index();
+		}else{
+			$nilai = array(
+				'fuzzy_set' => $fuzzy_set,
+				'domain' 	=> $domain
+			);
+		
+			$this->m_tds->edit($where, 'tb_tds' ,$nilai);
+			redirect('admin/C_tds');
+		}
 	}
 }

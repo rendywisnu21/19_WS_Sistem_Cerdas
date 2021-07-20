@@ -23,7 +23,8 @@
 				<div class="card">
 					<div class="card-header bg-dark">
 						<h3 class="card-title text-bold float-left">Tabel <?= $title; ?></h3>
-						<a href="#" class="btn btn-primary text-bold float-right" data-target="#modalTambah" data-toggle="modal">
+						<a href="#" class="btn btn-primary text-bold float-right" data-target="#modalTambah"
+							data-toggle="modal">
 							Tambah Data
 						</a>
 					</div>
@@ -48,11 +49,10 @@
 									<td class="text-center"><?= $fz->fuzzy_set; ?></td>
 									<td class="text-center"><?= $fz->domain; ?></td>
 									<td class="text-center">
-										<!-- <button type="button" class="btn btn-info mx-2" data-toggle="modal"
-											data-target="#modalEdit<?= $id ?>">Edit</button> -->
+										<button type="button" class="btn btn-outline-info mx-2" data-toggle="modal"
+											data-target="#modalEdit<?= $id ?>">Edit</button>
 										<button type="button" class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#modalHapus<?= $id ?>">Hapus</button>
-									</td>
 									</td>
 								</tr>
 								<?php $no++; ?>
@@ -88,7 +88,7 @@
 			<form action="<?php echo base_url() . 'admin/C_ph/tambah' ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="fuzzy_set">Nama FuzzySet</label>
+						<label for="fuzzy_set">Nilai FuzzySet</label>
 						<select class="form-control huruf" id="fuzzy_set" name="fuzzy_set" placeholder="Pilih Fuzzyset"
 							value="<?= set_value('fuzzy_set'); ?>" autocomplete="off" autofocus required>
 							<option disabled selected hidden>Pilih</option>
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 					<button type="submit" class="btn btn-primary">Tambah</button>
 				</div>
 			</form>
@@ -117,7 +117,12 @@
 </div>
 <!-- modal tambah end -->
 <!-- modal edit -->
-<!-- <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<?php foreach ($fuzzy_set as $fz):
+	$id 		= $fz->id_ph;
+	$fuzzyset 	= $fz->fuzzy_set;
+	$domain 	= $fz->domain;
+	?>
+<div class="modal fade" id="modalEdit<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -127,31 +132,35 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="#" method="post">
+			<form action="<?= base_url() . 'admin/C_ph/edit/' . $id ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="fuzzy_set">Nilai Fuzzy Set</label>
-						<input type="text" class="form-control" id="fuzzy_set" name="fuzzy_set"
-							placeholder="Isi dengan nilai baik, sedang, buruk, atau sangat buruk">
+						<select class="form-control huruf" id="fuzzy_set" name="fuzzy_set" value="<?= $fz->fuzzy_set ?>"
+							autocomplete="off" autofocus required>
+							<option disabled selected hidden>Pilih</option>
+							<?php foreach ($nilai_fz as $key=>$value): ?>
+							<option value="<?= $value ?>" <?= $fuzzyset==$value ? 'selected':''?>><?= $value ?></option>
+							<?php endforeach; ?>
+						</select>
 						<?= form_error('fuzzy_set', '<small class="text-danger">', '</small>'); ?>
 					</div>
-				</div>
-				<div class="modal-body">
 					<div class="form-group">
 						<label for="domain">Domain</label>
 						<input type="text" class="form-control" id="domain" name="domain"
-							placeholder="Isi dengan nilai angka">
+							placeholder="Isi dengan nilai angka" value="<?= $fz->domain ?>" autocomplete="off">
 						<?= form_error('domain', '<small class="text-danger">', '</small>'); ?>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-primary">Simpan</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-info">Simpan</button>
 				</div>
 			</form>
 		</div>
 	</div>
-</div> -->
+</div>
+<?php endforeach; ?>
 <!-- modal edit end -->
 <!-- modal hapus -->
 <?php foreach ($fuzzy_set as $fz):
@@ -162,7 +171,7 @@
 	<div class="modal fade" id="modalHapus<?= $id; ?>" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header bg-danger">
+				<div class="modal-header">
 					<h4 class="modal-title">Hapus</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -174,7 +183,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 					<input type="hidden" name="delete_id" value="<?= $id; ?>" required>
 					<button type="submit" class="btn btn-danger">Hapus</button>
 				</div>

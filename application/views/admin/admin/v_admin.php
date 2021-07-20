@@ -113,7 +113,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 					<button type="submit" class="btn btn-primary">Tambah</button>
 				</div>
 			</form>
@@ -130,7 +130,7 @@
 	<div class="modal fade" id="modalHapus<?= $id; ?>" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header bg-danger">
+				<div class="modal-header">
 					<h4 class="modal-title">Hapus</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Tutup</button>
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal">Batal</button>
 					<input type="hidden" name="delete_id" value="<?= $id; ?>" required>
 					<button type="submit" class="btn btn-danger">Hapus</button>
 				</div>

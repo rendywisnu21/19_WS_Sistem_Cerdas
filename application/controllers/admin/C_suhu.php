@@ -17,6 +17,9 @@ class C_Suhu extends CI_Controller
 
 		/** Mengambil data kelas */
 		$data['fuzzy_set'] = $this->m_suhu->getSuhu()->result();
+		$data['nilai_fz']	= [
+			'Excellent', 'Good', 'Bad', 'Very Bad'
+		];
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');
@@ -86,4 +89,34 @@ class C_Suhu extends CI_Controller
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_suhu');
     }
+
+	public function edit($id)
+	{	
+		// Peraturan isi form
+		$this->form_validation->set_rules('fuzzy_set', 'Fuzzy Set', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu dipilih'
+            ]);
+
+        $this->form_validation->set_rules('domain', 'Domain', 'required|trim', [
+            'required' 	=> 'Kolom ini perlu diisi'
+            ]);
+			
+		$fuzzy_set 	= htmlspecialchars($this->input->post('fuzzy_set'));
+		$domain 	= htmlspecialchars($this->input->post('domain'));
+		
+		// Ambil Data dari tb_suhu
+		$where 				= array('id_suhu' => $id);
+		
+		if ($this->form_validation->run() == false) {
+			$this->index();
+		}else{
+			$nilai = array(
+				'fuzzy_set' => $fuzzy_set,
+				'domain' 	=> $domain
+			);
+		
+			$this->m_suhu->edit($where, 'tb_suhu' ,$nilai);
+			redirect('admin/C_suhu');
+		}
+	}
 }
