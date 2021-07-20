@@ -67,7 +67,7 @@
 					</div>
 					<br>
 					<hr>
-					<hr>
+					<br>
 					<!-------------------------------------------------------------------------------------------------------------------->
 					<div class="row">
 						<div class="modal-body">
@@ -84,20 +84,20 @@
 						</div>
 					</div>
 					<br><br>
-
-					<hr>
 					<hr>
 					<h5>
-						<p><b>
+						<br>
+						<p>
+							<b>
 								<center>ADA 64 (ENAM PULUH EMPAT) RULE YANG DIGUNAKAN : </center>
-							</b></p>
+							</b>
+						</p>
 					</h5>
-					<hr>
 					<div class="row">
 						<!-- Rule -->
 						<div class="col-md-1">
 							<?php 
-						foreach($Rule as $ru) : 
+							foreach($Rule as $ru) : 
 						?>
 							<div class="alert alert-light">
 								<b>[<?= $ru->rule; ?>]</b>
@@ -106,7 +106,7 @@
 						</div>
 						<div class="col-md-3">
 							<?php 
-						foreach($Rule as $ru) : 
+							foreach($Rule as $ru) : 
 						?>
 							<div class="alert alert-primary">
 								IF SUHU <b>[<?= $ru->Suhu; ?>]</b>
@@ -115,7 +115,7 @@
 						</div>
 						<div class="col-md-3">
 							<?php 
-						foreach($Rule as $ru) : 
+							foreach($Rule as $ru) : 
 						?>
 							<div class="alert alert-warning">
 								AND PH <b>[<?= $ru->pH; ?>]</b>
@@ -124,7 +124,7 @@
 						</div>
 						<div class="col-md-3">
 							<?php 
-						foreach($Rule as $ru) : 
+							foreach($Rule as $ru) : 
 						?>
 							<div class="alert alert-info">
 								AND TDS <b>[<?= $ru->TDS; ?>]</b>
@@ -133,7 +133,7 @@
 						</div>
 						<div class="col-md-2">
 							<?php 
-						foreach($Rule as $ru) : 
+							foreach($Rule as $ru) : 
 						?>
 							<div class="alert alert-success">
 								GRADE IS &nbsp; <b>[<?= $ru->grade; ?>]</b>
@@ -160,6 +160,7 @@
 					<br>
 					<form>
 						<div class="form-group">
+							<br>
 							<center>
 								<h5>
 									<p>Parameter Suhu memiliki 4 himpunan. Fungsi keanggotan Suhu direpresentasikan
@@ -473,7 +474,7 @@
 						</div>
 					</div>
 					<div class="modal-body">
-						<<<<<<< HEAD <form>
+						<form>
 							<div class="form-group">
 								<label for="recipient-name" class="col-form-label"></label>
 								<input type="text" class="form-control" id="recipient-name"
@@ -485,15 +486,11 @@
 
 								<img src="<?= base_url("/assets/dist/img/grafik.png") ?>" width="470px" height="200px" alt="">
 							</div>
-							</form>
-							<br>
-							=======
-							<hr>
-
+						</form>
+						<br>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-						>>>>>>> 9e96ae00e4fde8d5fb6dd50de1fd4e82c25587a5
 					</div>
 				</div>
 			</div>

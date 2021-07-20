@@ -67,7 +67,7 @@
 					</div>
 					<br>
 					<hr>
-					<hr>
+					<br>
 					<!-------------------------------------------------------------------------------------------------------------------->
 					<div class="row">
 						<div class="modal-body">
@@ -84,15 +84,15 @@
 						</div>
 					</div>
 					<br><br>
-
-					<hr>
 					<hr>
 					<h5>
-						<p><b>
+						<br>
+						<p>
+							<b>
 								<center>ADA 64 (ENAM PULUH EMPAT) RULE YANG DIGUNAKAN : </center>
-							</b></p>
+							</b>
+						</p>
 					</h5>
-					<hr>
 					<div class="row">
 						<!-- Rule -->
 						<div class="col-md-1">
@@ -160,6 +160,7 @@
 					<br>
 					<form>
 						<div class="form-group">
+							<br>
 							<center>
 								<h5>
 									<p>Parameter Suhu memiliki 4 himpunan. Fungsi keanggotan Suhu direpresentasikan
