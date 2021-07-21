@@ -15,7 +15,6 @@ class C_Suhu extends CI_Controller
 	{
 		$data['title'] = 'Data Suhu';
 
-		/** Mengambil data kelas */
 		$data['fuzzy_set'] = $this->m_suhu->getSuhu()->result();
 		$data['nilai_fz']	= [
 			'Excellent', 'Good', 'Bad', 'Very Bad'

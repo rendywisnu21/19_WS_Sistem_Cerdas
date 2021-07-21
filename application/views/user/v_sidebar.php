@@ -51,7 +51,7 @@
 			</div>
 		</aside>
 
-		<!-- modal keluar? -->
+		<!-- modal keluar -->
 		<div class="modal fade" id="modalKeluar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -66,4 +66,4 @@
 				</div>
 			</div>
 		</div>
-		<!-- modal keluar? end -->
+		<!-- modal keluar end -->

@@ -18,7 +18,7 @@
         {   
             return $this->db->insert('tb_suhu', $data);
         }
-
+		
 		// Hapus
 		public function hapus($where, $table)
         {
