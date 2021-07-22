@@ -6,3 +6,4 @@
             return $this->db->get_where('tb_admin', $data);
         }
     }
+?>    

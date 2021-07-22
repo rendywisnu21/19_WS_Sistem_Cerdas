@@ -22,7 +22,6 @@ class C_input extends CI_Controller
 		$this->load->view('user/v_sidebar');
 		$this->load->view('user/v_input');
 		$this->load->view('user/v_footer');
-
 	}
 
 	public function hitung(){
@@ -1220,7 +1219,6 @@ class C_input extends CI_Controller
     $this->session->set_userdata($sesi);
     // $this->index();
     redirect('user/C_input');
-
     }
 
     public function reset(){

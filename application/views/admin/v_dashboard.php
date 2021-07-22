@@ -22,16 +22,17 @@
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) -->
 					<div class="row">
-						<div class="col-lg-4 col-4">
+					<div class="col-lg-4 col-4">
 							<!-- small box -->
 							<div class="small-box bg-primary">
 								<div class="inner">
 									<center>
 										<h3><i class="fas fa-thermometer-three-quarters"></i>&nbsp;&nbsp; SUHU</h3>
+										<h6>Temperatur Air</h6>
 									</center>
 								</div>
 								<a href="#!" class="btn btn-outline-info col-12" data-target="#modalSuhu" data-toggle="modal">
-									<i class="fas fa-arrow-circle-right">&nbsp;&nbsp;&nbsp;Detail µ[Suhu]</i>
+									<i class="fas fa-arrow-circle-right">&nbsp;&nbsp;&nbsp; Informasi Suhu</i>
 								</a>
 							</div>
 						</div>
@@ -42,10 +43,11 @@
 								<div class="inner">
 									<center>
 										<h3><i class="fas fa-vial nav-icon"></i>&nbsp;&nbsp;PH</h3>
+										<h6>Derajat Keasaman</h6>
 									</center>
 								</div>
 								<a href="#!" class="btn btn-outline-info col-12" data-target="#modalPH" data-toggle="modal">
-									<i class="fas fa-arrow-circle-right">&nbsp;&nbsp;&nbsp;Detail µ[PH]</i>
+									<i class="fas fa-arrow-circle-right">&nbsp;&nbsp;&nbsp; Informasi PH</i>
 								</a>
 							</div>
 						</div>
@@ -56,11 +58,12 @@
 								<div class="inner">
 									<center>
 										<h3><i class="fas fa-thermometer nav-icon"></i>&nbsp;&nbspTDS</h3>
+										<h6>Jumlah Zat Padat Terlarut</h6>
 									</center>
 								</div>
 								<a href="#!" class="btn btn-outline-info col-12 col-12" data-target="#modalTDS"
 									data-toggle="modal">
-									<i class="fas fa-arrow-circle-right">&nbsp;&nbsp;&nbsp;Detail µ[TDS]</i>
+									<i class="fas fa-arrow-circle-right">&nbsp;&nbsp;&nbsp; Informasi TDS</i>
 								</a>
 							</div>
 						</div>
@@ -152,60 +155,45 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header bg-primary">
-						<h4><b>Detail µ[Suhu]</b></h4>
+						<h4><b>Detail Suhu Kolam Koi</b></h4>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<br>
 					<form>
-						<div class="form-group">
-							<br>
-							<center>
-								<h5>
-									<p>Parameter Suhu memiliki 4 himpunan. Fungsi keanggotan Suhu direpresentasikan
-										menggunakan kurva trapesium</p>
+						<div class="container">
+							<div class="form-group">
+							<p>
+								<h5 class="text-justify">
+									Suhu adalah ukuran tinggi rendahnya panas air yang berada di tempat budidaya atau kolam ikan koi
+									Pada kolam ikan koi, suhu yang baik berada pada rentang 22,5ºC sampai dengan 27ºC
+									Apabila suhu di bawah atau melebihi rentang tersebut, maka kualitas air akan berpengaruh terhadap pertumhuhan dan perkembangan ikan koi
 								</h5>
-							</center>
-							<center><img src="<?= base_url("/assets/dist/img/grafikSuhu.JPG") ?>" width="695px" height="225px"
-									alt=""></center><br><br>
-							<center>
-								<h5>
-									<p>Berdasarkan kurva tersebut, dirumuskan fungsi keanggotaan sebagai berikut : </p>
-								</h5>
-							</center>
-						</div>
+							</p>
+							</div>
+						</div>	
 					</form>
+					
 					<div class="row">
-						<div class="col-md-6 ml-auto">
+						<div class="col-md-12 ml-auto">
+							<center>
+								<p>
+									<h4 class="font-weight-bold"> 
+										Berikut disajikan kurva dan range data dari variabel suhu
+									</h4>
+								</p>
+							</center>
 							<form>
 								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/SuhuA.JPG") ?>" width="385px" height="225px"
-										alt="">
+									<center><img src="<?= base_url("/assets/dist/img/grafikSuhu.JPG") ?>" width="695px" height="225px" alt=""></center>
 								</div>
 							</form>
 						</div>
-						<div class="col-md-6 ml-auto">
+						<div class="col-md-12 ml-auto">
 							<form>
 								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/SuhuB.JPG") ?>" width="385px" height="225px"
-										alt="">
-								</div>
-							</form>
-						</div>
-						<div class="col-md-6 ml-auto">
-							<form>
-								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/SuhuC.JPG") ?>" width="385px" height="225px"
-										alt="">
-								</div>
-							</form>
-						</div>
-						<div class="col-md-6 ml-auto">
-							<form>
-								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/SuhuD.JPG") ?>" width="385px" height="225px"
-										alt="">
+									<center><img src="<?= base_url("/assets/dist/img/rangeSuhu.JPG") ?>" width="590px" height="126px"alt=""></center>
 								</div>
 							</form>
 						</div>
@@ -224,65 +212,50 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header bg-primary">
+						<h4><b>Detail pH Kolam Koi</b></h4>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
+					<br>
 					<form>
-						<div class="form-group">
-							<center>
-								<h5>
-									<p>Parameter pH memiliki 4 himpunan. Fungsi keanggotan pH direpresentasikan menggunakan
-										kurva trapesium</p>
+						<div class="container">
+							<div class="form-group">
+							<p>
+								<h5 class="text-justify">
+									PH adalah ukuran derajat keasaman yang digunakan untuk menyatakan tingkat keasaman pada air kolam di tempat budidaya atau kolam ikan koi
+									Pada kolam ikan koi, PH yang baik berada pada rentang 6,65 sampai dengan 7,7
+									Apabila PH di bawah atau melebihi rentang tersebut, maka kualitas air akan berpengaruh terhadap pertumhuhan dan perkembangan ikan koi
 								</h5>
-							</center>
-							<center><img src="<?= base_url("/assets/dist/img/grafikPH.JPG") ?>" width="695px" height="225px"
-									alt=""></center><br><br>
-							<center>
-								<h5>
-									<p>Berdasarkan kurva tersebut, dirumuskan fungsi keanggotaan pH sebagai berikut : </p>
-								</h5>
-							</center>
-						</div>
+							</p>
+							</div>
+						</div>	
 					</form>
 					<div class="row">
-						<div class="col-md-6 ml-auto">
+						<div class="col-md-12 ml-auto">
+							<center>
+								<p>
+									<h4 class="font-weight-bold"> 
+										Berikut disajikan kurva dan range data dari variabel PH
+									</h4>
+								</p>
+							</center>
 							<form>
 								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/phA.JPG") ?>" width="385px" height="225px"
-										alt="">
+									<center><img src="<?= base_url("/assets/dist/img/grafikPH.JPG") ?>" width="570px" height="224px" alt=""></center>
 								</div>
 							</form>
 						</div>
-						<div class="col-md-6 ml-auto">
+						<div class="col-md-12 ml-auto">
 							<form>
 								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/phB.JPG") ?>" width="385px" height="225px"
-										alt="">
-								</div>
-							</form>
-						</div>
-						<div class="col-md-6 ml-auto">
-							<form>
-								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/phC.JPG") ?>" width="385px" height="225px"
-										alt="">
-								</div>
-							</form>
-						</div>
-						<div class="col-md-6 ml-auto">
-							<form>
-								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/phD.JPG") ?>" width="385px" height="225px"
-										alt="">
+									<center><img src="<?= base_url("/assets/dist/img/rangePH.JPG") ?>" width="589px" height="116px"alt=""></center>
 								</div>
 							</form>
 						</div>
 					</div>
-					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-						
 					</div>
 				</div>
 			</div>
@@ -295,62 +268,48 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header bg-primary">
+						<h4><b>Detail TDS Kolam Koi</b></h4>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
+					<br>
 					<form>
-						<div class="form-group">
-							<center>
-								<h5>
-									<p>Parameter TDS memiliki 4 himpunan. Fungsi keanggotan TDS direpresentasikan menggunakan
-										kurva trapesium</p>
+						<div class="container">
+							<div class="form-group">
+							<p>
+								<h5 class="text-justify">
+									TDS adalah jumlah zat padat terlarut yang terdapat pada air kolam di tempat budidaya atau kolam ikan koi
+									Pada kolam ikan koi, TDS yang baik berada pada rentang 125mg/l sampai dengan 325mg/l
+									Apabila PH di bawah atau melebihi rentang tersebut, maka kualitas air akan berpengaruh terhadap pertumhuhan dan perkembangan ikan koi
 								</h5>
-							</center>
-							<center><img src="<?= base_url("/assets/dist/img/grafikTDS.JPG") ?>" width="695px" height="225px"
-									alt=""></center><br><br>
-							<center>
-								<h5>
-									<p>Berdasarkan kurva tersebut, dirumuskan fungsi keanggotaan TDS sebagai berikut : </p>
-								</h5>
-							</center>
-						</div>
+							</p>
+							</div>
+						</div>	
 					</form>
 					<div class="row">
-						<div class="col-md-6 ml-auto">
+						<div class="col-md-12 ml-auto">
+							<center>
+								<p>
+									<h4 class="font-weight-bold"> 
+										Berikut disajikan kurva dan range data dari variabel PH
+									</h4>
+								</p>
+							</center>
 							<form>
 								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/tdsA.JPG") ?>" width="385px" height="225px"
-										alt="">
+									<center><img src="<?= base_url("/assets/dist/img/grafikTDS.JPG") ?>" width="520px" height="229px" alt=""></center>
 								</div>
 							</form>
 						</div>
-						<div class="col-md-6 ml-auto">
+						<div class="col-md-12 ml-auto">
 							<form>
 								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/tdsB.JPG") ?>" width="385px" height="225px"
-										alt="">
-								</div>
-							</form>
-						</div>
-						<div class="col-md-6 ml-auto">
-							<form>
-								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/tdsC.JPG") ?>" width="385px" height="225px"
-										alt="">
-								</div>
-							</form>
-						</div>
-						<div class="col-md-6 ml-auto">
-							<form>
-								<div class="form-group">
-									<img src="<?= base_url("/assets/dist/img/tdsD.JPG") ?>" width="385px" height="225px"
-										alt="">
+									<center><img src="<?= base_url("/assets/dist/img/rangeTDS.JPG") ?>" width="590px" height="114px"alt=""></center>
 								</div>
 							</form>
 						</div>
 					</div>
-					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
 					</div>
@@ -358,6 +317,7 @@
 			</div>
 		</div>
 		<!-- End Modal TDS -->
+
 
 
 		<!-- Modal Grade -->
