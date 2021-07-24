@@ -9,7 +9,7 @@ class C_admin extends CI_Controller
 			redirect('admin/C_auth');
 		}
 
-		$this->load->model('admin/m_admin', 'admin');
+		$this->load->model('admin/M_admin', 'admin');
 	}
 
     public function index()

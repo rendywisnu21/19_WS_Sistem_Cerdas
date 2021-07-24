@@ -5,7 +5,7 @@ class C_input extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('user/m_input', 'home');
+		$this->load->model('user/M_input', 'home');
 
 		error_reporting(0);
 	}

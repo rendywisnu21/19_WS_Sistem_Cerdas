@@ -9,7 +9,7 @@ class C_Tds extends CI_Controller
 			redirect('admin/C_auth');
 		}
 		
-		$this->load->model('admin/m_tds');
+		$this->load->model('admin/M_tds', 'tds');
 	}
 
     public function index()
@@ -17,7 +17,7 @@ class C_Tds extends CI_Controller
 		$data['title'] = 'Data TDS';
 		
 		/** Mengambil data kelas */
-		$data['fuzzy_set'] = $this->m_tds->getTDS()->result();
+		$data['fuzzy_set'] = $this->tds->getTDS()->result();
 		$data['nilai_fz']	= [
 			'Excellent', 'Good', 'Bad', 'Very Bad'
 		];
@@ -39,9 +39,9 @@ class C_Tds extends CI_Controller
             ]);
 		
 		// Cek id_tds
-		$check = $this->m_tds->getTDS()->num_rows();
+		$check = $this->tds->getTDS()->num_rows();
 		if ($check > 0) {
-			$lastId = $this->m_tds->getTDSLast()->result();
+			$lastId = $this->tds->getTDSLast()->result();
 			foreach ($lastId as $row){
 				$rawid = substr($row->id_tds, 2,3); //009
 				$id = intval($rawid); //9
@@ -74,7 +74,7 @@ class C_Tds extends CI_Controller
 				'domain' 	=> $domain,
 			);
 		
-			$this->m_tds->tambah($data);
+			$this->tds->tambah($data);
 			$this->session->set_flashdata('message', 'save');
 			redirect('admin/C_tds');
 		}
@@ -86,7 +86,7 @@ class C_Tds extends CI_Controller
 		$where = array(
             'id_tds' => $id_td
         );
-		$this->m_tds->delete($where, 'tb_tds');
+		$this->tds->delete($where, 'tb_tds');
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_tds');
 	}
@@ -116,7 +116,7 @@ class C_Tds extends CI_Controller
 				'domain' 	=> $domain
 			);
 		
-			$this->m_tds->edit($where, 'tb_tds' ,$nilai);
+			$this->tds->edit($where, 'tb_tds' ,$nilai);
 			redirect('admin/C_tds');
 		}
 	}

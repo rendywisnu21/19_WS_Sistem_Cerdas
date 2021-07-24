@@ -9,7 +9,7 @@ class C_rule extends CI_Controller
 			redirect('admin/C_auth');
 		}
 
-		$this->load->model('admin/m_rule', 'rule');
+		$this->load->model('admin/M_rule', 'rule');
 	}
 
     public function index()

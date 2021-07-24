@@ -9,7 +9,7 @@ class C_fuzzy extends CI_Controller
 			redirect('admin/C_auth');
 		}
 
-		$this->load->model('admin/m_fuzzy');
+		$this->load->model('admin/M_fuzzy', 'fuzzy');
 	}
 
 	public function index()
@@ -17,7 +17,7 @@ class C_fuzzy extends CI_Controller
 		$data['title'] = 'Data Fuzzyset';
 		
 		/** Mengambil data kelas */
-		$data['fuzzyset'] = $this->m_fuzzy->getFuzzy()->result();
+		$data['fuzzyset'] = $this->fuzzy->getFuzzy()->result();
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');
@@ -34,9 +34,9 @@ class C_fuzzy extends CI_Controller
             ]);
 		
 		// Cek id_fuzzyset
-		$check = $this->m_fuzzy->getFuzzy()->num_rows();
+		$check = $this->fuzzy->getFuzzy()->num_rows();
 		if ($check > 0) {
-			$lastId = $this->m_fuzzy->getFuzzyLast()->result();
+			$lastId = $this->fuzzy->getFuzzyLast()->result();
 			foreach ($lastId as $row){
 				$rawid = substr($row->id_fuzzyset, 2);
 				$id = intval($rawid);
@@ -61,7 +61,7 @@ class C_fuzzy extends CI_Controller
 				'fuzzyset' => $fuzzyset
 			);
 		
-			$this->m_fuzzy->tambah($data);
+			$this->fuzzy->tambah($data);
 			$this->session->set_flashdata('message', 'save');
 			redirect('admin/C_fuzzy');
 		}
@@ -69,7 +69,7 @@ class C_fuzzy extends CI_Controller
 
 	public function hapus($id)
     {
-        $this->m_fuzzy->hapus(['id_fuzzyset' => $id], 'tb_fuzzyset');
+        $this->fuzzy->hapus(['id_fuzzyset' => $id], 'tb_fuzzyset');
         redirect('admin/C_fuzzy');
     }
 }

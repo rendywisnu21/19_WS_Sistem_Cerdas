@@ -46,19 +46,19 @@
 										<div class="form-group">
 											<label for="suhu">Suhu</label>
 											<input type="text" class="form-control huruf" id="suhu" name="suhu" required
-												placeholder="Masukkan nilai suhu" value="<?php if(isset($_SESSION['suhu'])){echo $_SESSION['suhu'];} ?>">
+												placeholder="Masukkan nilai suhu, range 0 - 32" value="<?php if(isset($_SESSION['suhu'])){echo $_SESSION['suhu'];} ?>">
 											<?= form_error('suhu', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="ph">pH</label>
 											<input type="text" class="form-control huruf" id="ph" name="ph" required
-												placeholder="Masukkan nilai ph" value="<?php if(isset($_SESSION['ph'])){echo $_SESSION['ph'];} ?>">
+												placeholder="Masukkan nilai ph, range 0 - 8,7" value="<?php if(isset($_SESSION['ph'])){echo $_SESSION['ph'];} ?>">
 											<?= form_error('ph', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<div class="form-group">
 											<label for="tds">TDS</label>
 											<input type="text" class="form-control huruf" id="tds" name="tds" required
-												placeholder="Masukkan nilai tds" value="<?php if(isset($_SESSION['tds'])){echo $_SESSION['tds'];} ?>">
+												placeholder="Masukkan nilai tds, range 0 - 500" value="<?php if(isset($_SESSION['tds'])){echo $_SESSION['tds'];} ?>">
 											<?= form_error('tds', '<small class="text-danger">', '</small>'); ?>
 										</div>
 										<br><hr>

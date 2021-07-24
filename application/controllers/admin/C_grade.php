@@ -9,7 +9,7 @@ class C_Grade extends CI_Controller
 			redirect('admin/C_auth');
 		}
 		
-		$this->load->model('admin/m_grade');
+		$this->load->model('admin/M_grade', 'grade');
 	}
 
     public function index()
@@ -17,7 +17,7 @@ class C_Grade extends CI_Controller
 		$data['title'] = 'Data Grade';
 
 		/** Mengambil data kelas */
-		$data['grade'] = $this->m_grade->getgrade();
+		$data['grade'] = $this->grade->getgrade();
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
 		$this->load->view('admin/template_adm/v_sidebar');

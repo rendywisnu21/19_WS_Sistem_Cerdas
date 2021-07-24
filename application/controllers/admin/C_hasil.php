@@ -8,7 +8,7 @@ class C_hasil extends CI_Controller
 			redirect('admin/C_auth');
 		}
 
-		$this->load->model('admin/m_hasil');
+		$this->load->model('admin/M_hasil', 'hasil');
 	}
 
     public function index()
@@ -16,7 +16,7 @@ class C_hasil extends CI_Controller
 		$data['title'] = 'Data Riwayat Hasil';
 
 		// Mengambil data hasil
-		$data['hasil'] = $this->m_hasil->getHasil()->result();
+		$data['hasil'] = $this->hasil->getHasil()->result();
 		
 		$this->load->view('admin/template_adm/v_header', $data);
 		$this->load->view('admin/template_adm/v_navbar');
@@ -31,20 +31,20 @@ class C_hasil extends CI_Controller
 		$where = array(
             'id_hasil' => $id_hasil
         );
-		$this->m_hasil->hapus($where, 'tb_hasil');
+		$this->hasil->hapus($where, 'tb_hasil');
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_hasil');
     }
 
 	public function clear()
     {
-		$hasil = $this->m_hasil->getHasil()->result();
+		$hasil = $this->hasil->getHasil()->result();
 		foreach ($hasil as $h){
 			$id_hasil = $h->id_hasil;
 			$where = array(
 				'id_hasil' => $id_hasil
 			);
-			$this->m_hasil->hapus($where, 'tb_hasil');
+			$this->hasil->hapus($where, 'tb_hasil');
 		}
 		
 		$this->session->set_flashdata('message', 'dataDelete');

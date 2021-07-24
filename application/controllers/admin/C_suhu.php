@@ -8,14 +8,14 @@ class C_Suhu extends CI_Controller
 			redirect('admin/C_auth');
 		}
 
-		$this->load->model('admin/m_suhu');
+		$this->load->model('admin/M_suhu', 'suhu');
 	}
 
     public function index()
 	{
 		$data['title'] = 'Data Suhu';
 
-		$data['fuzzy_set'] = $this->m_suhu->getSuhu()->result();
+		$data['fuzzy_set'] = $this->suhu->getSuhu()->result();
 		$data['nilai_fz']	= [
 			'Excellent', 'Good', 'Bad', 'Very Bad'
 		];
@@ -37,9 +37,9 @@ class C_Suhu extends CI_Controller
             ]);
 		
 		// Cek id_suhu SU010
-		$check = $this->m_suhu->getSuhu()->num_rows();
+		$check = $this->suhu->getSuhu()->num_rows();
 		if ($check > 0) {
-			$lastId = $this->m_suhu->getSuhuLast()->result();
+			$lastId = $this->suhu->getSuhuLast()->result();
 			foreach ($lastId as $row){
 				$rawid = substr($row->id_suhu, 2,3); //009
 				$id = intval($rawid); //9
@@ -72,7 +72,7 @@ class C_Suhu extends CI_Controller
 				'domain' 	=> $domain,
 			);
 		
-			$this->m_suhu->tambah($data);
+			$this->suhu->tambah($data);
 			$this->session->set_flashdata('message', 'save');
 			redirect('admin/C_suhu');
 		}
@@ -84,7 +84,7 @@ class C_Suhu extends CI_Controller
 		$where = array(
             'id_suhu' => $id_suhu
         );
-		$this->m_suhu->hapus($where, 'tb_suhu');
+		$this->suhu->hapus($where, 'tb_suhu');
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_suhu');
     }
@@ -114,7 +114,7 @@ class C_Suhu extends CI_Controller
 				'domain' 	=> $domain
 			);
 		
-			$this->m_suhu->edit($where, 'tb_suhu' ,$nilai);
+			$this->suhu->edit($where, 'tb_suhu' ,$nilai);
 			redirect('admin/C_suhu');
 		}
 	}

@@ -8,7 +8,7 @@ class C_ph extends CI_Controller
 			redirect('admin/C_auth');
 		}
 
-		$this->load->model('admin/m_ph');
+		$this->load->model('admin/M_ph', 'ph');
 	}
 
     public function index()
@@ -16,7 +16,7 @@ class C_ph extends CI_Controller
 		$data['title'] = 'Data Ph';
 
 		/** Mengambil data kelas */
-		$data['fuzzy_set'] = $this->m_ph->getPh()->result();
+		$data['fuzzy_set'] = $this->ph->getPh()->result();
 		$data['nilai_fz']	= [
 			'Excellent', 'Good', 'Bad', 'Very Bad'
 		];
@@ -38,9 +38,9 @@ class C_ph extends CI_Controller
             ]);
 		
 		// Cek id_ph
-		$check = $this->m_ph->getPh()->num_rows();
+		$check = $this->ph->getPh()->num_rows();
 		if ($check > 0) {
-			$lastId = $this->m_ph->getPhLast()->result();
+			$lastId = $this->ph->getPhLast()->result();
 			foreach ($lastId as $row){
 				$rawid = substr($row->id_ph, 2,3); //009
 				$id = intval($rawid); //9
@@ -73,7 +73,7 @@ class C_ph extends CI_Controller
 				'domain' 	=> $domain,
 			);
 		
-			$this->m_ph->tambah($data);
+			$this->ph->tambah($data);
 			$this->session->set_flashdata('message', 'save');
 			redirect('admin/C_ph');
 		}
@@ -85,7 +85,7 @@ class C_ph extends CI_Controller
 		$where = array(
             'id_ph' => $id_ph
         );
-		$this->m_ph->hapus($where, 'tb_ph');
+		$this->ph->hapus($where, 'tb_ph');
 		$this->session->set_flashdata('message', 'dataDelete');
 		redirect('admin/C_ph');
     }
@@ -115,7 +115,7 @@ class C_ph extends CI_Controller
 				'domain' 	=> $domain
 			);
 		
-			$this->m_ph->edit($where, 'tb_ph' ,$nilai);
+			$this->ph->edit($where, 'tb_ph' ,$nilai);
 			redirect('admin/C_ph');
 		}
 	}

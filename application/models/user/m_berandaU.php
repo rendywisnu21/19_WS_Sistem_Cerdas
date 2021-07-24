@@ -1,6 +1,6 @@
 <?php
 
-class M_berandaU extends CI_Model
+class M_berandau extends CI_Model
 {
     public function get_beranda()
     {
